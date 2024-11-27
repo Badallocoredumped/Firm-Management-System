@@ -98,6 +98,7 @@ public class RegularEmployee
             }
             
             case '3'-> //Logout
+            // PS: Should we terminate the program or go to the login page?
             {
                 Ccleaner();
                 System.out.print("Logginng out");
