@@ -1,3 +1,5 @@
+import java.sql.Date;
+
 public class RegularEmployee
 {
     private String name;
@@ -7,6 +9,9 @@ public class RegularEmployee
     private String phone;
     private String email;
     private String password;
+    private Date birthday;
+    private Date employmentday;
+
 
     public RegularEmployee(String name, String surname, String username, String role, String email, String phone)
     {
@@ -15,8 +20,10 @@ public class RegularEmployee
         this.username = username;
         this.role = role;
         this.phone = role;
-        this.email= email;
-        this.password= password;
+        this.email = email;
+        this.password = password;
+        this.birthday = birthday;
+        this.employmentday = employmentday;
 
     }
 
@@ -25,6 +32,8 @@ public class RegularEmployee
     public String getUsername() {return username;}
     public String getRole() {return role;}
     public String getPhone() {return phone;}
+    public Date getBirthday() {return birthday;}
+    public Date getEmploymentday() {return employmentday;}
     public void setPhone(String phone) { this.phone = phone;}
     public String getEmail() {return email;}
     public void setEmail(String email) { this.email = email;}
@@ -62,6 +71,11 @@ public class RegularEmployee
     }
 
     public static void ChangePhone()
+    {
+
+    }
+
+    public static void PrintNonProfile()
     {
 
     }
