@@ -9,6 +9,7 @@ public class RegularEmployee
     private String phone;
     private String email;
     private String password;
+    private String ID;
     private Date birthday;
     private Date employmentday;
 
@@ -21,6 +22,7 @@ public class RegularEmployee
         this.role = role;
         this.phone = role;
         this.email = email;
+        this.ID = ID;
         this.password = password;
         this.birthday = birthday;
         this.employmentday = employmentday;
@@ -31,9 +33,10 @@ public class RegularEmployee
     public String getSurname() {return surname;}
     public String getUsername() {return username;}
     public String getRole() {return role;}
-    public String getPhone() {return phone;}
+    public String getID() {return ID;}
     public Date getBirthday() {return birthday;}
     public Date getEmploymentday() {return employmentday;}
+    public String getPhone() {return phone;}
     public void setPhone(String phone) { this.phone = phone;}
     public String getEmail() {return email;}
     public void setEmail(String email) { this.email = email;}
