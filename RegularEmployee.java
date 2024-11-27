@@ -1,4 +1,4 @@
-public class RegularEmployee
+public class RegularEmployee extends Employee
 {
     
 }
