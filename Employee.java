@@ -2,30 +2,31 @@ import java.sql.Date;
 
 public abstract class Employee 
 {
-    protected String name;
-    protected String surname;
+    protected int ID;
     protected String username;
     protected String role;
+    protected String name;
+    protected String surname;
     protected String phone;
-    protected String email;
-    protected String password;
-    protected String ID;
-    protected Date birthday;
-    protected Date employmentday;
+    protected Date DOB;
+    protected Date DOS;
+    protected String Email;
+    protected String Password;
 
 
-    public Employee(String name, String surname, String username, String role, String email, String phone, String ID, String password, Date birthday, Date employmentday)
+    public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
     {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.role = role;
-        this.phone = phone;
-        this.email = email;
         this.ID = ID;
-        this.password = password;
-        this.birthday = birthday;
-        this.employmentday = employmentday;
+        this.username = Username;
+        this.role = Role;
+        this.name = Name;
+        this.surname = Surname;
+        this.phone = Phone;
+        this.DOB = DOB;
+        this.DOS = DOS;
+        this.Email = Email;
+        this.Password = Password;
+        
 
     }
 
@@ -33,15 +34,15 @@ public abstract class Employee
     public String getSurname() {return surname;}
     public String getUsername() {return username;}
     public String getRole() {return role;}
-    public String getID() {return ID;}
-    public Date getBirthday() {return birthday;}
-    public Date getEmploymentday() {return employmentday;}
+    public int getID() {return ID;}
+    public Date getBirthday() {return DOB;}
+    public Date getEmploymentday() {return DOS;}
     public String getPhone() {return phone;}
     public void setPhone(String phone) { this.phone = phone;}
-    public String getEmail() {return email;}
-    public void setEmail(String email) { this.email = email;}
-    public String getPassword() {return password;}
+    public String getEmail() {return Email;}
+    public void setEmail(String email) { this.Email = email;}
+    /* public String getPassword() {return password;}
     public void setPassword(String password) { this.password = password;}
-
+    */
     public abstract void Menu();
 }

@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Date;
+
 
 import com.mysql.cj.protocol.Resultset;
 
@@ -202,7 +204,7 @@ public class DataBaseHandler
         */
     } 
 
-    public void HireEmployee(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
+    private void HireEmployee(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
     {
         //Add employee to the database
         if(connection == null)
@@ -213,7 +215,7 @@ public class DataBaseHandler
         try 
         {
             Statement statement = connection.createStatement();
-            String randompassword = "Khas"+phone;
+            String randompassword = "Khas"+username;
             String query2do = "INSERT INTO employees (username, name, surname, role, phone_no, date_of_birth, date_of_start, email,password) " +
             "VALUES ('" + username + "', '" + name + "', '" + surname + "', '" + role + "', '" + phone + "', '" + dob + "', '" + dos + "', '" + email + "', '" + randompassword + "')";
 
@@ -237,8 +239,12 @@ public class DataBaseHandler
             e.printStackTrace();
         }
     }
+    public void HireEmployeeForManager(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
+    {
+        HireEmployee(username, name, surname, role, phone, dob, dos, email);
+    }
     
-    public void FireEmployee(int employee_id,String username,String name,String surname)
+    private void FireEmployee(int employee_id,String username)
     {
         //Remove employee from the database
         //Ask if you are sure you want to delete
@@ -248,9 +254,11 @@ public class DataBaseHandler
             String query2do = "DELETE FROM employees WHERE employee_id = " + employee_id;
             int rowsAffected = statement.executeUpdate(query2do);
 
+            Employee victim = GetEmployeeWithUsername(username);
+
             if(rowsAffected > 0)
             {
-                System.out.println("Employee " + name + " " + surname + " has been deleted from the database");
+                System.out.println("Employee " + victim.name + " " + victim.surname + " has been deleted from the database");
             }
             else
             {
@@ -264,6 +272,10 @@ public class DataBaseHandler
             System.out.println("Error removing employee from the database");
             e.printStackTrace(); 
         }
+    }
+    public void FireEmployeeForManager(int employee_id,String username)
+    {
+        FireEmployee(employee_id,username);
     }
     
     public Employee GetEmployeeWithUsername(String username)
@@ -287,18 +299,19 @@ public class DataBaseHandler
                 String dbName = infoSet.getString("name");
                 String dbSurname = infoSet.getString("surname");
                 String dbPhone = infoSet.getString("phone_no");
-                String dbDOB = infoSet.getString("date_of_birth");
-                String dbDOS = infoSet.getString("date_of_start");
+                Date dbDOB = infoSet.getDate("date_of_birth");
+                Date dbDOS = infoSet.getDate("date_of_start");
                 String dbEmail = infoSet.getString("email");
+                String dbPassword = infoSet.getString("password");
 
                 if(dbRole.equals("Manager"))
                 {
                     System.out.println("Login successfull!");
-                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail);
+                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword);
                 }
                 else
                 {
-                    return new RegularEmployee();
+                    return new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword);
                 }
             }
             
@@ -311,4 +324,38 @@ public class DataBaseHandler
 
     }
     
+ 
+    
+    
+    public boolean CheckUsernameDup(String username)
+    {
+        if(connection == null)
+        {
+            System.err.println("Database connection failed");
+        }
+
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "SELECT COUNT(*) AS count FROM employees WHERE username = '" + username + "'";
+            ResultSet infoSet = statement.executeQuery(query2do);
+            if(infoSet.next())
+            {
+                int count = infoSet.getInt("count");
+                
+                if(count>0)
+                {
+                    return true;
+                }
+            }
+            
+            
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error occured!");
+        }
+        return false;
+
+    }
 }

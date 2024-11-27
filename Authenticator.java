@@ -8,9 +8,9 @@ import com.mysql.cj.protocol.Resultset;
 
 public class Authenticator 
 {
-    private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; // Replace with your DB URL
-    private final String username = "root"; // Replace with your DB username
-    private final String password = "Admin_123"; // Replace with your DB password
+    private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; 
+    private final String username = "root"; 
+    private final String password = "Admin_123"; 
     private Connection connection;
     DataBaseHandler dbHandler = new DataBaseHandler();
 
@@ -43,14 +43,15 @@ public class Authenticator
     }
     public void logout()
     {
-        if(this.currUser == null)
+        if(this.currUser != null)
         {
             System.out.println("");
             this.currUser = null;
         }
         else
         {
-            System.err.println("Error");
+            System.err.println("Error logout");
+            
         }
     }
 

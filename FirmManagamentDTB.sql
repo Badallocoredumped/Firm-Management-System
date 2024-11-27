@@ -4,7 +4,7 @@ USE FirmManagement;
 
 CREATE TABLE employees (
     employee_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
+    username VARCHAR(50)  NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('Manager', 'Engineer', 'Technician', 'Intern') NOT NULL,
     name VARCHAR(100) NOT NULL,
@@ -17,16 +17,7 @@ CREATE TABLE employees (
 );
 
 
-
 SELECT * FROM employees;
-
-ALTER TABLE employees
-MODIFY password VARCHAR(255) DEFAULT 'default_password';
-
-
-
-
-
 
 INSERT INTO employees (username, password, role, name, surname, phone_no, date_of_birth, date_of_start, email, DEFAULT_PASSWORD)
 VALUES 

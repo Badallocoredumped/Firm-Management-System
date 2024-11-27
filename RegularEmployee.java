@@ -6,11 +6,11 @@ import java.sql.Date;
 
 public class RegularEmployee extends Employee
 {
-    static int delay = 1000;
+    //deleted delay
     public static Scanner input = new Scanner(System.in);
-    public RegularEmployee(String name, String surname, String username, String role, String email, String phone, String ID, String password, Date birthday, Date employmentday)
+    public RegularEmployee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
     {
-        super(name, surname, username, role, email, phone, ID, password, birthday, employmentday);
+        super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password);
 
     }
 
@@ -72,21 +72,7 @@ public class RegularEmployee extends Employee
             {
                 Ccleaner();
                 System.out.print("Logginng out");
-                try 
-                    {
-                        for (int i = 0; i < 3; i++) {
-                            Thread.sleep(delay);
-                            System.out.println(".");
-                            Thread.sleep(delay);
-                            System.out.println(".");
-                            Thread.sleep(delay);
-                            System.out.println(".");
-                        }
-                    } 
-                    catch (InterruptedException e) 
-                    {
-                    
-                    }
+                //Deleted delay
                 Ccleaner();
                 return;
             }
@@ -108,14 +94,14 @@ public class RegularEmployee extends Employee
             System.out.println("Full profile information");
             System.out.println("Name: " + name);
             System.out.println("Surname: " + surname);
-            System.out.println("Email:" + email);
+            System.out.println("Email:" + Email);
             System.out.println("Phone" + phone);
             System.out.println("ID: " + ID);
             System.out.println("Role: " + role);
-            System.out.println("Birthday: " + birthday);
-            System.out.println("Employment day: " + employmentday);
+            System.out.println("Birthday: " + DOB);
+            System.out.println("Employment day: " + DOS);
             System.out.println("Username: " + username);
-            System.out.println("Password: " + password + "\n");
+            System.out.println("Password: " + Password + "\n");
             System.out.println("Enter '9' to return to the menu.");
             sRM = input.nextLine();
             if(sRM.isEmpty() || sRM.length() > 1)
