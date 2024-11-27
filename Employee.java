@@ -1,6 +1,6 @@
 import java.sql.Date;
 
-public abstract class User 
+public abstract class Employee 
 {
     protected String name;
     protected String surname;
@@ -14,7 +14,7 @@ public abstract class User
     protected Date employmentday;
 
 
-    public User(String name, String surname, String username, String role, String email, String phone, String ID, String password, Date birthday, Date employmentday)
+    public Employee(String name, String surname, String username, String role, String email, String phone, String ID, String password, Date birthday, Date employmentday)
     {
         this.name = name;
         this.surname = surname;

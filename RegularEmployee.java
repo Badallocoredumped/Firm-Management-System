@@ -4,7 +4,7 @@ import javax.management.relation.Role;
 
 import java.sql.Date;
 
-public class RegularEmployee extends User
+public class RegularEmployee extends Employee
 {
     static int delay = 1000;
     public static Scanner input = new Scanner(System.in);
@@ -63,11 +63,12 @@ public class RegularEmployee extends User
 
             case '2'-> //Update info
             {
-                //Working on it!!!!;
+                Ccleaner();
+                UpdateProfile();
             }
             
             case '3'-> //Logout
-            // PS: Should we terminate the program or go to the login page?
+            // Professor reply: We should go to the login page after log out and put a exit(terminate) on the login page
             {
                 Ccleaner();
                 System.out.print("Logginng out");
@@ -104,7 +105,7 @@ public class RegularEmployee extends User
         boolean toRM = false;
         while (!toRM) 
         {
-            System.out.println("Profile information");
+            System.out.println("Full profile information");
             System.out.println("Name: " + name);
             System.out.println("Surname: " + surname);
             System.out.println("Email:" + email);
@@ -135,52 +136,181 @@ public class RegularEmployee extends User
             }
         }
     }
-    public static void UpdateProfile()
+    public void UpdateProfile()
     {
+        String UPString;
+        char UPInput = '0';
+            
+        while(UPInput != '5')
+        {
+            System.out.println("Update profile");
+            System.out.println("1. Change email");
+            System.out.println("2. Change password");
+            System.out.println("3. Change phone number");
+            System.out.println("4. Update all profile information");
+            System.out.println("Return to main menu");
+            System.out.println();
+            System.out.print("Select an Operation: ");
+            UPString = input.nextLine();
 
+            // Checks single character inputs
+            if(UPString.isEmpty() || UPString.length() > 1)
+            {
+                Ccleaner();
+                System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                System.out.println();
+                continue;
+            }
+            UPInput = UPString.charAt(0);
+            System.out.println();
+
+            if (UPInput < '1' || UPInput > '5') 
+            {
+                    Ccleaner();
+                    System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                    System.out.println();
+            }
+        }
+
+        // Executes selected operation
+        switch (UPInput)
+        {
+            case '1'-> //Update Email
+            {
+                Ccleaner();
+                ChangeEmail();
+            }
+
+            case '2'-> //Update Phone number
+            {
+                Ccleaner();
+                ChangePhone();
+            }
+            
+            case '3'-> //Update Password
+            {
+                Ccleaner();
+                ChangePassword();
+            }
+
+            case '4'-> //Update Password
+            {
+                Ccleaner();
+                UpdateAll();
+            }
+
+            case '5'-> //Return to Main menu
+            {
+                Ccleaner();
+                return;
+            }
+
+            default -> 
+            {
+                Ccleaner();
+                System.out.println("Please enter a number between 1 and 5");
+            }
+        }
     }
-    public static boolean CheckFirstLogin()
+    public boolean CheckFirstLogin()
     {
         return true;
     } 
 
-    public static void ChangePassword(RegularEmployee employee, Scanner input)
+    public void ChangePassword()
     {
-        boolean SameCode = false;
+        System.out.println("Updating password");
         boolean Changed = false;
+        String cPassword = getPassword();
+        String nPassword;
         while (!Changed) 
         {
-            while (!SameCode) 
+            System.out.println("Enter new password (minimum 8, maximum 16 characters): ");
+            nPassword = input.nextLine();
+            if (nPassword.equals(cPassword))
             {
-                String cPassword = employee.getPassword();
-                System.out.println("Enter new password (minimum 8, maximum 24 characters): ");
-                String nPassword = input.nextLine();
-                if (cPassword == nPassword)
-                {
-                    System.out.println("You can not use the same password!!");
-                    return;
-                }
-                SameCode = true;
+                System.out.println("You can not use the same password!!");
+                continue;
             }
-            //if (nPassword.length() < 8 ) {
-                
-            //}
+
+            if (nPassword.length() < 8 || nPassword.length() > 16 || nPassword.isBlank() ) 
+            {
+                System.out.println("Password must have between 8 and 16 characters");
+                continue;
+            }
+
+            setPassword(nPassword);
+            System.out.println("The password has been changed succesfully");
+            Changed = true;
         }
-        
-
     }
 
-    public static void ChangeEmail()
+    public void ChangeEmail()
     {
+        System.out.println("Updating email");
+        boolean Changed = false;
+        String cEmail = getEmail();
+        String nEmail;
+        String EmailRegex = "^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        while (!Changed) 
+        {
+            System.out.println("Enter new email address: ");
+            nEmail = input.nextLine();
+            if (nEmail.equals(cEmail))
+            {
+                System.out.println("You can not use the same Email!!");
+                continue;
+            }
 
+            if (!nEmail.matches(EmailRegex)) 
+            {
+                System.out.println("Invalide email format!! (Spacial characters are not allowed)");
+                continue;
+            }
+
+            setEmail(EmailRegex);
+            System.out.println("The Email has been changed succesfully");
+            Changed = true;
+        }
     }
 
-    public static void ChangePhone()
+    public void ChangePhone()
     {
+        System.out.println("Updating phone number");
+        boolean Changed = false;
+        String cPhone = getPhone();
+        String nPhone;
+        while (!Changed) 
+        {
+            System.out.println("Enter new phone number (10 digits): ");
+            nPhone = input.nextLine();
+            if (nPhone.equals(cPhone))
+            {
+                System.out.println("You can not use the same phone number!!");
+                continue;
+            }
 
+            if (nPhone.length() != 10 || nPhone.isBlank() ||  !nPhone.matches("\\d+")) 
+            {
+                System.out.println("Phone number must have 10 digits");
+                continue;
+            }
+
+            setPhone(nPhone);
+            System.out.println("The Phone number has been changed succesfully");
+            Changed = true;
+        }
     }
 
-    public static void Ccleaner()
+    public void UpdateAll()
+    {
+        ChangeEmail();
+        ChangePassword();
+        ChangePhone();
+        System.out.println("The profile has been updated succesfully");
+    }
+
+    public void Ccleaner()
     {
         try 
         {
