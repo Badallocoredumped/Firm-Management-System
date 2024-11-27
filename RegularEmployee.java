@@ -1,55 +1,24 @@
 import java.util.Scanner;
+
+import javax.management.relation.Role;
+
 import java.sql.Date;
 
-public class RegularEmployee
+public class RegularEmployee extends User
 {
     static int delay = 1000;
-    Scanner input;
-    private String name;
-    private String surname;
-    private String username;
-    private String role;
-    private String phone;
-    private String email;
-    private String password;
-    private String ID;
-    private Date birthday;
-    private Date employmentday;
-
-
+    public static Scanner input = new Scanner(System.in);
     public RegularEmployee(String name, String surname, String username, String role, String email, String phone, String ID, String password, Date birthday, Date employmentday)
     {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.role = role;
-        this.phone = phone;
-        this.email = email;
-        this.ID = ID;
-        this.password = password;
-        this.birthday = birthday;
-        this.employmentday = employmentday;
+        super(name, surname, username, role, email, phone, ID, password, birthday, employmentday);
 
     }
-
-    public String getName() {return name;}
-    public String getSurname() {return surname;}
-    public String getUsername() {return username;}
-    public String getRole() {return role;}
-    public String getID() {return ID;}
-    public Date getBirthday() {return birthday;}
-    public Date getEmploymentday() {return employmentday;}
-    public String getPhone() {return phone;}
-    public void setPhone(String phone) { this.phone = phone;}
-    public String getEmail() {return email;}
-    public void setEmail(String email) { this.email = email;}
-    public String getPassword() {return password;}
-    public void setPassword(String password) { this.password = password;}
 
 
 
     // Regular Employee Menu
-    public static void RM(Scanner input, RegularEmployee employee)
+    @Override
+    public void Menu()
     {
         String RMString;
         char RMInput = '0';
@@ -89,7 +58,7 @@ public class RegularEmployee
             case '1'-> //Profile info
             {
                 Ccleaner();
-                PrintProfile(employee, input);
+                PrintProfile();
             }
 
             case '2'-> //Update info
@@ -128,7 +97,7 @@ public class RegularEmployee
             }
         }
     }
-    public static void PrintProfile(RegularEmployee employee, Scanner input)
+    public void PrintProfile()
     {
         char cRM ='0';
         String sRM;
@@ -136,16 +105,16 @@ public class RegularEmployee
         while (!toRM) 
         {
             System.out.println("Profile information");
-            System.out.println("Name: " + employee.getName());
-            System.out.println("Surname: " + employee.getSurname());
-            System.out.println("Email:" + employee.getEmail());
-            System.out.println("Phone" + employee.getPhone());
-            System.out.println("ID: " + employee.getID());
-            System.out.println("Role: " + employee.getRole());
-            System.out.println("Birthday: " + employee.getBirthday());
-            System.out.println("Employment day: " + employee.getEmploymentday());
-            System.out.println("Username: " + employee.getUsername());
-            System.out.println("Password: " + employee.getPassword() + "\n");
+            System.out.println("Name: " + name);
+            System.out.println("Surname: " + surname);
+            System.out.println("Email:" + email);
+            System.out.println("Phone" + phone);
+            System.out.println("ID: " + ID);
+            System.out.println("Role: " + role);
+            System.out.println("Birthday: " + birthday);
+            System.out.println("Employment day: " + employmentday);
+            System.out.println("Username: " + username);
+            System.out.println("Password: " + password + "\n");
             System.out.println("Enter '9' to return to the menu.");
             sRM = input.nextLine();
             if(sRM.isEmpty() || sRM.length() > 1)
@@ -157,6 +126,7 @@ public class RegularEmployee
             cRM = sRM.charAt(0);
             if (cRM == '9') 
             {
+                toRM =true;
                 return;
             }
             else if (cRM != '9') 
@@ -174,8 +144,29 @@ public class RegularEmployee
         return true;
     } 
 
-    public static void ChangePassword()
+    public static void ChangePassword(RegularEmployee employee, Scanner input)
     {
+        boolean SameCode = false;
+        boolean Changed = false;
+        while (!Changed) 
+        {
+            while (!SameCode) 
+            {
+                String cPassword = employee.getPassword();
+                System.out.println("Enter new password (minimum 8, maximum 24 characters): ");
+                String nPassword = input.nextLine();
+                if (cPassword == nPassword)
+                {
+                    System.out.println("You can not use the same password!!");
+                    return;
+                }
+                SameCode = true;
+            }
+            //if (nPassword.length() < 8 ) {
+                
+            //}
+        }
+        
 
     }
 
