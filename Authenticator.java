@@ -45,16 +45,16 @@ public class Authenticator {
     {
         String LUsername, LPassword;
 
-        while(true){  //loop till user enters valid credntials
-            System.out.println("Welcome to the Firm Managemnt System!");
-            System.out.println("Enter login credentials: ");
+        //loop till user enters valid credntials
+        System.out.println("Welcome to the Firm Managemnt System!");
+        System.out.println("Enter login credentials: ");
 
-            System.out.println("Username: ");
-            LUsername = input.nextLine();
-            System.out.println("Password");
-            LPassword = input.nextLine();
-            login(LUsername, LPassword);
-        }
+        System.out.print("Username: ");
+        LUsername = input.nextLine();
+        System.out.print("Password: ");
+        LPassword = input.nextLine();
+        login(LUsername, LPassword);
+        
     }
 
     public void logout() {

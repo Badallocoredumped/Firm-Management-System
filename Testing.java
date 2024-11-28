@@ -11,6 +11,13 @@ public class Testing
     {
         Authenticator Auth = new Authenticator();
         Auth.LoginMenu();
+        /*Scanner input = new Scanner(System.in);
+        DataBaseHandler dbHandler = new DataBaseHandler();
+        String username = "Teca7";
+        Employee employee = dbHandler.GetEmployeeWithUsername(username);
+        System.out.print("New password: ");
+        String NewPassword = input.nextLine();
+        dbHandler.UpdatePassword(employee.getID(), NewPassword);*/
     }
 }
 

@@ -74,7 +74,7 @@ public abstract class Employee
                 continue;
             }
 
-            dbHandler.UpdatePhone(ID, nPassword);
+            dbHandler.UpdatePassword(ID, nPassword);
             setPassword(nPassword);
             Changed = true;
         }

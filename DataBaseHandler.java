@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -295,9 +296,19 @@ public class DataBaseHandler
                 String dbPassword = infoSet.getString("password");
                 Boolean dbDefault = infoSet.getBoolean("DEFAULT_PASSWORD");
 
+                //Default Password checker
                 if (dbDefault) 
                 {
-                    UpdatePassword(dbID, dbPassword);
+                    if(dbRole.equals("Manager"))
+                    {
+                        Manager manager = new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword, dbDefault);
+                        manager.ChangePassword();
+                    }
+                    else
+                    {
+                        RegularEmployee regularEmployee = new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword, dbDefault);
+                        regularEmployee.ChangePassword();
+                    }
                 }
 
                 if(dbRole.equals("Manager"))
@@ -397,11 +408,12 @@ public class DataBaseHandler
 
     public void UpdateEmail(int employee_id, String email)
     {
-        try 
+        String query2do = "UPDATE employees SET email = ? WHERE employee_id = " + employee_id;
+
+        try(PreparedStatement statement = connection.prepareStatement(query2do))
         {
-            Statement statement = connection.createStatement();
-            String query2do = "UPDATE employees SET email = " + email + " WHERE employee_id = " + employee_id;
-            int rowsAffected = statement.executeUpdate(query2do);
+            statement.setString(1, email);
+            int rowsAffected = statement.executeUpdate();
             if(rowsAffected > 0)
             {
                 System.out.println("Email updated succesfully");
@@ -420,11 +432,12 @@ public class DataBaseHandler
 
     public void UpdatePhone(int employee_id, String phone)
     {
-        try 
+        String query2do = "UPDATE employees SET phone = ? WHERE employee_id = " + employee_id;
+
+        try(PreparedStatement statement = connection.prepareStatement(query2do))
         {
-            Statement statement = connection.createStatement();
-            String query2do = "UPDATE employees SET phone = " + phone + " WHERE employee_id = " + employee_id;
-            int rowsAffected = statement.executeUpdate(query2do);
+            statement.setString(1, phone);
+            int rowsAffected = statement.executeUpdate();
             if(rowsAffected > 0)
             {
                 System.out.println("Phone number updated succesfully");
@@ -443,18 +456,19 @@ public class DataBaseHandler
 
     public void UpdatePassword(int employee_id, String password)
     {
-        try 
+        String query2do = "UPDATE employees SET password = ?, DEFAULT_PASSWORD = FALSE WHERE employee_id = " + employee_id;
+
+        try(PreparedStatement statement = connection.prepareStatement(query2do))
         {
-            Statement statement = connection.createStatement();
-            String query2do = "UPDATE employees SET password = " + password + ", DEFAULT_PASSWORD = FALSE WHERE employee_id = " + employee_id;
-            int rowsAffected = statement.executeUpdate(query2do);
+            statement.setString(1, password);
+            int rowsAffected = statement.executeUpdate();
             if(rowsAffected > 0)
             {
                 System.out.println("Password updated succesfully");
             }
             else
             {
-                System.out.println("Error updating passqord");
+                System.out.println("Error updating password");
             }
         } 
         catch (SQLException e) 

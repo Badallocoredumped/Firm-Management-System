@@ -42,7 +42,7 @@ VALUES
 ('engineer5', 'engineer567', 'Engineer', 'Can', 'Aydın', '5556789012', '1990-04-10', '2014-03-22', 'can.aydin@example.com', TRUE),
 ('technician5', 'tech567', 'Technician', 'Mert', 'Çalışkan', '5557890123', '1995-10-15', '2017-06-02', 'mert.caliskan@example.com', TRUE),
 ('intern5', 'intern567', 'Intern', 'Deniz', 'Kuş', '5558901234', '2001-01-30', '2023-08-18', 'deniz.kus@example.com', TRUE),
-('Teca7', 'We love Teca', 'Engineer', 'Teca', 'Kanadji', '5441234567', '2002-06-07', '2022-04-18', 'Teca7@example.com', TRUE)
+('Teca7', 'WeLoveTeca', 'Engineer', 'Teca', 'Kanadji', '5441234567', '2002-06-07', '2022-04-18', 'Teca7@example.com', TRUE)
 ;
 
 
