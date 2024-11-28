@@ -3,15 +3,16 @@ import java.util.Scanner;
 import javax.management.relation.Role;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 
 public class RegularEmployee extends Employee
 {
     //deleted delay
     public static Scanner input = new Scanner(System.in);
-    public RegularEmployee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
+    public RegularEmployee(int ID, String Username, String Role, String Name, String Surname, String Phone, Date DOB, Date DOS, String Email, String Password, Boolean DEFAULT_PASSWORD)
     {
-        super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password);
-
+        super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password, DEFAULT_PASSWORD);
     }
 
 
@@ -50,7 +51,7 @@ public class RegularEmployee extends Employee
                 System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
                 System.out.println();
             }
-        }while(RMInput != '3');
+        }while(RMInput < '1' || RMInput > '3');
 
         // Executes selected operation
         switch (RMInput)
@@ -84,21 +85,35 @@ public class RegularEmployee extends Employee
             }
         }
     }
+
     public void PrintProfile()
     {
         char cRM ='0';
         String sRM;
         boolean toRM = false;
-        while (!toRM) 
+        do
         {
-            dbHandler.PrintProfile(username);
+            System.out.println("Full profile information");
+            System.out.println("Name: " + name);
+            System.out.println("Surname: " + surname);
+            System.out.println("Email:" + Email);
+            System.out.println("Phone" + phone);
+            System.out.println("ID: " + ID);
+            System.out.println("Role: " + role);
+            System.out.println("Birthday: " + DOB);
+            System.out.println("Employment day: " + DOS);
+            System.out.println("Username: " + username);
+            System.out.println("Password: " + Password + "\n");
+            System.out.println("Enter '9' to return to the menu.");
             sRM = input.nextLine();
+
             if(sRM.isEmpty() || sRM.length() > 1)
             {
                 Ccleaner();
                 System.out.println("Enter '9' to return to the menu.");
                 continue;
             }
+
             cRM = sRM.charAt(0);
             if (cRM == '9') 
             {
@@ -107,9 +122,10 @@ public class RegularEmployee extends Employee
             }
             else if (cRM != '9') 
             {
+                Ccleaner();
                 System.out.println("Enter '9' to return to the menu.");
             }
-        }
+        }while (!toRM);
     }
 
     public void UpdateProfile()
@@ -146,7 +162,7 @@ public class RegularEmployee extends Employee
                     System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
                     System.out.println();
             }
-        }while(UPInput != '5');
+        }while(UPInput < '1' || UPInput > '5');
 
         // Executes selected operation
         switch (UPInput)

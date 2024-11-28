@@ -16,7 +16,7 @@ public class DataBaseHandler
 {
     private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; // Replace with your DB URL
     private final String username = "root"; // Replace with your DB username
-    private final String password = "Admin_123"; // Replace with your DB password
+    private final String password = "Tecakanadji1"; // Replace with your DB password
     private Connection connection;
     
     public DataBaseHandler()
@@ -201,7 +201,7 @@ public class DataBaseHandler
         */
     } 
 
-    public void HireEmployee(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
+    public void HireEmployee(String username, String name, String surname, String role, String phone, Date dob, Date dos, String email)
     {
         //Add employee to the database
         if(connection == null)
@@ -293,15 +293,21 @@ public class DataBaseHandler
                 Date dbDOS = infoSet.getDate("date_of_start");
                 String dbEmail = infoSet.getString("email");
                 String dbPassword = infoSet.getString("password");
+                Boolean dbDefault = infoSet.getBoolean("DEFAULT_PASSWORD");
+
+                if (dbDefault) 
+                {
+                    UpdatePassword(dbID, dbPassword);
+                }
 
                 if(dbRole.equals("Manager"))
                 {
                     System.out.println("Login successfull!");
-                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword);
+                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword, dbDefault);
                 }
                 else
                 {
-                    return new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword);
+                    return new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,dbDOB,dbDOS,dbEmail,dbPassword, dbDefault);
                 }
             }
             
@@ -440,7 +446,7 @@ public class DataBaseHandler
         try 
         {
             Statement statement = connection.createStatement();
-            String query2do = "UPDATE employees SET password = " + password + " WHERE employee_id = " + employee_id;
+            String query2do = "UPDATE employees SET password = " + password + ", DEFAULT_PASSWORD = FALSE WHERE employee_id = " + employee_id;
             int rowsAffected = statement.executeUpdate(query2do);
             if(rowsAffected > 0)
             {

@@ -13,10 +13,11 @@ public abstract class Employee
     protected Date DOS;
     protected String Email;
     protected String Password;
+    protected Boolean DEFAULT_PASSWORD;
 
     public static Scanner input = new Scanner(System.in);
-    DataBaseHandler dbHandler = new DataBaseHandler();
-    public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
+    static DataBaseHandler dbHandler = new DataBaseHandler();
+    public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password, Boolean DEFAULT_PASSWORD)
     {
         this.ID = ID;
         this.username = Username;
@@ -28,7 +29,7 @@ public abstract class Employee
         this.DOS = DOS;
         this.Email = Email;
         this.Password = Password;
-        
+        this.DEFAULT_PASSWORD = DEFAULT_PASSWORD;
 
     }
 
@@ -45,6 +46,7 @@ public abstract class Employee
     public void setEmail(String email) { this.Email = email;}
     public String getPassword() {return Password;}
     public void setPassword(String Password) { this.Password = Password;}
+    public Boolean getDEFAULT_PASSWORD() {return DEFAULT_PASSWORD;}
     
     public abstract void Menu();
 
@@ -60,12 +62,14 @@ public abstract class Employee
             nPassword = input.nextLine();
             if (nPassword.equals(cPassword))
             {
+                Ccleaner();
                 System.out.println("You can not use the same password!!");
                 continue;
             }
 
             if (nPassword.length() < 8 || nPassword.length() > 16 || nPassword.isBlank() ) 
             {
+                Ccleaner();
                 System.out.println("Password must have between 8 and 16 characters");
                 continue;
             }
@@ -89,12 +93,14 @@ public abstract class Employee
             nEmail = input.nextLine();
             if (nEmail.equals(cEmail))
             {
+                Ccleaner();
                 System.out.println("You can not use the same Email!!");
                 continue;
             }
 
             if (!nEmail.matches(EmailRegex)) 
             {
+                Ccleaner();
                 System.out.println("Invalide email format!! (Spacial characters are not allowed)");
                 continue;
             }
@@ -117,12 +123,14 @@ public abstract class Employee
             nPhone = input.nextLine();
             if (nPhone.equals(cPhone))
             {
+                Ccleaner();
                 System.out.println("You can not use the same phone number!!");
                 continue;
             }
 
             if (nPhone.length() != 10 || nPhone.isBlank() ||  !nPhone.matches("\\d+")) 
             {
+                Ccleaner();
                 System.out.println("Phone number must have 10 digits");
                 continue;
             }

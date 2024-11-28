@@ -15,9 +15,9 @@ public class Manager extends Employee
     protected String email;
     protected String password;
  
-    public Manager(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
+    public Manager(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password, Boolean DEFAULT_PASSWORD)
     {
-        super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password);
+        super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password, DEFAULT_PASSWORD);
     }
 
 
