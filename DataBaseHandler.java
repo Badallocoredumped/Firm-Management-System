@@ -1,15 +1,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
-
-
-import com.mysql.cj.protocol.Resultset;
-
-
 
     //Username should not be a duplicate
 
@@ -244,7 +238,7 @@ public class DataBaseHandler
         HireEmployee(username, name, surname, role, phone, dob, dos, email);
     }
     
-    private void FireEmployee(int employee_id,String username)
+    void FireEmployee(int employee_id,String username)
     {
         //Remove employee from the database
         //Ask if you are sure you want to delete
