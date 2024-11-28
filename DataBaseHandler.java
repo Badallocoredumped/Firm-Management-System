@@ -181,11 +181,6 @@ public class DataBaseHandler
     {
         //Update employees NPF fields: Everything except password, phone_no, and e-mail
 
-
-
-
-
-
         /* int dbID = infoSet.getInt("employee_id");
         String dbUsername = infoSet.getString("username");
         String dbRole = infoSet.getString("role");
@@ -233,6 +228,7 @@ public class DataBaseHandler
             e.printStackTrace();
         }
     }
+
     public void HireEmployeeForManager(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
     {
         HireEmployee(username, name, surname, role, phone, dob, dos, email);
@@ -267,6 +263,7 @@ public class DataBaseHandler
             e.printStackTrace(); 
         }
     }
+
     public void FireEmployeeForManager(int employee_id,String username)
     {
         FireEmployee(employee_id,username);
@@ -317,10 +314,7 @@ public class DataBaseHandler
         return null;
 
     }
-    
- 
-    
-    
+
     public boolean CheckUsernameDup(String username)
     {
         if(connection == null)
@@ -350,6 +344,118 @@ public class DataBaseHandler
             System.out.println("Error occured!");
         }
         return false;
+    }
 
+    public void PrintProfile(String username)
+    {
+        if(connection == null)
+        {
+            System.err.println("Database connection failed");
+        }
+
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "SELECT * FROM employees WHERE username = '" + username + "'";
+            ResultSet infoSet = statement.executeQuery(query2do);
+
+            if(infoSet.next())
+            {
+                int dbID = infoSet.getInt("employee_id");
+                String dbUsername = infoSet.getString("username");
+                String dbRole = infoSet.getString("role");
+                String dbName = infoSet.getString("name");
+                String dbSurname = infoSet.getString("surname");
+                String dbPhone = infoSet.getString("phone_no");
+                String dbDOB = infoSet.getString("date_of_birth");
+                String dbDOS = infoSet.getString("date_of_start");
+                String dbEmail = infoSet.getString("email");
+
+                System.out.println("Full profile information");
+                System.out.println("Employee ID: " + dbID);
+                System.out.println(", Username: " + dbUsername);
+                System.out.println(", Role: " + dbRole);
+                System.out.println(", Name: " + dbName);
+                System.out.println(", Surname: " + dbSurname);
+                System.out.println(", Phone Number: " + dbPhone);
+                System.out.println(", Date of Birth: " + dbDOB); 
+                System.out.println(", Date of Start: " + dbDOS);
+                System.out.println(", Email: " + dbEmail);
+            }
+            
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error occured!");
+        }
+    }
+
+    public void UpdateEmail(int employee_id, String email)
+    {
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "UPDATE employees SET email = " + email + " WHERE employee_id = " + employee_id;
+            int rowsAffected = statement.executeUpdate(query2do);
+            if(rowsAffected > 0)
+            {
+                System.out.println("Email updated succesfully");
+            }
+            else
+            {
+                System.out.println("Error updating email");
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error updating email");
+            e.printStackTrace(); 
+        }
+    }
+
+    public void UpdatePhone(int employee_id, String phone)
+    {
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "UPDATE employees SET phone = " + phone + " WHERE employee_id = " + employee_id;
+            int rowsAffected = statement.executeUpdate(query2do);
+            if(rowsAffected > 0)
+            {
+                System.out.println("Phone number updated succesfully");
+            }
+            else
+            {
+                System.out.println("Error updating phone");
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error updating phone");
+            e.printStackTrace(); 
+        }
+    }
+
+    public void UpdatePassword(int employee_id, String password)
+    {
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "UPDATE employees SET password = " + password + " WHERE employee_id = " + employee_id;
+            int rowsAffected = statement.executeUpdate(query2do);
+            if(rowsAffected > 0)
+            {
+                System.out.println("Password updated succesfully");
+            }
+            else
+            {
+                System.out.println("Error updating passqord");
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error updating password");
+            e.printStackTrace(); 
+        }
     }
 }

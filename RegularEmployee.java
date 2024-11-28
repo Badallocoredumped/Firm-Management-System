@@ -23,7 +23,7 @@ public class RegularEmployee extends Employee
         String RMString;
         char RMInput = '0';
             
-        while(RMInput != '3')
+        do
         {
             System.out.println("Employee menu");
             System.out.println("1. Profile Information");
@@ -46,11 +46,11 @@ public class RegularEmployee extends Employee
 
             if (RMInput < '1' || RMInput > '3') 
             {
-                    Ccleaner();
-                    System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
-                    System.out.println();
+                Ccleaner();
+                System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                System.out.println();
             }
-        }
+        }while(RMInput != '3');
 
         // Executes selected operation
         switch (RMInput)
@@ -91,18 +91,7 @@ public class RegularEmployee extends Employee
         boolean toRM = false;
         while (!toRM) 
         {
-            System.out.println("Full profile information");
-            System.out.println("Name: " + name);
-            System.out.println("Surname: " + surname);
-            System.out.println("Email:" + Email);
-            System.out.println("Phone" + phone);
-            System.out.println("ID: " + ID);
-            System.out.println("Role: " + role);
-            System.out.println("Birthday: " + DOB);
-            System.out.println("Employment day: " + DOS);
-            System.out.println("Username: " + username);
-            System.out.println("Password: " + Password + "\n");
-            System.out.println("Enter '9' to return to the menu.");
+            dbHandler.PrintProfile(username);
             sRM = input.nextLine();
             if(sRM.isEmpty() || sRM.length() > 1)
             {
@@ -122,12 +111,13 @@ public class RegularEmployee extends Employee
             }
         }
     }
+
     public void UpdateProfile()
     {
         String UPString;
         char UPInput = '0';
             
-        while(UPInput != '5')
+        do
         {
             System.out.println("Update profile");
             System.out.println("1. Change email");
@@ -156,7 +146,7 @@ public class RegularEmployee extends Employee
                     System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
                     System.out.println();
             }
-        }
+        }while(UPInput != '5');
 
         // Executes selected operation
         switch (UPInput)

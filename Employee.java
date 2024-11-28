@@ -15,6 +15,7 @@ public abstract class Employee
     protected String Password;
 
     public static Scanner input = new Scanner(System.in);
+    DataBaseHandler dbHandler = new DataBaseHandler();
     public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
     {
         this.ID = ID;
@@ -69,8 +70,8 @@ public abstract class Employee
                 continue;
             }
 
+            dbHandler.UpdatePhone(ID, nPassword);
             setPassword(nPassword);
-            System.out.println("The password has been changed succesfully");
             Changed = true;
         }
     }
@@ -98,8 +99,8 @@ public abstract class Employee
                 continue;
             }
 
-            setEmail(EmailRegex);
-            System.out.println("The Email has been changed succesfully");
+            dbHandler.UpdatePhone(ID, nEmail);
+            setEmail(nEmail);
             Changed = true;
         }
     }
@@ -126,8 +127,8 @@ public abstract class Employee
                 continue;
             }
 
+            dbHandler.UpdatePhone(ID, nPhone);
             setPhone(nPhone);
-            System.out.println("The Phone number has been changed succesfully");
             Changed = true;
         }
     }
