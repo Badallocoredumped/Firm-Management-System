@@ -41,8 +41,8 @@ public abstract class Employee
     public void setPhone(String phone) { this.phone = phone;}
     public String getEmail() {return Email;}
     public void setEmail(String email) { this.Email = email;}
-    /* public String getPassword() {return password;}
-    public void setPassword(String password) { this.password = password;}
-    */
+    public String getPassword() {return Password;}
+    public void setPassword(String password) { this.Password = password;}
+   
     public abstract void Menu();
 }

@@ -12,8 +12,8 @@ public class Main
         System.out.println("Displayed All Employees with the role");
         //dbHandler.DispEmployeeWithUsername("emir5757");
         //dbHandler.DispEmployeeWithNameSurname("Emir","Özen");
-        //dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022.11.01", "2022.12.2", "bozoman");
-        dbHandler.FireEmployee(22,"dummyvolkan");
+        dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022.11.01", "2022.12.2", "bozoman");
+        //dbHandler.FireEmployee(22,"dummyvolkan");
 
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();
@@ -27,9 +27,11 @@ public class Main
          * Need to finalize main class
          * Need to make hire and fire private ? i guess idk
          * Need to do the first login thing which we have a boolean inside the database
+         * Check the date thing Date to string string to date
+         * Make email unique and the phone number probably
         */
 
-        /* while(currUser == null)
+        while(currUser == null)
         {
             System.out.println("Username: ");
             String userName = scanner.nextLine();
@@ -53,7 +55,7 @@ public class Main
         {
             System.out.println("Logged in as a regularemployee");
         }
- */
+
         authenticator.logout();
         scanner.close();
 
