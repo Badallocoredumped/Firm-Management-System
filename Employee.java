@@ -5,7 +5,7 @@ import java.util.Scanner;
 public abstract class Employee 
 {
     protected int ID;
-    protected String username;
+    protected String Username;
     protected String role;
     protected String name;
     protected String surname;
@@ -19,7 +19,7 @@ public abstract class Employee
     public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password)
     {
         this.ID = ID;
-        this.username = Username;
+        this.Username = Username;
         this.role = Role;
         this.name = Name;
         this.surname = Surname;
@@ -34,7 +34,7 @@ public abstract class Employee
 
     public String getName() {return name;}
     public String getSurname() {return surname;}
-    public String getUsername() {return username;}
+    public String getUsername() {return Username;}
     public String getRole() {return role;}
     public int getID() {return ID;}
     public LocalDate getBirthday() {return DOB;}

@@ -101,7 +101,7 @@ public class RegularEmployee extends Employee
             System.out.println("Role: " + role);
             System.out.println("Birthday: " + DOB);
             System.out.println("Employment day: " + DOS);
-            System.out.println("Username: " + username);
+            System.out.println("Username: " + Username);
             System.out.println("Password: " + Password + "\n");
             System.out.println("Enter '9' to return to the menu.");
             sRM = input.nextLine();

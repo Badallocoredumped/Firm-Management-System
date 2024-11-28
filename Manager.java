@@ -138,7 +138,7 @@ public class Manager extends Employee
 
     protected void HireEmployeeManager()
     {
-        username = inHandle.UsernameInput();
+        Username = inHandle.UsernameInput();
         name = inHandle.NameInput();
         surname = inHandle.SurnameInput();
         role = inHandle.RoleInput();
@@ -154,20 +154,29 @@ public class Manager extends Employee
         }
         Email = inHandle.EmailInput();
         
-        dbHandler.HireEmployee(username, name, surname, role, phone, DOB, DOS, Email);
+        dbHandler.HireEmployee(Username, name, surname, role, phone, DOB, DOS, Email);
     }
 
     protected void FireEmployeeManager()
     {
-        username = inHandle.UsernameInputToOperate();
-        Employee employee = dbHandler.GetEmployeeWithUsername(username);
-        if(employee.role == "manager")
+        
+        String victimName = inHandle.UsernameInputToOperate();
+        Employee employee = dbHandler.GetEmployeeWithUsername(victimName);
+        if(employee.Username.equals(Username))
+        {
+            System.out.println("You can not fire yourself!!!!!");
+            return;
+
+        }
+
+        if(employee.role.equalsIgnoreCase("manager"))
         {
             System.out.println("You can not fire other managers!");
             return;
         }
 
-        dbHandler.FireEmployee(username);
+        dbHandler.FireEmployee(victimName);
+        employee = null;
     }
 
     

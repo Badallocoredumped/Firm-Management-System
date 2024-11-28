@@ -35,6 +35,12 @@ public class DataBaseHandler
         }
     }
 
+    protected void CountAllEmployee()
+    {
+        //maybe add subfunctions that prints how many people you have for each role
+
+    }
+
     public void DispAllEmployee()
     {
         if(connection == null)
@@ -45,6 +51,25 @@ public class DataBaseHandler
 
         try 
         {
+                        
+            //Maybe make this a seperate function
+            Statement countStatement = connection.createStatement();
+            String countQuery = "SELECT COUNT(*) AS total FROM employees";
+            ResultSet countResult = countStatement.executeQuery(countQuery);
+            
+            int totalEmployees = 0;
+            if (countResult.next()) 
+            {
+                totalEmployees = countResult.getInt("total");
+            }
+            //Maybe make this a seperate function
+            Statement roleStatement = connection.createStatement();
+            String query = "SELECT role, COUNT(*) AS role_count FROM employees GROUP BY role";
+            ResultSet resultSet = roleStatement.executeQuery(query);
+
+            
+
+
             Statement statement = connection.createStatement();
             String query2do = "SELECT * FROM employees";
             ResultSet infoSet = statement.executeQuery(query2do);
@@ -69,11 +94,25 @@ public class DataBaseHandler
                    ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail);
             }
 
+            //Maybe make this a seperate function
+            System.out.println();
+            while (resultSet.next()) 
+            {
+                String role = resultSet.getString("role");
+                int count = resultSet.getInt("role_count");
+                System.out.println("Role: " + role + " | Number of Employees: " + count);
+            }
+
+            //Maybe make this a seperate function
+            System.out.println("\nTotal number of employees: " + totalEmployees);
+
+
         } 
         catch (SQLException e) 
         {
             System.out.println("Error occured!");
         }
+
     }
 
     public void DispEmployeeWithRole(String role)
@@ -199,7 +238,7 @@ public class DataBaseHandler
             case '1':
             {
                 String newUsername = inputHandler.UsernameInput();
-                String updateUsernameQuery = "UPDATE employees SET username = '" + newUsername + "' WHERE username = '" + tempEmployee.username + "'";
+                String updateUsernameQuery = "UPDATE employees SET username = '" + newUsername + "' WHERE username = '" + tempEmployee.Username + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -207,7 +246,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.username + " updated to " + newUsername + " successfully!");
+                        System.out.println("Username " + tempEmployee.Username + " updated to " + newUsername + " successfully!");
                     } 
                     else 
                     {
@@ -220,7 +259,7 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.username = newUsername;
+                tempEmployee.Username = newUsername;
 
 
                 break;
@@ -229,7 +268,7 @@ public class DataBaseHandler
             case '2':
             {
                 String newRole = inputHandler.RoleInput();
-                String updateRoleQuery = "UPDATE employees SET role = '" + newRole + "' WHERE username = '" + tempEmployee.username + "'";
+                String updateRoleQuery = "UPDATE employees SET role = '" + newRole + "' WHERE username = '" + tempEmployee.Username + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -237,7 +276,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.username + "'s role updated to " + newRole + " from " + tempEmployee.role + " successfully!");
+                        System.out.println("Username " + tempEmployee.Username + "'s role updated to " + newRole + " from " + tempEmployee.role + " successfully!");
                     } 
                     else 
                     {
@@ -257,7 +296,7 @@ public class DataBaseHandler
             case '3':
             {
                 String newName = inputHandler.NameInput();
-                String updateNameQuery = "UPDATE employees SET name = '" + newName + "' WHERE username = '" + tempEmployee.username + "'";
+                String updateNameQuery = "UPDATE employees SET name = '" + newName + "' WHERE username = '" + tempEmployee.Username + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -265,7 +304,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.username + "'s name updated to " + newName + " from " + tempEmployee.name + " successfully!");
+                        System.out.println("Username " + tempEmployee.Username + "'s name updated to " + newName + " from " + tempEmployee.name + " successfully!");
                     } 
                     else 
                     {
@@ -285,7 +324,7 @@ public class DataBaseHandler
             case '4':
             {
                 String newSurname = inputHandler.SurnameInput();
-                String updateSurnameQuery = "UPDATE employees SET surname = '" + newSurname + "' WHERE username = '" + tempEmployee.username + "'";
+                String updateSurnameQuery = "UPDATE employees SET surname = '" + newSurname + "' WHERE username = '" + tempEmployee.Username + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -293,7 +332,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.username + "'s surname updated to " + newSurname + " from " + tempEmployee.surname + " successfully!");
+                        System.out.println("Username " + tempEmployee.Username + "'s surname updated to " + newSurname + " from " + tempEmployee.surname + " successfully!");
                     } 
                     else 
                     {
@@ -313,7 +352,7 @@ public class DataBaseHandler
             case '5':
             {
                 LocalDate newDOB = inputHandler.DobInput();
-                String updateDOBQuery = "UPDATE employees SET date_of_birth = '" + newDOB + "' WHERE username = '" + tempEmployee.username + "'";
+                String updateDOBQuery = "UPDATE employees SET date_of_birth = '" + newDOB + "' WHERE username = '" + tempEmployee.Username + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -321,7 +360,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.username + "'s date of birth updated to " + newDOB + " from " + tempEmployee.DOB + " successfully!");
+                        System.out.println("Username " + tempEmployee.Username + "'s date of birth updated to " + newDOB + " from " + tempEmployee.DOB + " successfully!");
                     } 
                     else 
                     {
@@ -341,7 +380,7 @@ public class DataBaseHandler
             case '6':
             {
                 LocalDate newDOS = inputHandler.DosInput();
-                String updateDOSQuery = "UPDATE employees SET date_of_start = '" + newDOS + "' WHERE username = '" + tempEmployee.username + "'";
+                String updateDOSQuery = "UPDATE employees SET date_of_start = '" + newDOS + "' WHERE username = '" + tempEmployee.Username + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -349,7 +388,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.username + "'s date of start updated to " + newDOS + " from " + tempEmployee.DOS + " successfully!");
+                        System.out.println("Username " + tempEmployee.Username + "'s date of start updated to " + newDOS + " from " + tempEmployee.DOS + " successfully!");
                     } 
                     else 
                     {
@@ -369,7 +408,7 @@ public class DataBaseHandler
             case '7':
             {
                 String newEmail = inputHandler.EmailInput();
-                String updateEmailQuery = "UPDATE employees SET email = '" + newEmail + "' WHERE username = '" + tempEmployee.username + "'";
+                String updateEmailQuery = "UPDATE employees SET email = '" + newEmail + "' WHERE username = '" + tempEmployee.Username + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -377,7 +416,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.username + "'s date of start updated to " + newEmail + " from " + tempEmployee.Email + " successfully!");
+                        System.out.println("Username " + tempEmployee.Username + "'s date of start updated to " + newEmail + " from " + tempEmployee.Email + " successfully!");
                     } 
                     else 
                     {
