@@ -8,26 +8,34 @@ public class Main {
         // Display all employees
         System.out.println("Displaying All Employees:");
         dbHandler.DispAllEmployee();
-        System.out.println("-------------------------------------");
-
-        // Example usage: Uncomment lines to test individual functionalities
-        // dbHandler.DispEmployeeWithRole("manager");
-        // dbHandler.DispEmployeeWithUsername("emir5757");
-        // dbHandler.DispEmployeeWithNameSurname("Emir", "Özen");
-        // dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022-11-01", "2022-12-02", "bozoman");
-        // dbHandler.FireEmployee(22, "dummyvolkan");
+        System.out.println("Displayed All Employees");
+        //dbHandler.DispEmployeeWithRole("manager");
+        System.out.println("Displayed All Employees with the role");
+        //dbHandler.DispEmployeeWithUsername("emir5757");
+        //dbHandler.DispEmployeeWithNameSurname("Emir","Özen");
+        dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022.11.01", "2022.12.2", "bozoman");
+        //dbHandler.FireEmployee(22,"dummyvolkan");
 
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();
         Employee currUser = null;
 
-        System.out.println("Login to the system:");
 
-        // Login Process
-        while (currUser == null) {
-            try {
-                System.out.print("Username: ");
-                String username = scanner.nextLine().trim();
+        /*  
+         * Need to add correct input checker
+         * Need to use the if there is duplicate function
+         * Need to fill out the manager class
+         * Need to finalize main class
+         * Need to make hire and fire private ? i guess idk
+         * Need to do the first login thing which we have a boolean inside the database
+         * Check the date thing Date to string string to date
+         * Make email unique and the phone number probably
+        */
+
+        while(currUser == null)
+        {
+            System.out.println("Username: ");
+            String userName = scanner.nextLine();
 
                 System.out.print("Password: ");
                 String password = scanner.nextLine().trim();
@@ -51,7 +59,6 @@ public class Main {
             // Regular employee-specific actions can go here
         }
 
-        // Logout
         authenticator.logout();
         System.out.println("You have been logged out. Goodbye!");
 

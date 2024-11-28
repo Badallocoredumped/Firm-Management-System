@@ -2,6 +2,18 @@ import java.sql.Date;
 
 public class Manager extends Employee
 {
+    DataBaseHandler dbHandler = new DataBaseHandler();
+
+    protected int ID;
+    protected String username;
+    protected String role;
+    protected String name;
+    protected String surname;
+    protected String phone;
+    protected Date DOB;
+    protected Date DOS;
+    protected String email;
+    protected String password;
  
     public Manager(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
     {
@@ -18,7 +30,15 @@ public class Manager extends Employee
 
     public void HireEmployee()
     {
+        
+        boolean validation = true;
+        do 
+        {
+            
+        } while (validation);
 
+
+        dbHandler.HireEmployee(username, name, surname, role, phone, DOB, DOS, Email);
     }
 
     public void FireEmployee()

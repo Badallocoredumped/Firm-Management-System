@@ -1,9 +1,14 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
+import java.time.LocalDate;
+
+
+
+
 
     //Username should not be a duplicate
 
@@ -49,13 +54,16 @@ public class DataBaseHandler
                 String dbName = infoSet.getString("name");
                 String dbSurname = infoSet.getString("surname");
                 String dbPhone = infoSet.getString("phone_no");
-                String dbDOB = infoSet.getString("date_of_birth");
-                String dbDOS = infoSet.getString("date_of_start");
+                Date dbDOB = infoSet.getDate("date_of_birth");
+                Date dbDOS = infoSet.getDate("date_of_start");
                 String dbEmail = infoSet.getString("email");
+
+                LocalDate dob = dbDOB.toLocalDate();
+                LocalDate dos = dbDOS.toLocalDate();
 
                 System.out.println("Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
                    ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
-                   ", Date of Birth: " + dbDOB + ", Date of Start: " + dbDOS + ", Email: " + dbEmail);
+                   ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail);
             }
 
         } 
@@ -193,7 +201,7 @@ public class DataBaseHandler
         */
     } 
 
-    private void HireEmployee(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
+    public void HireEmployee(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
     {
         //Add employee to the database
         if(connection == null)
@@ -228,13 +236,9 @@ public class DataBaseHandler
             e.printStackTrace();
         }
     }
-
-    public void HireEmployeeForManager(String username, String name, String surname, String role, String phone, String dob, String dos, String email)
-    {
-        HireEmployee(username, name, surname, role, phone, dob, dos, email);
-    }
     
-    void FireEmployee(int employee_id,String username)
+    
+    public void FireEmployee(int employee_id,String username)
     {
         //Remove employee from the database
         //Ask if you are sure you want to delete
@@ -262,11 +266,6 @@ public class DataBaseHandler
             System.out.println("Error removing employee from the database");
             e.printStackTrace(); 
         }
-    }
-
-    public void FireEmployeeForManager(int employee_id,String username)
-    {
-        FireEmployee(employee_id,username);
     }
     
     public Employee GetEmployeeWithUsername(String username)
