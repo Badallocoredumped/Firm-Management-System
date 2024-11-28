@@ -1,4 +1,248 @@
+import java.util.*;
+
 public class SortingAlgorithms 
 {
+    public static void main(String[] args) {
+        SortingAlgorithms mainArr = new SortingAlgorithms();
+        Scanner sizeOfArray = new Scanner(System.in);
+        int sequence = 0;
+        boolean validInput = false;
+        
+        while (!validInput) {
+            System.out.println("Dizi boyutunu giriniz (1000-10000 arası):");
+            
+            // Numerical input control
+            if (sizeOfArray.hasNextInt()) {
+                sequence = sizeOfArray.nextInt();
+                
+                // Range control
+                if (sequence >= 1000 && sequence <= 10000) {
+                    validInput = true;
+                } else {
+                    System.out.println("Please enter a number between 1000 and 10000!");
+                }
+            } else {
+                System.out.println("Error: Please enter a valid number!");
+                sizeOfArray.next(); // Clears invalid input
+            }
+        }
+        
+        mainArr.runAlgorithmComparison(sequence);
+        sizeOfArray.close();
+    }
     
+    public void runAlgorithmComparison(int sizeOfArray) { // sizeOfArray = array size
+        // Random number generator
+        Random randNumCretor = new Random();
+        
+        // Create a main array
+        int[] mainArr = new int[sizeOfArray];
+        for(int count = 0; count < sizeOfArray; count++) {
+            mainArr[count] = randNumCretor.nextInt(20001) - 10000; // -10000 to 10000
+        }
+        
+        // Duplicate arrays for each algorithm
+        int[] copyRadix = mainArr.clone();
+        int[] copyShell = mainArr.clone(); 
+        int[] copyHeap = mainArr.clone();
+        int[] copyInsert = mainArr.clone();
+        
+        // ArrayList for Java Collections.sort
+        ArrayList<Integer> benchMark = new ArrayList<>();
+        for(int i : mainArr) {
+            benchMark.add(i);
+        }
+        
+        // time measurements
+        long startTime, finishTime;
+        
+        // Radix Sort
+        startTime = System.nanoTime();
+        radixSort(copyRadix);
+        finishTime = System.nanoTime();
+        long timeOfRadix = finishTime - startTime;
+        
+        // Shell Sort
+        startTime = System.nanoTime();
+        shellSort(copyShell);
+        finishTime = System.nanoTime();
+        long timeOfShell = finishTime - startTime;
+        
+        // Heap Sort
+        startTime = System.nanoTime();
+        heapSort(copyHeap);
+        finishTime = System.nanoTime();
+        long timeOfHeap = finishTime - startTime;
+        
+        // Insertion Sort
+        startTime = System.nanoTime();
+        insertionSort(copyInsert);
+        finishTime = System.nanoTime();
+        long timeOfInsert = finishTime - startTime;
+        
+        // Collections.sort
+        startTime = System.nanoTime();
+        Collections.sort(benchMark);
+        finishTime = System.nanoTime();
+        
+        // Performs accuracy checks
+        boolean harmony = true;
+        for(int i = 0; i < sizeOfArray; i++) {
+            if(copyRadix[i] != benchMark.get(i) || 
+               copyShell[i] != benchMark.get(i) ||
+               copyHeap[i] != benchMark.get(i) ||
+               copyInsert[i] != benchMark.get(i)) {
+                harmony = false;
+                break;
+            }
+        }
+        
+        // Prints the results
+        System.out.println("\nSıralama Sonuçları:");
+        System.out.println("Radix Sort: " + timeOfRadix/1000000.0 + " ms");
+        System.out.println("Shell Sort: " + timeOfShell/1000000.0 + " ms");
+        System.out.println("Heap Sort: " + timeOfHeap/1000000.0 + " ms");
+        System.out.println("Insertion Sort: " + timeOfInsert/1000000.0 + " ms");
+        
+        if(harmony) {
+            System.out.println("\nAll algorithms sorted correctly!");
+        } else {
+            System.out.println("\nERROR: Sorts do not match!");
+        }
+    }
+    
+    private void shellSort(int[] sequence) {
+        int dimension = sequence.length;
+        for(int harper = dimension/2; harper > 0; harper /= 2) {
+            for(int i = harper; i < dimension; i++) {
+                int temp = sequence[i];
+                int j;
+                for(j = i; j >= harper && sequence[j-harper] > temp; j -= harper) {
+                    sequence[j] = sequence[j-harper];
+                }
+                sequence[j] = temp;
+            }
+        }
+    }
+    
+    private void heapSort(int[] heap) {
+        int arraySize = heap.length;
+        
+        for(int i = arraySize / 2 - 1; i >= 0; i--) {
+            heapify(heap, arraySize, i);
+        }
+        
+        for(int sorter = arraySize-1; sorter > 0; sorter--) {
+            int swap = heap[0];
+            heap[0] = heap[sorter];
+            heap[sorter] = swap;
+            
+            heapify(heap, sorter, 0);
+        }
+    }
+    
+    private void heapify(int[] tree, int capacity, int root) {
+        int third = root;
+        int leftChild = 2 * root + 1;
+        int rightChild = 2 * root + 2;
+        
+        if(leftChild < capacity && tree[leftChild] > tree[third]) {
+            third = leftChild;
+        }
+        
+        if(rightChild < capacity && tree[rightChild] > tree[third]) {
+            third = rightChild;
+        }
+        
+        if(third != root) {
+            int swap = tree[root];
+            tree[root] = tree[third];
+            tree[third] = swap;
+            
+            heapify(tree, capacity, third);
+        }
+    }
+    
+    private void insertionSort(int[] benchMark) {
+        int sophia = benchMark.length;
+        
+        // The array is scanned from left to right
+        for (int olivia = 1; olivia < sophia; olivia++) {
+            // We store the current element in temporary variable
+            int emma = benchMark[olivia];
+            
+            // Finds the correct position in the sorted section
+            int harmony = olivia - 1;
+            
+            // Move large elements to the right
+            while (harmony >= 0) {
+                // If the element on the left is larger
+                if (benchMark[harmony] > emma) {
+                    // Scrolls right
+                    benchMark[harmony + 1] = benchMark[harmony];
+                    harmony--;
+                } else {
+                    // We found the right position
+                    break;
+                }
+            }
+            
+            // Places the element in the correct position
+            benchMark[harmony + 1] = emma;
+        }
+    }
+    
+    private void radixSort(int[] data) {
+        // Converts negative numbers to positive
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] > max) max = data[i];
+            if (data[i] < min) min = data[i];
+        }
+        
+        //Makes all numbers positive
+        if (min < 0) {
+            for (int i = 0; i < data.length; i++) {
+                data[i] -= min;
+            }
+            max -= min;
+        }
+        
+        // We apply counting sort for each digit
+        for(int placeVal = 1; max/placeVal > 0; placeVal *= 10) {
+            countingSortForRadix(data, placeVal);
+        }
+        
+        // Allows to return numbers to their original values
+        if (min < 0) {
+            for (int i = 0; i < data.length; i++) {
+                data[i] += min;
+            }
+        }
+    }
+    
+    private void countingSortForRadix(int[] input, int exp) {
+        int[] count = new int[10];
+        int[] output = new int[input.length];
+        
+        for(int first = 0; first < input.length; first++) {
+            count[(input[first]/exp) % 10]++;
+        }
+        
+        for(int second = 1; second < 10; second++) {
+            count[second] += count[second - 1];
+        }
+        
+        for(int third = input.length - 1; third >= 0; third--) {
+            output[count[(input[third]/exp) % 10] - 1] = input[third];
+            count[(input[third]/exp) % 10]--;
+        }
+        
+        for(int fourth = 0; fourth < input.length; fourth++) {
+            input[fourth] = output[fourth];
+        }
+    }
 }
+
+
