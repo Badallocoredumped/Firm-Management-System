@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
-public class Main 
-{
-    public static void main(String[] args)
-    {
-        System.out.println("Hello world!");
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Firm Management System!");
         DataBaseHandler dbHandler = new DataBaseHandler();
+
+        // Display all employees
+        System.out.println("Displaying All Employees:");
         dbHandler.DispAllEmployee();
         System.out.println("Displayed All Employees");
         //dbHandler.DispEmployeeWithRole("manager");
@@ -36,30 +37,32 @@ public class Main
             System.out.println("Username: ");
             String userName = scanner.nextLine();
 
-            System.out.println("Password: ");
-            String password = scanner.nextLine();
+                System.out.print("Password: ");
+                String password = scanner.nextLine().trim();
 
-            currUser = authenticator.login(userName,password);
+                currUser = authenticator.login(username, password);
 
-            if(currUser == null)
-            {
-                System.out.println("Login failed. Please try again.");
+                if (currUser == null) {
+                    System.out.println("Login failed. Please try again.");
+                }
+            } catch (Exception e) {
+                System.err.println("An error occurred during login. Please try again.");
             }
         }
 
-        if(currUser instanceof Manager)
-        {
-            System.out.println("Logged in as a manager");
-        }
-        else if (currUser instanceof RegularEmployee) 
-        {
-            System.out.println("Logged in as a regularemployee");
+        // Post-login actions
+        if (currUser instanceof Manager) {
+            System.out.println("Logged in as Manager.");
+            // Manager-specific actions can go here
+        } else if (currUser instanceof RegularEmployee) {
+            System.out.println("Logged in as Regular Employee.");
+            // Regular employee-specific actions can go here
         }
 
         authenticator.logout();
+        System.out.println("You have been logged out. Goodbye!");
+
+        // Close resources
         scanner.close();
-
-
     }
-    
 }
