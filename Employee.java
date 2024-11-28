@@ -1,4 +1,5 @@
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public abstract class Employee 
@@ -9,13 +10,13 @@ public abstract class Employee
     protected String name;
     protected String surname;
     protected String phone;
-    protected Date DOB;
-    protected Date DOS;
+    protected LocalDate DOB;
+    protected LocalDate DOS;
     protected String Email;
     protected String Password;
 
     public static Scanner input = new Scanner(System.in);
-    public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
+    public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password)
     {
         this.ID = ID;
         this.username = Username;
@@ -36,8 +37,8 @@ public abstract class Employee
     public String getUsername() {return username;}
     public String getRole() {return role;}
     public int getID() {return ID;}
-    public Date getBirthday() {return DOB;}
-    public Date getEmploymentday() {return DOS;}
+    public LocalDate getBirthday() {return DOB;}
+    public LocalDate getEmploymentday() {return DOS;}
     public String getPhone() {return phone;}
     public void setPhone(String phone) { this.phone = phone;}
     public String getEmail() {return Email;}

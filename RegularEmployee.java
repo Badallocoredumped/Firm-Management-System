@@ -3,12 +3,13 @@ import java.util.Scanner;
 import javax.management.relation.Role;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class RegularEmployee extends Employee
 {
     //deleted delay
     public static Scanner input = new Scanner(System.in);
-    public RegularEmployee(int ID, String Username,String Role,String Name,String Surname,String Phone,Date DOB,Date DOS,String Email,String Password)
+    public RegularEmployee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password)
     {
         super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password);
 

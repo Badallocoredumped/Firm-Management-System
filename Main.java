@@ -1,68 +1,117 @@
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Welcome to the Firm Management System!");
-        DataBaseHandler dbHandler = new DataBaseHandler();
 
-        // Display all employees
-        System.out.println("Displaying All Employees:");
-        dbHandler.DispAllEmployee();
+public class Main 
+{
+    public static void main(String[] args)
+    {
+        /*dbHandler.DispAllEmployee();
         System.out.println("Displayed All Employees");
-        //dbHandler.DispEmployeeWithRole("manager");
+        dbHandler.DispEmployeeWithRole("manager");
         System.out.println("Displayed All Employees with the role");
-        //dbHandler.DispEmployeeWithUsername("emir5757");
-        //dbHandler.DispEmployeeWithNameSurname("Emir","Özen");
+        dbHandler.DispEmployeeWithUsername("emir5757");
+        dbHandler.DispEmployeeWithNameSurname("Emir","Özen");
         dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022.11.01", "2022.12.2", "bozoman");
-        //dbHandler.FireEmployee(22,"dummyvolkan");
+        dbHandler.FireEmployee(22,"dummyvolkan"); */
 
+        DataBaseHandler dbHandler = new DataBaseHandler();
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();
         Employee currUser = null;
+        boolean systemPower = true;
 
+        String RMString;
+        char RMInput = '0';
+        
 
-        /*  
-         * Need to add correct input checker
-         * Need to use the if there is duplicate function
-         * Need to fill out the manager class
-         * Need to finalize main class
-         * Need to make hire and fire private ? i guess idk
-         * Need to do the first login thing which we have a boolean inside the database
-         * Check the date thing Date to string string to date
-         * Make email unique and the phone number probably
-        */
-
-        while(currUser == null)
+        
+        while (systemPower) 
         {
-            System.out.println("Username: ");
-            String userName = scanner.nextLine();
-
-                System.out.print("Password: ");
-                String password = scanner.nextLine().trim();
-
-                currUser = authenticator.login(username, password);
-
-                if (currUser == null) {
-                    System.out.println("Login failed. Please try again.");
+            // Main menu: Login or Exit System
+            System.out.println("Welcome to the Firm Management System!");
+            System.out.println("1. Login");
+            System.out.println("2. Exit System");
+            System.out.println();
+            System.out.print("Select an Operation: ");
+            RMString = scanner.nextLine();
+        
+            // Validate single character input
+            if (RMString.isEmpty() || RMString.length() > 1) 
+            {
+                Ccleaner();
+                System.out.println("Invalid input. Please enter 1 to Login or 2 to Exit.");
+                System.out.println();
+                continue;
+            }
+        
+            RMInput = RMString.charAt(0);
+        
+            if (RMInput == '1') 
+            {
+                // Login flow
+                while (currUser == null) 
+                {
+                    System.out.println("\nPlease login with your username and password!");
+                    System.out.print("Username: ");
+                    String userName = scanner.nextLine();
+        
+                    System.out.print("Password: ");
+                    String password = scanner.nextLine();
+        
+                    currUser = authenticator.login(userName, password);
+        
+                    if (currUser == null) 
+                    {
+                        System.out.println("Login failed. Please try again.\n");
+                    }
                 }
-            } catch (Exception e) {
-                System.err.println("An error occurred during login. Please try again.");
+        
+                // Role-based menu
+                
+                if (currUser instanceof Manager) 
+                {
+                    System.out.println("\nLogged in as a Manager");
+                    currUser.Menu();
+                    System.out.println("Exited Manager Menu");
+                } 
+                else if (currUser instanceof RegularEmployee) 
+                {
+                    System.out.println("\nLogged in as a Regular Employee");
+                    currUser.Menu();
+                    System.out.println("Exited Regular Employee Menu");
+                }
+        
+                authenticator.logout();
+                currUser = null;
+        
+            } 
+            else if (RMInput == '2') 
+            {
+                // Exit system
+                System.out.println("\nExiting the Firm Management System. Goodbye!");
+                systemPower = false;
+                scanner.close();
+        
+            } 
+            else 
+            {
+                // Invalid input
+                Ccleaner();
+                System.out.println("Invalid input. Please enter 1 to Login or 2 to Exit.\n");
             }
         }
 
-        // Post-login actions
-        if (currUser instanceof Manager) {
-            System.out.println("Logged in as Manager.");
-            // Manager-specific actions can go here
-        } else if (currUser instanceof RegularEmployee) {
-            System.out.println("Logged in as Regular Employee.");
-            // Regular employee-specific actions can go here
-        }
-
-        authenticator.logout();
-        System.out.println("You have been logged out. Goodbye!");
-
-        // Close resources
-        scanner.close();
     }
+    
+    static  void Ccleaner()
+    {
+        try 
+        {
+            new ProcessBuilder("cmd","/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception e) 
+        {
+            System.err.println("Error Code #Clear");
+        }
+    }
+    
 }
