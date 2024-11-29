@@ -6,28 +6,47 @@ public class AsciiArt {
     public static final String Green = "\u001B[32m";
     public static final String Blue = "\u001B[34m";
     public static final String Purple = "\u001B[34m";
-  
+
     public static void main(String[] args) {
-      //WELCOME
-      System.out.println(Red + "W:W          W:W  E:E:E:E:E:  L:L         C:C:C:C:C:   O:O:O:O   M:M       M:M  E:E:E:E:E:" + Reset);
-      System.out.println(Yellow + "W:W     W    W:W  E:E         L:L         C:C         O:O   O:O  M:M:M   M:M:M  E:E" + Reset);
-      System.out.println(Green + "W:W    :W:   W:W  E:E:E:E:E:  L:L         C:C         O:O   O:O  M:M  M:M  M:M  E:E:E:E:E:" + Reset);
-      System.out.println(Blue + " W:W  W:W:W  W:W  E:E         L:L         C:C         O:O   O:O  M:M   M   M:M  E:E" + Reset);
-      System.out.println(Purple + "  W:W      W:W    E:E:E:E:E:  L:L:L:L:L:  C:C:C:C:C:   O:O:O:O   M:M       M:M  E:E:E:E:E:" + Reset);
+      printWelcome();
+      printPlease();
+      printLogin();
+    }
+  
+    public static void printWelcome() {
+      System.out.println(Red + "WWWWWWWW                           WWWWWWWW     EEEEEEEEEEEEEEEEEEEEEE     LLLLLLLLLLL                          CCCCCCCCCCCCC          OOOOOOOOO          MMMMMMMM               MMMMMMMM     EEEEEEEEEEEEEEEEEEEEEE" + Reset);
+        System.out.println(Red + "W::::::W                           W::::::W     E::::::::::::::::::::E     L:::::::::L                       CCC::::::::::::C        OO:::::::::OO        M:::::::M             M:::::::M     E::::::::::::::::::::E" + Reset);
+        System.out.println(Yellow + "W::::::W                           W::::::W     E::::::::::::::::::::E     L:::::::::L                     CC:::::::::::::::C      OO:::::::::::::OO      M::::::::M           M::::::::M     E::::::::::::::::::::E" + Reset);
+        System.out.println(Yellow + "W::::::W                           W::::::W     EE::::::EEEEEEEEE::::E     LL:::::::LL                    C:::::CCCCCCCC::::C     O:::::::OOO:::::::O     M:::::::::M         M:::::::::M     EE::::::EEEEEEEEE::::E" + Reset);
+        System.out.println(Green + " W:::::W           WWWWW           W:::::W        E:::::E       EEEEEE       L:::::L                     C:::::C       CCCCCC     O::::::O   O::::::O     M::::::::::M       M::::::::::M       E:::::E       EEEEEE" + Reset);
+        System.out.println(Green + "  W:::::W         W:::::W         W:::::W         E:::::E                    L:::::L                    C:::::C                   O:::::O     O:::::O     M:::::::::::M     M:::::::::::M       E:::::E" + Reset);
+        System.out.println(Blue + "   W:::::W       W:::::::W       W:::::W          E::::::EEEEEEEEEE          L:::::L                    C:::::C                   O:::::O     O:::::O     M:::::::M::::M   M::::M:::::::M       E::::::EEEEEEEEEE" + Reset);
+        System.out.println(Blue + "    W:::::W     W:::::::::W     W:::::W           E:::::::::::::::E          L:::::L                    C:::::C                   O:::::O     O:::::O     M::::::M M::::M M::::M M::::::M       E:::::::::::::::E" + Reset);
+        System.out.println(Purple + "     W:::::W   W:::::W:::::W   W:::::W            E:::::::::::::::E          L:::::L                    C:::::C                   O:::::O     O:::::O     M::::::M  M::::M::::M  M::::::M       E:::::::::::::::E" + Reset);
+        System.out.println(Purple + "      W:::::W W:::::W W:::::W W:::::W             E::::::EEEEEEEEEE          L:::::L                    C:::::C                   O:::::O     O:::::O     M::::::M   M:::::::M   M::::::M       E::::::EEEEEEEEEE" + Reset);
+        System.out.println(Red + "       W:::::W:::::W   W:::::W:::::W              E:::::E                    L:::::L                    C:::::C                   O:::::O     O:::::O     M::::::M    M:::::M    M::::::M       E:::::E" + Reset);
+        System.out.println(Red + "        W:::::::::W     W:::::::::W               E:::::E       EEEEEE       L:::::L         LLLLLL      C:::::C       CCCCCC     O::::::O   O::::::O     M::::::M     MMMMM     M::::::M       E:::::E       EEEEEE" + Reset);
+        System.out.println(Yellow + "         W:::::::W       W:::::::W              EE::::::EEEEEEEE:::::E     LL:::::::LLLLLLLLL:::::L       C:::::CCCCCCCC::::C     O:::::::OOO:::::::O     M::::::M               M::::::M     EE::::::EEEEEEEE:::::E" + Reset);
+        System.out.println(Yellow + "          W:::::W         W:::::W               E::::::::::::::::::::E     L::::::::::::::::::::::L        CC:::::::::::::::C      OO:::::::::::::OO      M::::::M               M::::::M     E::::::::::::::::::::E" + Reset);
+        System.out.println(Green + "           W:::W           W:::W                E::::::::::::::::::::E     L::::::::::::::::::::::L          CCC::::::::::::C        OO:::::::::OO        M::::::M               M::::::M     E::::::::::::::::::::E" + Reset);
+        System.out.println(Green + "            WWW             WWW                 EEEEEEEEEEEEEEEEEEEEEE     LLLLLLLLLLLLLLLLLLLLLLLL             CCCCCCCCCCCCC          OOOOOOOOO          MMMMMMMM               MMMMMMMM     EEEEEEEEEEEEEEEEEEEEEE" + Reset);
+    }  
+    
+    public static void printPlease() {
+      System.out.println(Red + " |  __ \\  | |      |  ____|     /\\      / ____| |  ____|" + Reset);
+      System.out.println(Yellow + " | |__) | | |      | |__       /  \\    | (___   | |__" + Reset);
+      System.out.println(Green + " |  ___/  | |      |  __|     / /\\ \\    \\___ \\  |  __|" + Reset);
+      System.out.println(Blue + " | |      | |____  | |____   / ____ \\   ____) | | |____" + Reset);
+      System.out.println(Purple + " |_|      |______| |______| /_/___ \\_\\ |_____/  |______|" + Reset);
       System.out.println();
-      //PLEASE
-      System.out.println(Red + "P:P:P:P:P:   L:L         E:E:E:E:E:     :A:A      S:S:S:S:S:  E:E:E:E:E:" + Reset);
-      System.out.println(Yellow + "P:P    P:P:  L:L         E:E           A:A:A:A    S:S         E:E" + Reset);
-      System.out.println(Green + "P:P:P:P:P:   L:L         E:E:E:E:E:  A:A     A:A  S:S:S:S:S:  E:E:E:E:E:" + Reset);
-      System.out.println(Blue + "P:P          L:L         E:E         A:A:A:A:A:A        S:S:  E:E" + Reset);
-      System.out.println(Purple + "P:P          L:L:L:L:L:  E:E:E:E:E:  A:A     A:A  S:S:S:S:S:  E:E:E:E:E:" + Reset);
-      System.out.println();
-      //LOGIN
-      System.out.println(Red + "L:L          O:O:O:O    G:G:G:G:G:  I:I:I:I:I  N:N     N:N" + Reset);
-      System.out.println(Yellow + "L:L         O:O   O:O  G:G             I:I     N:N:N   N:N" + Reset);
-      System.out.println(Green + "L:L         O:O   O:O  G:G    G:G:     I:I     N:N  N  N:N" + Reset);
-      System.out.println(Blue + "L:L         O:O   O:O  G:G     :G:     I:I     N:N   N:N:N" + Reset);
-      System.out.println(Purple + "L:L:L:L:L:   O:O:O:O    G:G:G:G:G:  I:I:I:I:I  N:N     N:N" + Reset);
+    }
+
+    public static void printLogin() {
+      System.out.println(Red + " | |       / __ \\   / ____| |_   _| | \\ | |" + Reset);
+      System.out.println(Yellow + " | |      | |  | | | |  __    | |   |  \\| |" + Reset);
+      System.out.println(Green + " | |      | |  | | | | |_ |   | |   | . ` |" + Reset);
+      System.out.println(Blue + " | |____  | |__| | | |__| |  _| |_  | |\\  |" + Reset);
+      System.out.println(Purple + " |______|  \\____/   \\_____| |_____| |_| \\_| " + Reset);
     }
   }
   
