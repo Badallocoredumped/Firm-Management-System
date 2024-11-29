@@ -21,14 +21,17 @@ public class InputHandler
             username = scanner.nextLine().trim();
             if(dbHandler.CheckUsernameDup(username))
             {
+                Ccleaner();
                 System.out.println("Username " + username + " is already taken!");
             }
             else if(username.length()<4)
             {
+                Ccleaner();
                 System.out.println("Username " + username + " is smaller than 4 characters!");
             }
             else if(username.isBlank())
             {
+                Ccleaner();
                 System.out.println("Username can not be blank!");
             }
             else
@@ -47,10 +50,12 @@ public class InputHandler
             
             if(username.length()<4)
             {
+                Ccleaner();
                 System.out.println("Username " + username + " is smaller than 4 characters!");
             }
             else if(username.isBlank())
             {
+                Ccleaner();
                 System.out.println("Username can not be blank!");
             }
             else
@@ -68,13 +73,14 @@ public class InputHandler
         while (true) 
         {
             System.out.print("Enter Name: ");
-            name = scanner.nextLine().trim();
-            if (name.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+$")) 
+            name = scanner.nextLine();
+            if (name.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+(\\s[A-Za-zÇçŞşİıĞğÖöÜü]+)*$")) 
             {
                 return name;
             } 
             else 
             {
+                Ccleaner();
                 System.out.println("Invalid name! Name should only contain letters and cannot be blank.");
             }
         }
@@ -92,6 +98,7 @@ public class InputHandler
             } 
             else 
             {
+                Ccleaner();
                 System.out.println("Invalid surname! Surname should only contain letters and cannot be blank.");
             }
         }
@@ -130,6 +137,7 @@ public class InputHandler
             } 
             else 
             {
+                Ccleaner();
                 System.out.println("Invalid phone number! It should only contain numbers, cannot be empty, and must not exceed 15 digits.");
             }
         }
@@ -147,15 +155,28 @@ public class InputHandler
             try 
             {
                 LocalDate dob = LocalDate.parse(dobInput, DateTimeFormatter.ISO_LOCAL_DATE);
-                System.out.println("Valid Date of Birth: " + dob);
-                return dob;
-            } 
+                //System.out.println("Valid Date of Birth: " + dob);
+
+                if (dob.isAfter(LocalDate.now()))
+                {
+                    Ccleaner();
+                    System.out.println("Date of Birth cannot be in the future.");
+                    
+                }
+                else
+                {
+                    return dob;
+                }
+
+            }
             catch (Exception e) 
             {
+                Ccleaner();
                 System.out.println("Invalid date format! Please use YYYY-MM-DD.");
             }
 
         }
+
     }
 
     public LocalDate DosInput()
@@ -175,6 +196,7 @@ public class InputHandler
             } 
             catch (Exception e) 
             {
+                Ccleaner();
                 System.out.println("Invalid date format! Please use YYYY-MM-DD.");
             }
         }
@@ -203,6 +225,7 @@ public class InputHandler
             } 
             else 
             {
+                Ccleaner();
                 System.out.println("Invalid email format! Please enter a valid email address.");
             }
         }
@@ -251,11 +274,11 @@ public class InputHandler
     {
         System.out.println("Enter the username of the employee you would like to update");
         String tempUsername = UsernameInputToOperate();
-        //get setter eklemene lazım
+        Ccleaner();
         Employee tempEmployee = dbHandler.GetEmployeeWithUsername(tempUsername);
-        System.out.println("After getting the employee");
         if(tempEmployee == null)
         {
+            Ccleaner();
             return;
         }
 
@@ -264,6 +287,7 @@ public class InputHandler
         char RMInput = '0';
         while(RMInput != '8' )
         {
+
             System.out.println("Which field would you like to update?\n" +
             "1: Username\n" +
             "2: Role\n" +
@@ -294,14 +318,16 @@ public class InputHandler
                     continue;
             }
             InputHandler inputHandler = new InputHandler();
-
             dbHandler.UpdateEmployeeNPF(RMInput,tempEmployee,inputHandler);
-            System.out.println("Shits working man");
-            //i dont think i need this
-            
-                //default -> System.out.println("Invalid option. Please try again input handler.");
-            
+            if(RMInput != '8')
+            {
+                System.out.println("Enter anything to return");
+                scanner.nextLine();
+                Ccleaner();
+            }
+
         }
+        Ccleaner();
         
     }
 

@@ -38,6 +38,7 @@ public class Manager extends Employee
         char RMInput = '0';
         while(RMInput != '9')
         {
+            
             System.out.println("\n--- Manager Menu ---");
             System.out.println("1. Update Profile");
             System.out.println("2. Display All Employees"); //done
@@ -76,24 +77,36 @@ public class Manager extends Employee
                 {
                     Ccleaner();
                     UpdateProfile();
+                    
                 }
                 case '2' -> 
                 {
                     Ccleaner();
                     dbHandler.DispAllEmployee();
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
                 }
                 case '3' -> 
                 {
                     Ccleaner();
                     String role = inHandle.RoleInput();
+                    Ccleaner();
                     dbHandler.DispEmployeeWithRole(role);
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
                 }
                 case '4' -> 
                 {
                     Ccleaner();
                     System.out.print("Enter Username: ");
                     String username = scanner.nextLine();
+                    Ccleaner();
                     dbHandler.DispEmployeeWithUsername(username);
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
                 }
                 case '5' -> 
                 {
@@ -104,17 +117,23 @@ public class Manager extends Employee
                 {
                     Ccleaner();
                     HireEmployeeManager();
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
+
                 }
                 case '7' -> 
                 {
                     Ccleaner();
                     FireEmployeeManager();
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
                 }
                 case '8' -> 
                 {
                     Ccleaner();
                     boolean want2return = false;
-                    System.out.println("Help me please");
                     while(!want2return)
                     {
                         sortingAlgorithms.getInputAndRunAlgorithms(scanner);
@@ -155,8 +174,11 @@ public class Manager extends Employee
             newDOS = inHandle.DosInput();
             if(inHandle.DoesDatesMakeSense(newDOB, newDOS))
             {
+                Ccleaner();
                 break;
             }
+            Ccleaner();
+            System.out.println("So you were born after you got the job. Amazing employe.");
         }
         String newEmail = inHandle.EmailInput();
         
@@ -200,30 +222,10 @@ public class Manager extends Employee
          
         inHandle.UpdateInput();
         
-        //Non-profile so everything except password phoneno and email
-        //Update all or any of the non-profile 
         
     }
     
-    protected void DisplayAllEmployee()
-    {
-
-    }
-
-    protected void DisplayEmployeeWithRole()
-    {
-
-    }   
     
-    protected void DisplayEmployeeWithUsername()
-    {
-
-    }
-
-    protected void RunAlgortihms()
-    {
-        //not my part
-    }
 
     
 }

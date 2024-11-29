@@ -56,9 +56,10 @@ public class Main
             if (RMInput == '1') 
             {
                 // Login flow
+                Ccleaner();
                 while (currUser == null) 
                 {
-                    System.out.println("\nPlease login with your username and password!");
+                    System.out.println("Please login with your username and password!");
                     System.out.print("Username: ");
                     String userName = scanner.nextLine();
         
@@ -69,6 +70,7 @@ public class Main
         
                     if (currUser == null) 
                     {
+                        Ccleaner();
                         System.out.println("Login failed. Please try again.\n");
                     }
                 }
@@ -77,13 +79,15 @@ public class Main
                 
                 if (currUser instanceof Manager) 
                 {
-                    System.out.println("\nLogged in as a Manager");
+                    Ccleaner();
+                    System.out.println("Logged in as a Manager");
                     currUser.Menu();
                     System.out.println("Exited Manager Menu");
                 } 
                 else if (currUser instanceof RegularEmployee) 
                 {
-                    System.out.println("\nLogged in as a Regular Employee");
+                    Ccleaner();
+                    System.out.println("Logged in as a Regular Employee");
                     currUser.Menu();
                     System.out.println("Exited Regular Employee Menu");
                 }
@@ -95,7 +99,7 @@ public class Main
             else if (RMInput == '2') 
             {
                 // Exit system
-                System.out.println("\nExiting the Firm Management System. Goodbye!");
+                System.out.println("Exiting the Firm Management System. Goodbye!");
                 systemPower = false;
                 scanner.close();
         

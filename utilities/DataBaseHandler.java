@@ -63,24 +63,18 @@ public class DataBaseHandler
             Statement countStatement = connection.createStatement();
             String countQuery = "SELECT COUNT(*) AS total FROM employees";
             ResultSet countResult = countStatement.executeQuery(countQuery);
-            
-            int totalEmployees = 0;
-            if (countResult.next()) 
-            {
-                totalEmployees = countResult.getInt("total");
-            }
-            //Maybe make this a seperate function
-            Statement roleStatement = connection.createStatement();
-            String query = "SELECT role, COUNT(*) AS role_count FROM employees GROUP BY role";
-            ResultSet resultSet = roleStatement.executeQuery(query);
-
-            
-
-
+         
             Statement statement = connection.createStatement();
             String query2do = "SELECT * FROM employees";
             ResultSet infoSet = statement.executeQuery(query2do);
-
+            
+            System.out.println("==============================================================================" + 
+                "====================================================================");
+            System.out.printf("%-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+            "Emp ID", "Username", "Role", "Name", "Phone", "DOB", "Start Date", "Email");
+            System.out.println("==============================================================================" + 
+                "====================================================================");
+            
             while(infoSet.next())
             {
                 int dbID = infoSet.getInt("employee_id");
@@ -92,28 +86,41 @@ public class DataBaseHandler
                 Date dbDOB = infoSet.getDate("date_of_birth");
                 Date dbDOS = infoSet.getDate("date_of_start");
                 String dbEmail = infoSet.getString("email");
-
-                LocalDate dob = dbDOB.toLocalDate();
-                LocalDate dos = dbDOS.toLocalDate();
-
-                System.out.println("Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
-                   ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
-                   ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail);
+                
+        
+                
+                /* System.out.println("Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
+                ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
+                ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail); */
+                System.out.printf("%-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone,
+                dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail);
+                
+                System.out.println("==============================================================================" + 
+                "====================================================================");
+                
             }
-
+            
             //Maybe make this a seperate function
-            System.out.println();
+            displayRoleSummary();
+            
+            int totalEmployees = 0;
+            if (countResult.next()) 
+            {
+                totalEmployees = countResult.getInt("total");
+            }
+            /* System.out.println();
             while (resultSet.next()) 
             {
                 String role = resultSet.getString("role");
                 int count = resultSet.getInt("role_count");
                 System.out.println("Role: " + role + " | Number of Employees: " + count);
-            }
-
-            //Maybe make this a seperate function
-            System.out.println("\nTotal number of employees: " + totalEmployees);
-
-
+                }
+                */
+                //Maybe make this a seperate function
+                System.out.println("\nTotal number of employees: \n" + totalEmployees);
+                
+                
         } 
         catch (SQLException e) 
         {
@@ -121,21 +128,53 @@ public class DataBaseHandler
         }
 
     }
-
-    public void DispEmployeeWithRole(String role)
+    private void displayRoleSummary()
     {
-        if(connection == null)
+        try 
+        {
+            Statement roleStatement = connection.createStatement();
+            String query = "SELECT role, COUNT(*) AS role_count FROM employees GROUP BY role";
+            ResultSet resultSet = roleStatement.executeQuery(query);
+        
+            System.out.println("\nRole Summary:");
+            System.out.println("-------------------------");
+            while (resultSet.next()) 
+            {
+                String role = resultSet.getString("role");
+                int count = resultSet.getInt("role_count");
+                System.out.printf("Role: %-10s | Number of Employees: %d%n", role, count);
+            }
+        } 
+        catch (SQLException e)
+        {
+            
+        }
+    }
+    
+
+
+    public void DispEmployeeWithRole(String role) 
+    {
+        if (connection == null) 
         {
             System.err.println("Database connection failed");
+            return;
         }
-
+    
         try 
         {
             Statement statement = connection.createStatement();
             String query2do = "SELECT * FROM employees WHERE role = '" + role + "'";
             ResultSet infoSet = statement.executeQuery(query2do);
-
-            while(infoSet.next())
+    
+            System.out.println("==============================================================================" + 
+                "====================================================================");
+            System.out.printf("| %-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                    "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email");
+            System.out.println("==============================================================================" + 
+                "====================================================================");
+    
+            while (infoSet.next()) 
             {
                 int dbID = infoSet.getInt("employee_id");
                 String dbUsername = infoSet.getString("username");
@@ -146,18 +185,21 @@ public class DataBaseHandler
                 String dbDOB = infoSet.getString("date_of_birth");
                 String dbDOS = infoSet.getString("date_of_start");
                 String dbEmail = infoSet.getString("email");
-
-                System.out.println("Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
-                   ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
-                   ", Date of Birth: " + dbDOB + ", Date of Start: " + dbDOS + ", Email: " + dbEmail);
+    
+                System.out.printf("| %-10d | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                        dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail);
             }
-            
+    
+            System.out.println("==============================================================================" + 
+                "====================================================================");
+    
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.err.println("Error occurred: " + e.getMessage());
         }
     }
+    
 
     public void DispEmployeeWithUsername(String username)
     {
@@ -176,6 +218,14 @@ public class DataBaseHandler
                 //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
                 System.out.println("User named " + username + " does not exist in the database inside displayemployee.");
             }
+
+            System.out.println("==============================================================================" + 
+                "====================================================================");
+            System.out.printf("| %-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s |%n",
+                    "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email");
+            System.out.println("==============================================================================" + 
+                "====================================================================");
+            
             while(infoSet.next())
             {
                 int dbID = infoSet.getInt("employee_id");
@@ -188,12 +238,14 @@ public class DataBaseHandler
                 String dbDOS = infoSet.getString("date_of_start");
                 String dbEmail = infoSet.getString("email");
 
-                System.out.println("Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
-                    ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
-                    ", Date of Birth: " + dbDOB + ", Date of Start: " + dbDOS + ", Email: " + dbEmail);
+                System.out.printf("| %-10d | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                    dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail);
                 
             }
+            System.out.println("==============================================================================" + 
+                    "====================================================================");
         }
+
         catch (SQLException e) 
         {
             System.out.println("Error occured!");
@@ -244,7 +296,9 @@ public class DataBaseHandler
         {
             case '1':
             {
+                Ccleaner();
                 String newUsername = inputHandler.UsernameInput();
+                Ccleaner();
                 String updateUsernameQuery = "UPDATE employees SET username = '" + newUsername + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
@@ -274,7 +328,9 @@ public class DataBaseHandler
             }
             case '2':
             {
+                Ccleaner();
                 String newRole = inputHandler.RoleInput();
+                Ccleaner();
                 String updateRoleQuery = "UPDATE employees SET role = '" + newRole + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
@@ -302,7 +358,9 @@ public class DataBaseHandler
             }
             case '3':
             {
+                Ccleaner();
                 String newName = inputHandler.NameInput();
+                Ccleaner();
                 String updateNameQuery = "UPDATE employees SET name = '" + newName + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
@@ -330,7 +388,9 @@ public class DataBaseHandler
             }
             case '4':
             {
+                Ccleaner();
                 String newSurname = inputHandler.SurnameInput();
+                Ccleaner();
                 String updateSurnameQuery = "UPDATE employees SET surname = '" + newSurname + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
@@ -358,7 +418,9 @@ public class DataBaseHandler
             }
             case '5':
             {
+                Ccleaner();
                 LocalDate newDOB = inputHandler.DobInput();
+                Ccleaner();
                 String updateDOBQuery = "UPDATE employees SET date_of_birth = '" + newDOB + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
@@ -386,7 +448,9 @@ public class DataBaseHandler
             }
             case '6':
             {
+                Ccleaner();
                 LocalDate newDOS = inputHandler.DosInput();
+                Ccleaner();
                 String updateDOSQuery = "UPDATE employees SET date_of_start = '" + newDOS + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
@@ -414,7 +478,9 @@ public class DataBaseHandler
             }
             case '7':
             {
+                Ccleaner();
                 String newEmail = inputHandler.EmailInput();
+                Ccleaner();
                 String updateEmailQuery = "UPDATE employees SET email = '" + newEmail + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
@@ -423,7 +489,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.getUsername() + "'s date of start updated to " + newEmail + " from " + tempEmployee.getEmail() + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + "'s email updated to " + newEmail + " from " + tempEmployee.getEmail() + " successfully!");
                     } 
                     else 
                     {
@@ -469,6 +535,7 @@ public class DataBaseHandler
 
             if(rowsAffected > 0)
             {
+                Ccleaner();
                 System.out.println("Added Employee " + name + " " + surname + " to the database");
             }
             else
@@ -501,10 +568,12 @@ public class DataBaseHandler
 
             if(rowsAffected > 0)
             {
+                Ccleaner();
                 System.out.println("Employee " + victim.getName() + " " + victim.getSurname() + " has been deleted from the database");
             }
             else
             {
+                Ccleaner();
                 System.out.println("Error removing employee from the database");
             }
 
@@ -512,6 +581,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
+            Ccleaner();
             System.out.println("Error removing employee from the database");
             e.printStackTrace(); 
         }
@@ -533,7 +603,8 @@ public class DataBaseHandler
             if (!infoSet.isBeforeFirst()) // This checks if there are any rows in the ResultSet 
             { 
                 //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
-                System.out.println("User named " + username + " does not exist in the database. inside get employee");
+                Ccleaner();
+                System.out.println("User named " + username + " does not exist in the database.");
                 return null;
             }
             
@@ -611,5 +682,17 @@ public class DataBaseHandler
         }
         return false;
 
+    }
+
+
+    static  void Ccleaner()
+    {
+        try 
+        {
+            new ProcessBuilder("cmd","/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception e) 
+        {
+            System.err.println("Error Code #Clear");
+        }
     }
 }
