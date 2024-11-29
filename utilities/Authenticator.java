@@ -1,10 +1,8 @@
+package utilities;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import users.Employee;
 
 public class Authenticator 
 {
@@ -13,7 +11,6 @@ public class Authenticator
     private final String password = "Admin_123"; 
     private Connection connection;
     DataBaseHandler dbHandler = new DataBaseHandler();
-
     private Employee currUser;
 
     public Employee login(String username, String password)
@@ -22,8 +19,8 @@ public class Authenticator
         try 
         {
             Employee newEmployee = dbHandler.GetEmployeeWithUsername(username);
-            System.out.println(newEmployee.Password);
-            if(newEmployee != null && newEmployee.Password.equals(password))
+            System.out.println(newEmployee.getPassword());
+            if(newEmployee != null && newEmployee.getPassword().equals(password))
             {
                 this.currUser = newEmployee;
                 System.out.println("Successfully logged in");

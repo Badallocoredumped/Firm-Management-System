@@ -1,4 +1,11 @@
+
 import java.util.Scanner;
+
+import users.Employee;
+import users.Manager;
+import users.RegularEmployee;
+import utilities.Authenticator;
+import utilities.DataBaseHandler;
 
 
 public class Main 

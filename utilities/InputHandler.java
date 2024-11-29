@@ -1,15 +1,18 @@
-import java.sql.Date;
+package utilities;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Set;
+
+import users.Employee;
 
 public class InputHandler 
 {
     Scanner scanner = new Scanner(System.in);
     DataBaseHandler dbHandler = new DataBaseHandler();
 
-    protected String UsernameInput()
+    public String UsernameInput()
     {
         String username;
         while (true) 
@@ -34,7 +37,7 @@ public class InputHandler
             }
         }
     }
-    protected String UsernameInputToOperate()
+    public String UsernameInputToOperate()
     {
         String username;
         while (true) 
@@ -58,7 +61,8 @@ public class InputHandler
     }
     
     //NOTE: The matches() method in Java checks if a string matches a given regular expression (regex)
-    protected String NameInput()
+    //mehmet ekin ay
+    public String NameInput()
     {
         String name;
         while (true) 
@@ -75,7 +79,7 @@ public class InputHandler
             }
         }
     }
-    protected String SurnameInput()
+    public String SurnameInput()
     {
         String surname = "";
         while (true) 
@@ -93,7 +97,7 @@ public class InputHandler
         }
     }
     
-    protected String RoleInput()
+    public String RoleInput()
     {
         Set<String> validRoles = Set.of("manager", "engineer", "technician", "intern"); //Simple hashset
         String role;
@@ -113,7 +117,7 @@ public class InputHandler
         }
     }
 
-    protected String PhoneInput()
+    public String PhoneInput()
     {
         String phone = "";
         while (true) 
@@ -131,7 +135,7 @@ public class InputHandler
         }
     }
 
-    protected LocalDate DobInput()
+    public LocalDate DobInput()
     {
         //Make sure date of start can not be smaller than date of birth
         while(true)
@@ -154,7 +158,7 @@ public class InputHandler
         }
     }
 
-    protected LocalDate DosInput()
+    public LocalDate DosInput()
     {
         while(true)
         {
@@ -176,7 +180,7 @@ public class InputHandler
         }
     }
 
-    protected boolean DoesDatesMakeSense(LocalDate DOB, LocalDate DOS)
+    public boolean DoesDatesMakeSense(LocalDate DOB, LocalDate DOS)
     {
         if(DOS.isAfter(DOB))
         {
@@ -185,7 +189,7 @@ public class InputHandler
         return false;
     }
 
-    protected String EmailInput()
+    public String EmailInput()
     {
         String email = "";
         while (true) 
@@ -247,6 +251,7 @@ public class InputHandler
     {
         System.out.println("Enter the username of the employee you would like to update");
         String tempUsername = UsernameInputToOperate();
+        //get setter eklemene lazım
         Employee tempEmployee = dbHandler.GetEmployeeWithUsername(tempUsername);
         System.out.println("After getting the employee");
         if(tempEmployee == null)

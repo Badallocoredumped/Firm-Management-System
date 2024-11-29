@@ -1,4 +1,4 @@
-import java.sql.Date;
+package users;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -40,12 +40,17 @@ public abstract class Employee
     public LocalDate getBirthday() {return DOB;}
     public LocalDate getEmploymentday() {return DOS;}
     public String getPhone() {return phone;}
+    public void setUsername(String Username) {this.Username = Username;}
+    public void setRole(String roletochange) {this.role = roletochange;}
     public void setPhone(String phone) { this.phone = phone;}
     public String getEmail() {return Email;}
     public void setEmail(String email) { this.Email = email;}
     public String getPassword() {return Password;}
     public void setPassword(String Password) { this.Password = Password;}
-    
+    public void setName(String nametochange) {this.name = nametochange;}
+    public void setSurname(String surnametochange) {this.surname = surnametochange;}
+    public void setBirthday(LocalDate birthdaytochange){this.DOB = birthdaytochange;}
+    public void setEmploymentDay(LocalDate employmentdatetochange){this.DOS = employmentdatetochange;}
     public abstract void Menu();
 
     public void ChangePassword()

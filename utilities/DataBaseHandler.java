@@ -1,3 +1,6 @@
+
+package utilities;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -5,6 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+
+import users.Employee;
+import users.Manager;
+import users.RegularEmployee;
 
 
 
@@ -21,7 +28,7 @@ public class DataBaseHandler
     private final String password = "Admin_123"; // Replace with your DB password
     private Connection connection;
     
-    protected DataBaseHandler()
+    public DataBaseHandler()
     {
         try 
         {
@@ -35,7 +42,7 @@ public class DataBaseHandler
         }
     }
 
-    protected void CountAllEmployee()
+    public void CountAllEmployee()
     {
         //maybe add subfunctions that prints how many people you have for each role
 
@@ -238,7 +245,7 @@ public class DataBaseHandler
             case '1':
             {
                 String newUsername = inputHandler.UsernameInput();
-                String updateUsernameQuery = "UPDATE employees SET username = '" + newUsername + "' WHERE username = '" + tempEmployee.Username + "'";
+                String updateUsernameQuery = "UPDATE employees SET username = '" + newUsername + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -246,7 +253,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.Username + " updated to " + newUsername + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + " updated to " + newUsername + " successfully!");
                     } 
                     else 
                     {
@@ -259,7 +266,7 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.Username = newUsername;
+                tempEmployee.setUsername(newUsername);
 
 
                 break;
@@ -268,7 +275,7 @@ public class DataBaseHandler
             case '2':
             {
                 String newRole = inputHandler.RoleInput();
-                String updateRoleQuery = "UPDATE employees SET role = '" + newRole + "' WHERE username = '" + tempEmployee.Username + "'";
+                String updateRoleQuery = "UPDATE employees SET role = '" + newRole + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -276,7 +283,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.Username + "'s role updated to " + newRole + " from " + tempEmployee.role + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + "'s role updated to " + newRole + " from " + tempEmployee.getRole() + " successfully!");
                     } 
                     else 
                     {
@@ -289,14 +296,14 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.role = newRole;
+                tempEmployee.setRole(newRole);
                 break;
                 //role
             }
             case '3':
             {
                 String newName = inputHandler.NameInput();
-                String updateNameQuery = "UPDATE employees SET name = '" + newName + "' WHERE username = '" + tempEmployee.Username + "'";
+                String updateNameQuery = "UPDATE employees SET name = '" + newName + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -304,7 +311,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.Username + "'s name updated to " + newName + " from " + tempEmployee.name + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + "'s name updated to " + newName + " from " + tempEmployee.getName() + " successfully!");
                     } 
                     else 
                     {
@@ -317,14 +324,14 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.name = newName;
+                tempEmployee.setName(newName);
                 break;
                 //name
             }
             case '4':
             {
                 String newSurname = inputHandler.SurnameInput();
-                String updateSurnameQuery = "UPDATE employees SET surname = '" + newSurname + "' WHERE username = '" + tempEmployee.Username + "'";
+                String updateSurnameQuery = "UPDATE employees SET surname = '" + newSurname + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -332,7 +339,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.Username + "'s surname updated to " + newSurname + " from " + tempEmployee.surname + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + "'s surname updated to " + newSurname + " from " + tempEmployee.getSurname() + " successfully!");
                     } 
                     else 
                     {
@@ -345,14 +352,14 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.surname = newSurname;
+                tempEmployee.setSurname(newSurname);
                 break;
                 //surname
             }
             case '5':
             {
                 LocalDate newDOB = inputHandler.DobInput();
-                String updateDOBQuery = "UPDATE employees SET date_of_birth = '" + newDOB + "' WHERE username = '" + tempEmployee.Username + "'";
+                String updateDOBQuery = "UPDATE employees SET date_of_birth = '" + newDOB + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -360,7 +367,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.Username + "'s date of birth updated to " + newDOB + " from " + tempEmployee.DOB + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + "'s date of birth updated to " + newDOB + " from " + tempEmployee.getBirthday() + " successfully!");
                     } 
                     else 
                     {
@@ -373,14 +380,14 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.DOB = newDOB;
+                tempEmployee.setBirthday(newDOB);
                 break;
                 //DOB
             }
             case '6':
             {
                 LocalDate newDOS = inputHandler.DosInput();
-                String updateDOSQuery = "UPDATE employees SET date_of_start = '" + newDOS + "' WHERE username = '" + tempEmployee.Username + "'";
+                String updateDOSQuery = "UPDATE employees SET date_of_start = '" + newDOS + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -388,7 +395,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.Username + "'s date of start updated to " + newDOS + " from " + tempEmployee.DOS + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + "'s date of start updated to " + newDOS + " from " + tempEmployee.getEmploymentday() + " successfully!");
                     } 
                     else 
                     {
@@ -401,14 +408,14 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.DOS = newDOS;
+                tempEmployee.setEmploymentDay(newDOS);
                 break;
                 //DOS
             }
             case '7':
             {
                 String newEmail = inputHandler.EmailInput();
-                String updateEmailQuery = "UPDATE employees SET email = '" + newEmail + "' WHERE username = '" + tempEmployee.Username + "'";
+                String updateEmailQuery = "UPDATE employees SET email = '" + newEmail + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -416,7 +423,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println("Username " + tempEmployee.Username + "'s date of start updated to " + newEmail + " from " + tempEmployee.Email + " successfully!");
+                        System.out.println("Username " + tempEmployee.getUsername() + "'s date of start updated to " + newEmail + " from " + tempEmployee.getEmail() + " successfully!");
                     } 
                     else 
                     {
@@ -429,7 +436,7 @@ public class DataBaseHandler
                     System.out.println("Error occurred while updating username: ");
                     e.printStackTrace();
                 }
-                tempEmployee.Email = newEmail;
+                tempEmployee.setEmail(newEmail);
                 break;
                 //email
             }
@@ -494,7 +501,7 @@ public class DataBaseHandler
 
             if(rowsAffected > 0)
             {
-                System.out.println("Employee " + victim.name + " " + victim.surname + " has been deleted from the database");
+                System.out.println("Employee " + victim.getName() + " " + victim.getSurname() + " has been deleted from the database");
             }
             else
             {
@@ -529,7 +536,7 @@ public class DataBaseHandler
                 System.out.println("User named " + username + " does not exist in the database. inside get employee");
                 return null;
             }
-
+            
             while(infoSet.next())
             {
                 int dbID = infoSet.getInt("employee_id");

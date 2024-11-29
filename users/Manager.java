@@ -1,6 +1,10 @@
-import java.sql.Date;
+package users;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import utilities.DataBaseHandler;
+import utilities.InputHandler;
+import utilities.SortingAlgorithms;
 
 
 public class Manager extends Employee
@@ -138,23 +142,25 @@ public class Manager extends Employee
 
     protected void HireEmployeeManager()
     {
-        Username = inHandle.UsernameInput();
-        name = inHandle.NameInput();
-        surname = inHandle.SurnameInput();
-        role = inHandle.RoleInput();
-        phone = inHandle.PhoneInput();
+        String newUsername = inHandle.UsernameInput();
+        String newName = inHandle.NameInput();
+        String newSurname = inHandle.SurnameInput();
+        String newRole = inHandle.RoleInput();
+        String newPhone = inHandle.PhoneInput();
+        LocalDate newDOB;
+        LocalDate newDOS;
         while(true)
         {
-            DOB = inHandle.DobInput();
-            DOS = inHandle.DosInput();
+            newDOB = inHandle.DobInput();
+            newDOS = inHandle.DosInput();
             if(inHandle.DoesDatesMakeSense(DOB, DOS))
             {
                 break;
             }
         }
-        Email = inHandle.EmailInput();
+        String newEmail = inHandle.EmailInput();
         
-        dbHandler.HireEmployee(Username, name, surname, role, phone, DOB, DOS, Email);
+        dbHandler.HireEmployee(newUsername, newName, newSurname, newRole, newPhone, newDOB, newDOS, newEmail);
     }
 
     protected void FireEmployeeManager()

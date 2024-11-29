@@ -1,9 +1,6 @@
-import java.util.Scanner;
-
-import javax.management.relation.Role;
-
-import java.sql.Date;
+package users;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class RegularEmployee extends Employee
 {
