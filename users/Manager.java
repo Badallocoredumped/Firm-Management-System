@@ -168,6 +168,10 @@ public class Manager extends Employee
         
         String victimName = inHandle.UsernameInputToOperate();
         Employee employee = dbHandler.GetEmployeeWithUsername(victimName);
+        if(employee == null)
+        {
+            return;
+        }
         if(employee.Username.equals(Username))
         {
             System.out.println("You can not fire yourself!!!!!");
