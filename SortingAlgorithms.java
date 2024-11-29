@@ -9,7 +9,7 @@ public class SortingAlgorithms
         boolean validInput = false;
         
         while (!validInput) {
-            System.out.println("Dizi boyutunu giriniz (1000-10000 arası):");
+            System.out.println("Enter the array size (between 1000-10000):");
             
             // Numerical input control
             if (sizeOfArray.hasNextInt()) {
