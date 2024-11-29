@@ -153,7 +153,7 @@ public class Manager extends Employee
         {
             newDOB = inHandle.DobInput();
             newDOS = inHandle.DosInput();
-            if(inHandle.DoesDatesMakeSense(DOB, DOS))
+            if(inHandle.DoesDatesMakeSense(newDOB, newDOS))
             {
                 break;
             }
