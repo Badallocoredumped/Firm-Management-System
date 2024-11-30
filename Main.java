@@ -21,6 +21,8 @@ public class Main
         dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022.11.01", "2022.12.2", "bozoman");
         dbHandler.FireEmployee(22,"dummyvolkan"); */
 
+
+        //Add register
         DataBaseHandler dbHandler = new DataBaseHandler();
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();
@@ -99,6 +101,7 @@ public class Main
             else if (RMInput == '2') 
             {
                 // Exit system
+                Ccleaner();
                 System.out.println("Exiting the Firm Management System. Goodbye!");
                 systemPower = false;
                 scanner.close();
