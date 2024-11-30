@@ -94,7 +94,7 @@ public abstract class Employee
         boolean Changed = false;
         String cEmail = getEmail();
         String nEmail;
-        String EmailRegex = "^[A-Za-z0-9+_.-çÇğĞıİöÖşŞüÜ]+@[A-Za-z0-9.-çÇğĞıİöÖşŞüÜ]+\\.[A-Za-z]{2,}$";
+        String EmailRegex = "^[A-Za-z0-9+_.çÇğĞıİöÖşŞüÜ-]+@[A-Za-z0-9.çÇğĞıİöÖşŞüÜ-]+\\.[A-Za-z]{2,}$";
         while (!Changed) 
         {
             System.out.println("Enter new email address: ");

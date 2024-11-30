@@ -4,14 +4,11 @@ import java.util.Scanner;
 
 public class RegularEmployee extends Employee
 {
-    //deleted delay
     public static Scanner input = new Scanner(System.in);
     public RegularEmployee(int ID, String Username, String Role, String Name, String Surname, String Phone, LocalDate DOB, LocalDate DOS, String Email, String Password, Boolean DEFAULT_PASSWORD)
     {
         super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password, DEFAULT_PASSWORD);
     }
-
-
 
     // Regular Employee Menu
     @Override
@@ -68,9 +65,7 @@ public class RegularEmployee extends Employee
                 // Professor reply: We should go to the login page after log out and put a exit(terminate) on the login page
                 {
                     Ccleaner();
-                    System.out.print("Logginng out");
-                    //Deleted delay
-                    Ccleaner();
+                    System.out.print("Logginng out...");
                     return;
                 }
 

@@ -39,7 +39,7 @@ public class Manager extends Employee
         while(RMInput != '9')
         {
             //add display profile
-            System.out.println("\n--- Manager Menu ---");
+            System.out.println("--- Manager Menu ---");
             System.out.println("0. Display Profile");
             System.out.println("1. Update Profile");
             System.out.println("2. Display All Employees"); //done
@@ -101,7 +101,7 @@ public class Manager extends Employee
                 case '3' -> 
                 {
                     Ccleaner();
-                    String role = inHandle.RoleInput();
+                    String role = inHandle.RoleInput("");
                     Ccleaner();
                     dbHandler.DispEmployeeWithRole(role);
                     System.out.println("Enter anything to return");
@@ -157,7 +157,6 @@ public class Manager extends Employee
                     System.out.println("Logging out...");
                     return;
                 }
-                //default -> System.out.println("Invalid option. Please try again.");
             }
         }
                 
@@ -169,16 +168,16 @@ public class Manager extends Employee
     protected void HireEmployeeManager()
     {
         String newUsername = inHandle.UsernameInput();
-        String newName = inHandle.NameInput();
-        String newSurname = inHandle.SurnameInput();
-        String newRole = inHandle.RoleInput();
-        String newPhone = inHandle.PhoneInput();
+        String newName = inHandle.NameInput("");
+        String newSurname = inHandle.SurnameInput("");
+        String newRole = inHandle.RoleInput("");
+        String newPhone = inHandle.PhoneInput("");
         LocalDate newDOB;
         LocalDate newDOS;
         while(true)
         {
-            newDOB = inHandle.DobInput();
-            newDOS = inHandle.DosInput();
+            newDOB = inHandle.DobInput(null);
+            newDOS = inHandle.DosInput(null);
             if(inHandle.DoesDatesMakeSense(newDOB, newDOS))
             {
                 Ccleaner();
@@ -187,7 +186,7 @@ public class Manager extends Employee
             Ccleaner();
             System.out.println("So you were born after you got the job. Amazing employe.");
         }
-        String newEmail = inHandle.EmailInput();
+        String newEmail = inHandle.EmailInput("");
         
         dbHandler.HireEmployee(newUsername, newName, newSurname, newRole, newPhone, newDOB, newDOS, newEmail);
     }
