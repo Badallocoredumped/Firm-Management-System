@@ -1,10 +1,12 @@
+package utilities;
+
 import java.util.*;
 
 public class SortingAlgorithms 
 {
-    public static void main(String[] args) {
+    public void getInputAndRunAlgorithms(Scanner sizeOfArray) 
+    {
         SortingAlgorithms mainArr = new SortingAlgorithms();
-        Scanner sizeOfArray = new Scanner(System.in);
         int sequence = 0;
         boolean validInput = false;
         
@@ -28,7 +30,6 @@ public class SortingAlgorithms
         }
         
         mainArr.runAlgorithmComparison(sequence);
-        sizeOfArray.close();
     }
     
     public void runAlgorithmComparison(int sizeOfArray) { // sizeOfArray = array size
