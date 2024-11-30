@@ -6,10 +6,9 @@ public class RegularEmployee extends Employee
 {
     //deleted delay
     public static Scanner input = new Scanner(System.in);
-    public RegularEmployee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password)
+    public RegularEmployee(int ID, String Username, String Role, String Name, String Surname, String Phone, LocalDate DOB, LocalDate DOS, String Email, String Password, Boolean DEFAULT_PASSWORD)
     {
-        super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password);
-
+        super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password, DEFAULT_PASSWORD);
     }
 
 
@@ -21,7 +20,7 @@ public class RegularEmployee extends Employee
         String RMString;
         char RMInput = '0';
             
-        while(RMInput != '3')
+        do
         {
             System.out.println("Employee menu");
             System.out.println("1. Profile Information");
@@ -44,11 +43,11 @@ public class RegularEmployee extends Employee
 
             if (RMInput < '1' || RMInput > '3') 
             {
-                    Ccleaner();
-                    System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
-                    System.out.println();
+                Ccleaner();
+                System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                System.out.println();
             }
-        }
+        }while(RMInput < '1' || RMInput > '3');
 
         // Executes selected operation
         switch (RMInput)
@@ -82,12 +81,13 @@ public class RegularEmployee extends Employee
             }
         }
     }
+
     public void PrintProfile()
     {
         char cRM ='0';
         String sRM;
         boolean toRM = false;
-        while (!toRM) 
+        do
         {
             System.out.println("Full profile information");
             System.out.println("Name: " + name);
@@ -102,12 +102,14 @@ public class RegularEmployee extends Employee
             System.out.println("Password: " + Password + "\n");
             System.out.println("Enter '9' to return to the menu.");
             sRM = input.nextLine();
+
             if(sRM.isEmpty() || sRM.length() > 1)
             {
                 Ccleaner();
                 System.out.println("Enter '9' to return to the menu.");
                 continue;
             }
+
             cRM = sRM.charAt(0);
             if (cRM == '9') 
             {
@@ -116,16 +118,18 @@ public class RegularEmployee extends Employee
             }
             else if (cRM != '9') 
             {
+                Ccleaner();
                 System.out.println("Enter '9' to return to the menu.");
             }
-        }
+        }while (!toRM);
     }
+
     public void UpdateProfile()
     {
         String UPString;
         char UPInput = '0';
             
-        while(UPInput != '5')
+        do
         {
             System.out.println("Update profile");
             System.out.println("1. Change email");
@@ -154,7 +158,7 @@ public class RegularEmployee extends Employee
                     System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
                     System.out.println();
             }
-        }
+        }while(UPInput < '1' || UPInput > '5');
 
         // Executes selected operation
         switch (UPInput)

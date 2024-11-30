@@ -23,6 +23,7 @@ public class Main
 
 
         //Add register
+        //check if the name is the same or someshit in manager update thing
         DataBaseHandler dbHandler = new DataBaseHandler();
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();

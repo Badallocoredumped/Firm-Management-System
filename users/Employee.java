@@ -1,6 +1,7 @@
 package users;
 import java.time.LocalDate;
 import java.util.Scanner;
+import utilities.DataBaseHandler;
 
 public abstract class Employee 
 {
@@ -14,9 +15,11 @@ public abstract class Employee
     protected LocalDate DOS;
     protected String Email;
     protected String Password;
+    protected Boolean DEFAULT_PASSWORD;
 
     public static Scanner input = new Scanner(System.in);
-    public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password)
+    static DataBaseHandler dbHandler = new DataBaseHandler();
+    public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password, Boolean DEFAULT_PASSWORD)
     {
         this.ID = ID;
         this.Username = Username;
@@ -28,7 +31,7 @@ public abstract class Employee
         this.DOS = DOS;
         this.Email = Email;
         this.Password = Password;
-        
+        this.DEFAULT_PASSWORD = DEFAULT_PASSWORD;
 
     }
 
@@ -51,6 +54,8 @@ public abstract class Employee
     public void setSurname(String surnametochange) {this.surname = surnametochange;}
     public void setBirthday(LocalDate birthdaytochange){this.DOB = birthdaytochange;}
     public void setEmploymentDay(LocalDate employmentdatetochange){this.DOS = employmentdatetochange;}
+    public Boolean getDEFAULT_PASSWORD() {return DEFAULT_PASSWORD;}
+    
     public abstract void Menu();
 
     public void ChangePassword()
@@ -65,18 +70,20 @@ public abstract class Employee
             nPassword = input.nextLine();
             if (nPassword.equals(cPassword))
             {
+                Ccleaner();
                 System.out.println("You can not use the same password!!");
                 continue;
             }
 
             if (nPassword.length() < 8 || nPassword.length() > 16 || nPassword.isBlank() ) 
             {
+                Ccleaner();
                 System.out.println("Password must have between 8 and 16 characters");
                 continue;
             }
 
+            dbHandler.UpdatePassword(ID, nPassword);
             setPassword(nPassword);
-            System.out.println("The password has been changed succesfully");
             Changed = true;
         }
     }
@@ -87,25 +94,27 @@ public abstract class Employee
         boolean Changed = false;
         String cEmail = getEmail();
         String nEmail;
-        String EmailRegex = "^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        String EmailRegex = "^[A-Za-z0-9+_.-çÇğĞıİöÖşŞüÜ]+@[A-Za-z0-9.-çÇğĞıİöÖşŞüÜ]+\\.[A-Za-z]{2,}$";
         while (!Changed) 
         {
             System.out.println("Enter new email address: ");
             nEmail = input.nextLine();
             if (nEmail.equals(cEmail))
             {
+                Ccleaner();
                 System.out.println("You can not use the same Email!!");
                 continue;
             }
 
             if (!nEmail.matches(EmailRegex)) 
             {
+                Ccleaner();
                 System.out.println("Invalide email format!! (Spacial characters are not allowed)");
                 continue;
             }
 
-            setEmail(EmailRegex);
-            System.out.println("The Email has been changed succesfully");
+            dbHandler.UpdatePhone(ID, nEmail);
+            setEmail(nEmail);
             Changed = true;
         }
     }
@@ -122,18 +131,20 @@ public abstract class Employee
             nPhone = input.nextLine();
             if (nPhone.equals(cPhone))
             {
+                Ccleaner();
                 System.out.println("You can not use the same phone number!!");
                 continue;
             }
 
             if (nPhone.length() != 10 || nPhone.isBlank() ||  !nPhone.matches("\\d+")) 
             {
+                Ccleaner();
                 System.out.println("Phone number must have 10 digits");
                 continue;
             }
 
+            dbHandler.UpdatePhone(ID, nPhone);
             setPhone(nPhone);
-            System.out.println("The Phone number has been changed succesfully");
             Changed = true;
         }
     }

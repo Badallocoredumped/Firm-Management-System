@@ -60,12 +60,15 @@ public class Authenticator
 /* import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Authenticator {
     private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; 
     private final String username = "root"; 
     private final String password = "Admin_123"; 
     private Connection connection;
+        public static Scanner input = new Scanner(System.in);
+
     private DataBaseHandler dbHandler = new DataBaseHandler();
     private Employee currUser;
 
@@ -95,6 +98,22 @@ public class Authenticator {
         }
 
         return null;
+    }
+
+    public void LoginMenu()
+    {
+        String LUsername, LPassword;
+
+        //loop till user enters valid credntials
+        System.out.println("Welcome to the Firm Managemnt System!");
+        System.out.println("Enter login credentials: ");
+
+        System.out.print("Username: ");
+        LUsername = input.nextLine();
+        System.out.print("Password: ");
+        LPassword = input.nextLine();
+        login(LUsername, LPassword);
+        
     }
 
     public void logout() {
