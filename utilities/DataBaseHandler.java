@@ -4,6 +4,7 @@ package utilities;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -620,6 +621,7 @@ public class DataBaseHandler
                 Date dbDOS = infoSet.getDate("date_of_start");
                 String dbEmail = infoSet.getString("email");
                 String dbPassword = infoSet.getString("password");
+                Boolean dbDefault = infoSet.getBoolean("DEFAULT_PASSWORD");
 
                 LocalDate localDOB = dbDOB.toLocalDate();
                 LocalDate localDOS = dbDOS.toLocalDate();
@@ -628,14 +630,31 @@ public class DataBaseHandler
                 {
                     break;
                 }
+
+                if(dbDefault)
+                {
+                    if(dbRole.equals("Manager"))
+                    {
+                        //System.out.println("Login successfull!");
+                        Manager manager = new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
+                        manager.ChangePassword();
+
+                    }
+                    else
+                    {
+                        RegularEmployee regularEmployee = new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
+                        regularEmployee.ChangePassword();
+                    }
+                }
+
                 if(dbRole.equals("Manager"))
                 {
                     //System.out.println("Login successfull!");
-                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword);
+                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword,dbDefault);
                 }
                 else
                 {
-                    return new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword);
+                    return new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword,dbDefault);
                 }
                 
             }
@@ -683,6 +702,124 @@ public class DataBaseHandler
         return false;
 
     }
+
+    public void PrintProfile(String username)
+    {
+        if(connection == null)
+        {
+            System.err.println("Database connection failed");
+        }
+
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "SELECT * FROM employees WHERE username = '" + username + "'";
+            ResultSet infoSet = statement.executeQuery(query2do);
+
+            if(infoSet.next())
+            {
+                int dbID = infoSet.getInt("employee_id");
+                String dbUsername = infoSet.getString("username");
+                String dbRole = infoSet.getString("role");
+                String dbName = infoSet.getString("name");
+                String dbSurname = infoSet.getString("surname");
+                String dbPhone = infoSet.getString("phone_no");
+                String dbDOB = infoSet.getString("date_of_birth");
+                String dbDOS = infoSet.getString("date_of_start");
+                String dbEmail = infoSet.getString("email");
+
+                System.out.println("Full profile information");
+                System.out.println("Employee ID: " + dbID);
+                System.out.println(", Username: " + dbUsername);
+                System.out.println(", Role: " + dbRole);
+                System.out.println(", Name: " + dbName);
+                System.out.println(", Surname: " + dbSurname);
+                System.out.println(", Phone Number: " + dbPhone);
+                System.out.println(", Date of Birth: " + dbDOB); 
+                System.out.println(", Date of Start: " + dbDOS);
+                System.out.println(", Email: " + dbEmail);
+            }
+            
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error occured!");
+        }
+    }
+
+
+    public void UpdatePhone(int employee_id, String phone)
+    {
+        String query2do = "UPDATE employees SET phone_no = ? WHERE employee_id = " + employee_id;
+
+        try(PreparedStatement statement = connection.prepareStatement(query2do))
+        {
+            statement.setString(1, phone);
+            int rowsAffected = statement.executeUpdate();
+            if(rowsAffected > 0)
+            {
+                System.out.println("Phone number updated succesfully");
+            }
+            else
+            {
+                System.out.println("Error updating phone");
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error updating phone");
+            e.printStackTrace(); 
+        }
+    }
+
+    public void UpdatePassword(int employee_id, String password)
+    {
+        String query2do = "UPDATE employees SET password = ?, DEFAULT_PASSWORD = FALSE WHERE employee_id = " + employee_id;
+
+        try(PreparedStatement statement = connection.prepareStatement(query2do))
+        {
+            statement.setString(1, password);
+            int rowsAffected = statement.executeUpdate();
+            if(rowsAffected > 0)
+            {
+                System.out.println("Password updated succesfully");
+            }
+            else
+            {
+                System.out.println("Error updating password");
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error updating password");
+            e.printStackTrace(); 
+        }
+    }
+
+    public void UpdateEmail(int employee_id, String email)
+    {
+        String query2do = "UPDATE employees SET email = ? WHERE employee_id = " + employee_id;
+
+        try(PreparedStatement statement = connection.prepareStatement(query2do))
+        {
+            statement.setString(1, email);
+            int rowsAffected = statement.executeUpdate();
+            if(rowsAffected > 0)
+            {
+                System.out.println("Email updated succesfully");
+            }
+            else
+            {
+                System.out.println("Error updating email");
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error updating email");
+            e.printStackTrace(); 
+        }
+    }
+
 
 
     static  void Ccleaner()

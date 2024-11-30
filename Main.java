@@ -24,6 +24,7 @@ public class Main
 
         //Add register
         //check if the name is the same or someshit in manager update thing
+        //Make the phone number exactly 10 digits max maybe change the database 
         DataBaseHandler dbHandler = new DataBaseHandler();
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();

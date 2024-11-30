@@ -113,7 +113,7 @@ public abstract class Employee
                 continue;
             }
 
-            dbHandler.UpdatePhone(ID, nEmail);
+            dbHandler.UpdateEmail(ID, nEmail);
             setEmail(nEmail);
             Changed = true;
         }
@@ -152,8 +152,8 @@ public abstract class Employee
     public void UpdateAll()
     {
         ChangeEmail();
-        ChangePassword();
         ChangePhone();
+        ChangePassword();
         System.out.println("The profile has been updated succesfully");
     }
 
