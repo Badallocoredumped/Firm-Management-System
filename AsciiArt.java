@@ -5,7 +5,7 @@ public class AsciiArt {
     public static final String Yellow = "\u001B[33m";
     public static final String Green = "\u001B[32m";
     public static final String Blue = "\u001B[34m";
-    public static final String Purple = "\u001B[34m";
+    public static final String Purple = "\u001B[35m";
 
     public static void main(String[] args) {
       printWelcome();
