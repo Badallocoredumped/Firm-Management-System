@@ -38,7 +38,7 @@ public class Manager extends Employee
         char RMInput = '0';
         while(RMInput != '9')
         {
-            
+            //add display profile
             System.out.println("\n--- Manager Menu ---");
             System.out.println("1. Update Profile");
             System.out.println("2. Display All Employees"); //done
@@ -154,11 +154,7 @@ public class Manager extends Employee
     }
 
 
-    protected void UpdateProfile()
-    {
-
-    }
-
+    
     protected void HireEmployeeManager()
     {
         String newUsername = inHandle.UsernameInput();
