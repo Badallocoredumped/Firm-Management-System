@@ -40,6 +40,7 @@ public class Manager extends Employee
         {
             //add display profile
             System.out.println("\n--- Manager Menu ---");
+            System.out.println("0. Display Profile");
             System.out.println("1. Update Profile");
             System.out.println("2. Display All Employees"); //done
             System.out.println("3. Display Employees by Role");//done
@@ -73,10 +74,20 @@ public class Manager extends Employee
         
             switch (RMInput) 
             {
+                case '0' ->  //Update will do later
+                {
+                    Ccleaner();
+                    PrintProfile();
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
+                    
+                }
                 case '1' ->  //Update will do later
                 {
                     Ccleaner();
                     UpdateProfile();
+                    Ccleaner();
                     
                 }
                 case '2' -> 

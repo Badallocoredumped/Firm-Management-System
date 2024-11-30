@@ -299,6 +299,7 @@ public class DataBaseHandler
             {
                 Ccleaner();
                 String newUsername = inputHandler.UsernameInput();
+                
                 Ccleaner();
                 String updateUsernameQuery = "UPDATE employees SET username = '" + newUsername + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -782,6 +783,7 @@ public class DataBaseHandler
             int rowsAffected = statement.executeUpdate();
             if(rowsAffected > 0)
             {
+                Ccleaner();
                 System.out.println("Password updated succesfully");
             }
             else

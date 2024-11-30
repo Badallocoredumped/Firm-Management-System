@@ -22,7 +22,7 @@ public class Main
         dbHandler.FireEmployee(22,"dummyvolkan"); */
 
 
-        //Add register
+        //Add register??
         //check if the name is the same or someshit in manager update thing
         //Make the phone number exactly 10 digits max maybe change the database 
         //Make sure you log in and credential are correct before updating the password

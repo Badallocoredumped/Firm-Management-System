@@ -34,6 +34,11 @@ public class InputHandler
                 Ccleaner();
                 System.out.println("Username can not be blank!");
             }
+            else if(username.contains(" "))
+            {
+                Ccleaner();
+                System.out.println("Username can not have spaces!");
+            }
             else
             {
                 return username;
@@ -66,7 +71,7 @@ public class InputHandler
     }
     
     //NOTE: The matches() method in Java checks if a string matches a given regular expression (regex)
-    //mehmet ekin ay
+
     public String NameInput()
     {
         String name;
@@ -131,15 +136,13 @@ public class InputHandler
         {
             System.out.print("Enter Phone Number: ");
             phone = scanner.nextLine().trim();
-            if (phone.matches("\\d{1,15}")) //This checks if its maching the digits from 0 to 9, and atleast 1 time at most 15 times
-            {
-                return phone;
-            } 
-            else 
+            if (phone.length() != 10 || phone.isBlank() ||  !phone.matches("\\d+")) //This checks if its maching the digits from 0 to 9, and atleast 1 time at most 15 times
             {
                 Ccleaner();
-                System.out.println("Invalid phone number! It should only contain numbers, cannot be empty, and must not exceed 15 digits.");
+                System.out.println("Phone number must have 10 digits");
             }
+            return phone;
+            
         }
     }
 

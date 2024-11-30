@@ -200,24 +200,36 @@ public abstract class Employee
                 {
                     Ccleaner();
                     ChangeEmail();
+                    System.out.println("Enter anything to return");
+                    input.nextLine();
+                    Ccleaner();
                 }
 
                 case '2'-> //Update Phone number
                 {
                     Ccleaner();
                     ChangePhone();
+                    System.out.println("Enter anything to return");
+                    input.nextLine();
+                    Ccleaner();
                 }
                 
                 case '3'-> //Update Password
                 {
                     Ccleaner();
                     ChangePassword();
+                    System.out.println("Enter anything to return");
+                    input.nextLine();
+                    Ccleaner();
                 }
 
                 case '4'-> //Update Password
                 {
                     Ccleaner();
                     UpdateAll();
+                    System.out.println("Enter anything to return");
+                    input.nextLine();
+                    Ccleaner();
                 }
 
                 case '5'-> //Return to Main menu
@@ -244,8 +256,6 @@ public abstract class Employee
             System.out.println("Employment day: " + DOS);
             System.out.println("Username: " + Username);
             System.out.println("Password: " + Password + "\n");
-            System.out.println("Enter anything to return to the Main Menu");
-            input.nextLine();
     
     }
 
