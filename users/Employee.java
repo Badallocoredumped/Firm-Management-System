@@ -67,7 +67,7 @@ public abstract class Employee
         while (!Changed) 
         {
             System.out.println("Enter new password (minimum 8, maximum 16 characters): ");
-            nPassword = input.nextLine();
+            nPassword = input.nextLine().trim();
             if (nPassword.equals(cPassword))
             {
                 Ccleaner();
@@ -75,10 +75,10 @@ public abstract class Employee
                 continue;
             }
 
-            if (nPassword.length() < 8 || nPassword.length() > 16 || nPassword.isBlank() ) 
+            if (nPassword.length() < 8 || nPassword.length() > 16 || nPassword.isBlank() || nPassword.contains(" ")) 
             {
                 Ccleaner();
-                System.out.println("Password must have between 8 and 16 characters");
+                System.out.println("Password must have between 8 and 16 characters and should have any space!!");
                 continue;
             }
 

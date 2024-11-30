@@ -166,7 +166,7 @@ public class InputHandler
             if(phone.equals(tempPhone))
             {
                 Ccleaner();
-                System.out.println("You can not use the same password!!");
+                System.out.println("You can not use the same phone number!!");
                 continue;
             }
             if (phone.length() != 10 || phone.isBlank() ||  !phone.matches("\\d+")) //This checks if its maching the digits from 0 to 9, and atleast 1 time at most 15 times

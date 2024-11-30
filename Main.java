@@ -5,23 +5,13 @@ import users.Employee;
 import users.Manager;
 import users.RegularEmployee;
 import utilities.Authenticator;
-import utilities.DataBaseHandler;
 
 
 public class Main 
 {
     public static void main(String[] args)
     {
-        /*dbHandler.DispAllEmployee();
-        System.out.println("Displayed All Employees");
-        dbHandler.DispEmployeeWithRole("manager");
-        System.out.println("Displayed All Employees with the role");
-        dbHandler.DispEmployeeWithUsername("emir5757");
-        dbHandler.DispEmployeeWithNameSurname("Emir","Özen");
-        dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022.11.01", "2022.12.2", "bozoman");
-        dbHandler.FireEmployee(22,"dummyvolkan"); */
-
-
+        
         //Add register??
         //check if the name is the same or someshit in manager update thing
         //Make the phone number exactly 10 digits max maybe change the database 
@@ -32,7 +22,6 @@ public class Main
         //Alara has to do the ascii
         //ask teh registration
 
-        DataBaseHandler dbHandler = new DataBaseHandler();
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();
         Employee currUser = null;
@@ -76,9 +65,7 @@ public class Main
         
                     System.out.print("Password: ");
                     String password = scanner.nextLine();
-        
                     currUser = authenticator.login(userName, password);
-        
                     if (currUser == null) 
                     {
                         Ccleaner();
@@ -103,7 +90,7 @@ public class Main
                     System.out.println("Exited Regular Employee Menu");
                 }
         
-                authenticator.logout();
+                authenticator.logout(currUser);
                 currUser = null;
         
             } 

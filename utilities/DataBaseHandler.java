@@ -337,7 +337,7 @@ public class DataBaseHandler
             {
                 Ccleaner();
                 //Maybe enable this if you don't want other managers depromoted
-                
+
                 /* if(tempEmployee.getRole().toLowerCase().equals("manager"))
                 {
                     System.out.println("You can not change the role of a manager!!");
@@ -644,7 +644,7 @@ public class DataBaseHandler
                     break;
                 }
 
-                if(dbDefault)
+                /* if(dbDefault)
                 {
                     if(dbRole.equals("Manager"))
                     {
@@ -658,7 +658,86 @@ public class DataBaseHandler
                         RegularEmployee regularEmployee = new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
                         regularEmployee.ChangePassword();
                     }
+                } */
+
+                if(dbRole.equals("Manager"))
+                {
+                    //System.out.println("Login successfull!");
+                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword,dbDefault);
                 }
+                else
+                {
+                    return new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword,dbDefault);
+                }
+                
+            }
+            
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error occured!");
+        }
+        return null;
+
+    }
+    public Employee GetEmployeeWithUsernameAndPassword(String username,String password)
+    {
+        if(connection == null)
+        {
+            System.err.println("Database connection failed");
+        }
+
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "SELECT * FROM employees WHERE username = '" + username + "' AND password = '" + password + "'";
+            ResultSet infoSet = statement.executeQuery(query2do);
+
+            if (!infoSet.isBeforeFirst()) // This checks if there are any rows in the ResultSet 
+            { 
+                //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
+                /* Ccleaner();
+                System.out.println("User named " + username + " does not exist in the database."); */
+                return null;
+            }
+            
+            while(infoSet.next())
+            {
+                int dbID = infoSet.getInt("employee_id");
+                String dbUsername = infoSet.getString("username");
+                String dbRole = infoSet.getString("role");
+                String dbName = infoSet.getString("name");
+                String dbSurname = infoSet.getString("surname");
+                String dbPhone = infoSet.getString("phone_no");
+                Date dbDOB = infoSet.getDate("date_of_birth");
+                Date dbDOS = infoSet.getDate("date_of_start");
+                String dbEmail = infoSet.getString("email");
+                String dbPassword = infoSet.getString("password");
+                Boolean dbDefault = infoSet.getBoolean("DEFAULT_PASSWORD");
+
+                LocalDate localDOB = dbDOB.toLocalDate();
+                LocalDate localDOS = dbDOS.toLocalDate();
+
+                if(dbUsername == "")
+                {
+                    break;
+                }
+
+                /* if(dbDefault)
+                {
+                    if(dbRole.equals("Manager"))
+                    {
+                        //System.out.println("Login successfull!");
+                        Manager manager = new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
+                        manager.ChangePassword();
+
+                    }
+                    else
+                    {
+                        RegularEmployee regularEmployee = new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
+                        regularEmployee.ChangePassword();
+                    }
+                } */
 
                 if(dbRole.equals("Manager"))
                 {
