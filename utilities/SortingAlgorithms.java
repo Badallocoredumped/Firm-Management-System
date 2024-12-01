@@ -11,7 +11,7 @@ public class SortingAlgorithms
         boolean validInput = false;
         
         while (!validInput) {
-            System.out.println("Dizi boyutunu giriniz (1000-10000 arası):");
+            System.out.println("Enter the array size (between 1000-10000):");
             
             // Numerical input control
             if (sizeOfArray.hasNextInt()) {
@@ -32,6 +32,7 @@ public class SortingAlgorithms
         mainArr.runAlgorithmComparison(sequence);
     }
     
+    // Measures the running time of each algorithm in nanoseconds
     public void runAlgorithmComparison(int sizeOfArray) { // sizeOfArray = array size
         // Random number generator
         Random randNumCretor = new Random();
@@ -49,9 +50,9 @@ public class SortingAlgorithms
         int[] copyInsert = mainArr.clone();
         
         // ArrayList for Java Collections.sort
-        ArrayList<Integer> benchMark = new ArrayList<>();
+        ArrayList<Integer> array = new ArrayList<>();
         for(int i : mainArr) {
-            benchMark.add(i);
+            array.add(i);
         }
         
         // time measurements
@@ -83,23 +84,23 @@ public class SortingAlgorithms
         
         // Collections.sort
         startTime = System.nanoTime();
-        Collections.sort(benchMark);
+        Collections.sort(array);
         finishTime = System.nanoTime();
         
         // Performs accuracy checks
         boolean harmony = true;
         for(int i = 0; i < sizeOfArray; i++) {
-            if(copyRadix[i] != benchMark.get(i) || 
-               copyShell[i] != benchMark.get(i) ||
-               copyHeap[i] != benchMark.get(i) ||
-               copyInsert[i] != benchMark.get(i)) {
+            if(copyRadix[i] != array.get(i) || 
+               copyShell[i] != array.get(i) ||
+               copyHeap[i] != array.get(i) ||
+               copyInsert[i] != array.get(i)) {
                 harmony = false;
                 break;
             }
         }
         
-        // Prints the results
-        System.out.println("\nSıralama Sonuçları:");
+        // Prints the results on the screen
+        System.out.println("\nRanking Results:");
         System.out.println("Radix Sort: " + timeOfRadix/1000000.0 + " ms");
         System.out.println("Shell Sort: " + timeOfShell/1000000.0 + " ms");
         System.out.println("Heap Sort: " + timeOfHeap/1000000.0 + " ms");
@@ -112,6 +113,7 @@ public class SortingAlgorithms
         }
     }
     
+    // Shell sort, which is an improved version of insertion sort, sorts the array by dividing it at certain intervals.
     private void shellSort(int[] sequence) {
         int dimension = sequence.length;
         for(int harper = dimension/2; harper > 0; harper /= 2) {
@@ -126,6 +128,7 @@ public class SortingAlgorithms
         }
     }
     
+    // It works with the logic of a tree branch.
     private void heapSort(int[] heap) {
         int arraySize = heap.length;
         
@@ -141,6 +144,7 @@ public class SortingAlgorithms
             heapify(heap, sorter, 0);
         }
     }
+    
     
     private void heapify(int[] tree, int capacity, int root) {
         int third = root;
@@ -164,23 +168,24 @@ public class SortingAlgorithms
         }
     }
     
-    private void insertionSort(int[] benchMark) {
-        int sophia = benchMark.length;
+    // insertion sort sorts the array by scanning it from left to right
+    private void insertionSort(int[] array) {
+        int length = array.length;
         
         // The array is scanned from left to right
-        for (int olivia = 1; olivia < sophia; olivia++) {
+        for (int i = 1; i < length; i++) {
             // We store the current element in temporary variable
-            int emma = benchMark[olivia];
+            int key = array[i];
             
             // Finds the correct position in the sorted section
-            int harmony = olivia - 1;
+            int harmony = i - 1;
             
             // Move large elements to the right
             while (harmony >= 0) {
                 // If the element on the left is larger
-                if (benchMark[harmony] > emma) {
+                if (array[harmony] > key) {
                     // Scrolls right
-                    benchMark[harmony + 1] = benchMark[harmony];
+                    array[harmony + 1] = array[harmony];
                     harmony--;
                 } else {
                     // We found the right position
@@ -189,10 +194,11 @@ public class SortingAlgorithms
             }
             
             // Places the element in the correct position
-            benchMark[harmony + 1] = emma;
+            array[harmony + 1] = key;
         }
     }
     
+    // radix sort sorts numbers according to their digits, uses the counting sort auxiliary algorithm
     private void radixSort(int[] data) {
         // Converts negative numbers to positive
         int max = Integer.MIN_VALUE;
