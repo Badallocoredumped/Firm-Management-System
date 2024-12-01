@@ -99,7 +99,7 @@ public class SortingAlgorithms
         }
         
         // Prints the results
-        System.out.println("\nSıralama Sonuçları:");
+        System.out.println("\nRanking Results:");
         System.out.println("Radix Sort: " + timeOfRadix/1000000.0 + " ms");
         System.out.println("Shell Sort: " + timeOfShell/1000000.0 + " ms");
         System.out.println("Heap Sort: " + timeOfHeap/1000000.0 + " ms");
