@@ -16,15 +16,20 @@ public class RegularEmployee extends Employee
     {
         String RMString;
         char RMInput = '0';
-            
         while(RMInput != '3')
         {
-            System.out.println("Employee menu");
-            System.out.println("1. Profile Information");
-            System.out.println("2. Update Information");
-            System.out.println("3. Logout");
-            System.out.println();
-            System.out.print("Select an Operation: ");
+            System.out.println("=================================");
+            System.out.println("      *** Employee Menu ***      ");
+            System.out.println("=================================");
+            System.out.println("Good day, " + getName() + "!");
+            System.out.println("---------------------------------");
+
+            System.out.println(" 1. Profile Information");
+            System.out.println(" 2. Update Information");
+            System.out.println(" 3. Logout");
+            System.out.println("---------------------------------");
+            System.out.print("Select an Operation (1-3): ");
+
             RMString = input.nextLine();
 
             // Checks single character inputs

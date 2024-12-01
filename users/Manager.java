@@ -1,6 +1,7 @@
 package users;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.jar.Attributes.Name;
 
 import utilities.DataBaseHandler;
 import utilities.InputHandler;
@@ -39,18 +40,24 @@ public class Manager extends Employee
         while(RMInput != '9')
         {
             //add display profile
-            System.out.println("--- Manager Menu ---");
-            System.out.println("0. Display Profile");
-            System.out.println("1. Update Profile");
-            System.out.println("2. Display All Employees"); //done
-            System.out.println("3. Display Employees by Role");//done
-            System.out.println("4. Display Employee by Username");//done
-            System.out.println("5. Update Employee (Non-Profile Fields)");//done
-            System.out.println("6. Hire Employee");//done
-            System.out.println("7. Fire Employee");//done
-            System.out.println("8. Algorithms");//done
-            System.out.println("9. Logout"); //done
-            System.out.print("Select an option: ");
+            System.out.println("=================================");
+            System.out.println("      *** Manager Menu ***       ");
+            System.out.println("=================================");
+            System.out.println("Good day, " + getName() + "!");
+            System.out.println("---------------------------------");
+            System.out.println(" 0. Display Profile");
+            System.out.println(" 1. Update Profile");
+            System.out.println(" 2. Display All Employees");
+            System.out.println(" 3. Display Employees by Role");
+            System.out.println(" 4. Display Employee by Username");
+            System.out.println(" 5. Update Employee (Non-Profile Fields)");
+            System.out.println(" 6. Hire Employee");
+            System.out.println(" 7. Fire Employee");
+            System.out.println(" 8. Algorithms");
+            System.out.println(" 9. Logout");
+            System.out.println("---------------------------------");
+            System.out.print("Select an option (0-9): ");
+
 
             RMString = scanner.nextLine();
 

@@ -39,7 +39,7 @@ public class Main
             System.out.println("1. Login");
             System.out.println("2. Exit System");
             System.out.println();
-            System.out.print("Select an Operation: ");
+            System.out.print("Select an Operation (1-2): ");
             RMString = scanner.nextLine();
         
             // Validate single character input
@@ -78,16 +78,18 @@ public class Main
                 if (currUser instanceof Manager) 
                 {
                     Ccleaner();
-                    System.out.println("Logged in as a Manager");
                     currUser.Menu();
-                    System.out.println("Exited Manager Menu");
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
                 } 
                 else if (currUser instanceof RegularEmployee) 
                 {
                     Ccleaner();
-                    System.out.println("Logged in as a Regular Employee");
                     currUser.Menu();
-                    System.out.println("Exited Regular Employee Menu");
+                    System.out.println("Enter anything to return");
+                    scanner.nextLine();
+                    Ccleaner();
                 }
         
                 authenticator.logout(currUser);

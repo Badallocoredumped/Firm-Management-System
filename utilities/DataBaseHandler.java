@@ -799,7 +799,7 @@ public class DataBaseHandler
         if (connection == null)
         {
             System.err.println("Database connection failed");
-            return false; // Return false for safetyy
+            return false; // Return false for safety
         }
 
         try 
