@@ -18,17 +18,17 @@ public class RegularEmployee extends Employee
         char RMInput = '0';
         while(RMInput != '3')
         {
-            System.out.println("=================================");
-            System.out.println("      *** Employee Menu ***      ");
-            System.out.println("=================================");
+            System.out.println(color.MAGENTA + "=================================");
+            System.out.println(color.MAGENTA + "      *** Employee Menu ***      ");
+            System.out.println(color.MAGENTA + "=================================");
             System.out.println("Good day, " + getName() + "!");
-            System.out.println("---------------------------------");
+            System.out.println(color.BRIGHT_BLUE + "---------------------------------");
 
-            System.out.println(" 1. Profile Information");
-            System.out.println(" 2. Update Information");
-            System.out.println(" 3. Logout");
-            System.out.println("---------------------------------");
-            System.out.print("Select an Operation (1-3): ");
+            System.out.println(color.WHITE + " 1. Profile Information");
+            System.out.println(color.WHITE + " 2. Update Information");
+            System.out.println(color.WHITE + " 3. Logout");
+            System.out.println(color.WHITE + "---------------------------------");
+            System.out.print(color.WHITE + "Select an Operation (1-3): ");
 
             RMString = input.nextLine();
 
@@ -36,7 +36,7 @@ public class RegularEmployee extends Employee
             if(RMString.isEmpty() || RMString.length() > 1)
             {
                 Ccleaner();
-                System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 3.");
                 System.out.println();
                 continue;
             }
@@ -46,7 +46,7 @@ public class RegularEmployee extends Employee
             if (RMInput < '1' || RMInput > '3') 
             {
                 Ccleaner();
-                System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 3.");
                 System.out.println();
             }
         
@@ -70,14 +70,14 @@ public class RegularEmployee extends Employee
                 // Professor reply: We should go to the login page after log out and put a exit(terminate) on the login page
                 {
                     Ccleaner();
-                    System.out.print("Logginng out...");
+                    System.out.print(color.WHITE + "Logginng out...");
                     return;
                 }
 
                 default -> 
                 {
                     Ccleaner();
-                    System.out.println("Please enter a number between 1 and 3");
+                    System.out.println(color.WHITE + "Please enter a number between 1 and 3");
                 }
             }
         }
