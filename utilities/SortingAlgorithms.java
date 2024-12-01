@@ -101,7 +101,7 @@ public class SortingAlgorithms
             }
         }
         
-        // Prints the results on the screen
+
         Ccleaner();
         System.out.println("=================================");
         System.out.println("         Ranking Results         ");
