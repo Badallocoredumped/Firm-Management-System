@@ -99,12 +99,15 @@ public class SortingAlgorithms
             }
         }
         
-        // Prints the results on the screen
-        System.out.println("\nRanking Results:");
-        System.out.println("Radix Sort: " + timeOfRadix/1000000.0 + " ms");
-        System.out.println("Shell Sort: " + timeOfShell/1000000.0 + " ms");
-        System.out.println("Heap Sort: " + timeOfHeap/1000000.0 + " ms");
-        System.out.println("Insertion Sort: " + timeOfInsert/1000000.0 + " ms");
+        Ccleaner();
+        System.out.println("=================================");
+        System.out.println("         Ranking Results         ");
+        System.out.println("=================================");
+        System.out.printf("  %-20s: %.3f ms%n", "Radix Sort", timeOfRadix / 1000000.0);
+        System.out.printf("  %-20s: %.3f ms%n", "Shell Sort", timeOfShell / 1000000.0);
+        System.out.printf("  %-20s: %.3f ms%n", "Heap Sort", timeOfHeap / 1000000.0);
+        System.out.printf("  %-20s: %.3f ms%n", "Insertion Sort", timeOfInsert / 1000000.0);
+        System.out.println("=================================");
         
         if(harmony) {
             System.out.println("\nAll algorithms sorted correctly!");
@@ -248,6 +251,16 @@ public class SortingAlgorithms
         
         for(int fourth = 0; fourth < input.length; fourth++) {
             input[fourth] = output[fourth];
+        }
+    }
+    static  void Ccleaner()
+    {
+        try 
+        {
+            new ProcessBuilder("cmd","/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception e) 
+        {
+            System.err.println("Error Code #Clear");
         }
     }
 }
