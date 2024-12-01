@@ -1,4 +1,5 @@
 package utilities;
+import utilities.AsciiArt;
 
 import java.util.*;
 
@@ -7,11 +8,12 @@ public class SortingAlgorithms
     public void getInputAndRunAlgorithms(Scanner sizeOfArray) 
     {
         SortingAlgorithms mainArr = new SortingAlgorithms();
+        AsciiArt color = new AsciiArt();
         int sequence = 0;
         boolean validInput = false;
         
         while (!validInput) {
-            System.out.println("Enter the array size (between 1000-10000):");
+            System.out.println(color.WHITE + "Enter the array size (between 1000-10000):");
             
             // Numerical input control
             if (sizeOfArray.hasNextInt()) {
@@ -22,11 +24,11 @@ public class SortingAlgorithms
                     validInput = true;
                 } else {
                     Ccleaner();
-                    System.out.println("Please enter a number between 1000 and 10000!");
+                    System.out.println(color.WHITE + "Please enter a number between 1000 and 10000!");
                 }
             } else {
                 Ccleaner();
-                System.out.println("Error: Please enter a valid number!");
+                System.out.println(color.WHITE + "Error: Please enter a valid number!");
                 sizeOfArray.next(); // Clears invalid input
             }
         }
@@ -103,20 +105,20 @@ public class SortingAlgorithms
         
 
         Ccleaner();
-        System.out.println("=================================");
-        System.out.println("         Ranking Results         ");
-        System.out.println("=================================");
-        System.out.printf("  %-20s: %.3f ms%n", "Radix Sort", timeOfRadix / 1000000.0);
-        System.out.printf("  %-20s: %.3f ms%n", "Shell Sort", timeOfShell / 1000000.0);
-        System.out.printf("  %-20s: %.3f ms%n", "Heap Sort", timeOfHeap / 1000000.0);
-        System.out.printf("  %-20s: %.3f ms%n", "Insertion Sort", timeOfInsert / 1000000.0);
-        System.out.println("=================================");
+        System.out.println(color.MAGENTA + "=================================");
+        System.out.println(color.MAGENTA + "         Ranking Results         ");
+        System.out.println(color.MAGENTA + "=================================");
+        System.out.printf(color.WHITE + "  %-20s: %.3f ms%n", "Radix Sort", timeOfRadix / 1000000.0);
+        System.out.printf(color.WHITE + "  %-20s: %.3f ms%n", "Shell Sort", timeOfShell / 1000000.0);
+        System.out.printf(color.WHITE + "  %-20s: %.3f ms%n", "Heap Sort", timeOfHeap / 1000000.0);
+        System.out.printf(color.WHITE + "  %-20s: %.3f ms%n", "Insertion Sort", timeOfInsert / 1000000.0);
+        System.out.println(color.MAGENTA + "=================================");
 
         
         if(harmony) {
-            System.out.println("\nAll algorithms sorted correctly!");
+            System.out.println(color.WHITE + "\nAll algorithms sorted correctly!");
         } else {
-            System.out.println("\nERROR: Sorts do not match!");
+            System.out.println(color.WHITE + "\nERROR: Sorts do not match!");
         }
     }
     
@@ -264,7 +266,7 @@ public class SortingAlgorithms
             new ProcessBuilder("cmd","/c", "cls").inheritIO().start().waitFor();
         } catch (Exception e) 
         {
-            System.err.println("Error Code #Clear");
+            System.err.println(color.WHITE + "Error Code #Clear");
         }
     }
 }
