@@ -2,6 +2,7 @@ package users;
 import java.time.LocalDate;
 import java.util.Scanner;
 import utilities.DataBaseHandler;
+import utilities.AsciiArt;
 
 public abstract class Employee 
 {
@@ -60,25 +61,25 @@ public abstract class Employee
 
     public void ChangePassword()
     {
-        System.out.println("Updating password");
+        System.out.println(color.WHITE + "Updating password");
         boolean Changed = false;
         String cPassword = getPassword();
         String nPassword;
         while (!Changed) 
         {
-            System.out.println("Enter new password (minimum 8, maximum 16 characters): ");
+            System.out.println(color.WHITE + "Enter new password (minimum 8, maximum 16 characters): ");
             nPassword = input.nextLine().trim();
             if (nPassword.equals(cPassword))
             {
                 Ccleaner();
-                System.out.println("You can not use the same password!!");
+                System.out.println(color.WHITE + "You can not use the same password!!");
                 continue;
             }
 
             if (nPassword.length() < 8 || nPassword.length() > 16 || nPassword.isBlank() || nPassword.contains(" ")) 
             {
                 Ccleaner();
-                System.out.println("Password must have between 8 and 16 characters and should have any space!!");
+                System.out.println(color.WHITE + "Password must have between 8 and 16 characters and should have any space!!");
                 continue;
             }
 
@@ -90,26 +91,26 @@ public abstract class Employee
 
     public void ChangeEmail()
     {
-        System.out.println("Updating email");
+        System.out.println(color.WHITE + "Updating email");
         boolean Changed = false;
         String cEmail = getEmail();
         String nEmail;
         String EmailRegex = "^[A-Za-z0-9+_.çÇğĞıİöÖşŞüÜ-]+@[A-Za-z0-9.çÇğĞıİöÖşŞüÜ-]+\\.[A-Za-z]{2,}$";
         while (!Changed) 
         {
-            System.out.println("Enter new email address: ");
+            System.out.println(color.WHITE + "Enter new email address: ");
             nEmail = input.nextLine();
             if (nEmail.equals(cEmail))
             {
                 Ccleaner();
-                System.out.println("You can not use the same Email!!");
+                System.out.println(color.WHITE + "You can not use the same Email!!");
                 continue;
             }
 
             if (!nEmail.matches(EmailRegex)) 
             {
                 Ccleaner();
-                System.out.println("Invalide email format!! (Spacial characters are not allowed)");
+                System.out.println(color.WHITE + "Invalide email format!! (Spacial characters are not allowed)");
                 continue;
             }
 
@@ -121,25 +122,25 @@ public abstract class Employee
 
     public void ChangePhone()
     {
-        System.out.println("Updating phone number");
+        System.out.println(color.WHITE + "Updating phone number");
         boolean Changed = false;
         String cPhone = getPhone();
         String nPhone;
         while (!Changed) 
         {
-            System.out.println("Enter new phone number (10 digits): ");
+            System.out.println(color.WHITE + "Enter new phone number (10 digits): ");
             nPhone = input.nextLine();
             if (nPhone.equals(cPhone))
             {
                 Ccleaner();
-                System.out.println("You can not use the same phone number!!");
+                System.out.println(color.WHITE + "You can not use the same phone number!!");
                 continue;
             }
 
             if (nPhone.length() != 10 || nPhone.isBlank() ||  !nPhone.matches("\\d+")) 
             {
                 Ccleaner();
-                System.out.println("Phone number must have 10 digits");
+                System.out.println(color.WHITE + "Phone number must have 10 digits");
                 continue;
             }
 
@@ -154,7 +155,7 @@ public abstract class Employee
         ChangeEmail();
         ChangePhone();
         ChangePassword();
-        System.out.println("The profile has been updated succesfully");
+        System.out.println(color.WHITE + "The profile has been updated succesfully");
     }
 
     public void UpdateProfile()
@@ -164,21 +165,21 @@ public abstract class Employee
             
         while(UPInput != '5')
         {
-            System.out.println("Update profile");
-            System.out.println("1. Change email");
-            System.out.println("2. Change phone number");
-            System.out.println("3. Change password");
-            System.out.println("4. Update all profile information");
-            System.out.println("5. Return to main menu");
+            System.out.println(color.WHITE + "Update profile");
+            System.out.println(color.WHITE + "1. Change email");
+            System.out.println(color.WHITE + "2. Change phone number");
+            System.out.println(color.WHITE + "3. Change password");
+            System.out.println(color.WHITE + "4. Update all profile information");
+            System.out.println(color.WHITE + "5. Return to main menu");
             System.out.println();
-            System.out.print("Select an Operation: ");
+            System.out.print(color.WHITE + "Select an Operation: ");
             UPString = input.nextLine();
 
             // Checks single character inputs
             if(UPString.isEmpty() || UPString.length() > 1)
             {
                 Ccleaner();
-                System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 3.");
                 System.out.println();
                 continue;
             }
@@ -188,7 +189,7 @@ public abstract class Employee
             if (UPInput < '1' || UPInput > '5') 
             {
                     Ccleaner();
-                    System.out.println("You entered an invalid input. Please enter a number between 1 and 3.");
+                    System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 3.");
                     System.out.println();
             }
         
@@ -200,7 +201,7 @@ public abstract class Employee
                 {
                     Ccleaner();
                     ChangeEmail();
-                    System.out.println("Enter anything to return");
+                    System.out.println(color.WHITE + "Enter anything to return");
                     input.nextLine();
                     Ccleaner();
                 }
@@ -209,7 +210,7 @@ public abstract class Employee
                 {
                     Ccleaner();
                     ChangePhone();
-                    System.out.println("Enter anything to return");
+                    System.out.println(color.WHITE + "Enter anything to return");
                     input.nextLine();
                     Ccleaner();
                 }
@@ -218,7 +219,7 @@ public abstract class Employee
                 {
                     Ccleaner();
                     ChangePassword();
-                    System.out.println("Enter anything to return");
+                    System.out.println(color.WHITE + "Enter anything to return");
                     input.nextLine();
                     Ccleaner();
                 }
@@ -227,7 +228,7 @@ public abstract class Employee
                 {
                     Ccleaner();
                     UpdateAll();
-                    System.out.println("Enter anything to return");
+                    System.out.println(color.WHITE + "Enter anything to return");
                     input.nextLine();
                     Ccleaner();
                 }
