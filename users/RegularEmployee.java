@@ -1,9 +1,11 @@
 package users;
 import java.time.LocalDate;
 import java.util.Scanner;
+import utilities.AsciiArt;
 
 public class RegularEmployee extends Employee
 {
+    AsciiArt color = new AsciiArt();
     public static Scanner input = new Scanner(System.in);
     public RegularEmployee(int ID, String Username, String Role, String Name, String Surname, String Phone, LocalDate DOB, LocalDate DOS, String Email, String Password, Boolean DEFAULT_PASSWORD)
     {
