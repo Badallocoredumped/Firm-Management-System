@@ -245,6 +245,7 @@ public abstract class Employee
 
     public void PrintProfile()
     {
+            Ccleaner();
             System.out.println("Full profile information");
             System.out.println("Name: " + name);
             System.out.println("Surname: " + surname);

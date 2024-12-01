@@ -220,6 +220,7 @@ public class DataBaseHandler
             { 
                 //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
                 System.out.println("User named " + username + " does not exist in the database inside displayemployee.");
+                return;
             }
 
             System.out.println("==============================================================================" + 

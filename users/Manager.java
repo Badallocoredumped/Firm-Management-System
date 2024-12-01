@@ -66,7 +66,7 @@ public class Manager extends Employee
             if(RMString.isEmpty() || RMString.length() > 1)
             {
                 Ccleaner();
-                System.out.println("You entered an invalid input. Please enter a number between 1 and 9.");
+                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 9.");
                 System.out.println();
                 continue;
             }
@@ -82,7 +82,7 @@ public class Manager extends Employee
         
             switch (RMInput) 
             {
-                case '0' ->  //Update will do later
+                case '0' ->  
                 {
                     Ccleaner();
                     PrintProfile();
@@ -91,7 +91,7 @@ public class Manager extends Employee
                     Ccleaner();
                     
                 }
-                case '1' ->  //Update will do later
+                case '1' ->  
                 {
                     Ccleaner();
                     UpdateProfile();
@@ -162,7 +162,7 @@ public class Manager extends Employee
                 case '9' -> 
                 {
                     Ccleaner();
-                    System.out.println("Logging out...");
+                    System.out.println("Logging out..." + color.RESET);
                     return;
                 }
             }
@@ -213,12 +213,6 @@ public class Manager extends Employee
             System.out.println("You can not fire yourself!!!!!");
             return;
 
-        }
-
-        if(employee.role.equalsIgnoreCase("manager"))
-        {
-            System.out.println("You can not fire other managers!");
-            return;
         }
 
         dbHandler.FireEmployee(victimName);

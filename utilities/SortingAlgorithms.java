@@ -37,8 +37,10 @@ public class SortingAlgorithms
     }
     
     // Measures the running time of each algorithm in nanoseconds
-    public void runAlgorithmComparison(int sizeOfArray) { // sizeOfArray = array size
+    public void runAlgorithmComparison(int sizeOfArray) 
+    { // sizeOfArray = array size
         // Random number generator
+        AsciiArt color = new AsciiArt();
         Random randNumCretor = new Random();
         
         // Create a main array
@@ -266,7 +268,7 @@ public class SortingAlgorithms
             new ProcessBuilder("cmd","/c", "cls").inheritIO().start().waitFor();
         } catch (Exception e) 
         {
-            System.err.println(color.WHITE + "Error Code #Clear");
+            System.err.println("Error Code #Clear");
         }
     }
 }

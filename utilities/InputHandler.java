@@ -81,7 +81,7 @@ public class InputHandler
         {
             System.out.print(color.WHITE + "Enter Name: ");
             name = scanner.nextLine();
-            if (tempName != null && name.equals(tempName)) 
+            if (tempName != "" && name.equals(tempName)) 
             {
                 Ccleaner();
                 System.out.println(color.WHITE + "You can not use the same name!!");
@@ -107,7 +107,7 @@ public class InputHandler
             surname = scanner.nextLine().trim();
 
 
-            if (tempSurname != null && surname.equals(tempSurname)) 
+            if (tempSurname != "" && surname.equals(tempSurname)) 
             {
                 Ccleaner();
                 System.out.println(color.WHITE + "You can not use the same surname!!");
@@ -140,7 +140,7 @@ public class InputHandler
                 Ccleaner();
                 System.out.println("You can not change the role of a manager!!");
             } */
-            if(tempRole != null && role.equals(tempRole.toLowerCase()))
+            if(tempRole != "" && role.equals(tempRole.toLowerCase()))
             {
                 Ccleaner();
                 System.out.println(color.WHITE + "You can not use the same role!!");
@@ -169,7 +169,7 @@ public class InputHandler
             System.out.print(color.WHITE + "Enter Phone Number: ");
             phone = scanner.nextLine().trim();
             
-            if(tempPhone != null && dbHandler.CheckDuplicate("phone_no",phone))
+            if(tempPhone != "" && dbHandler.CheckDuplicate("phone_no",phone))
             {
                 Ccleaner();
                 System.out.println(color.WHITE + "Phone number " + phone + " already exists in the database!");
@@ -290,7 +290,7 @@ public class InputHandler
             System.out.print(color.WHITE + "Enter Email: ");
             email = scanner.nextLine().trim();
 
-            if(tempEmail != null && dbHandler.CheckDuplicate("email",email))
+            if(tempEmail != "" && dbHandler.CheckDuplicate("email",email))
             {
                 Ccleaner();
                 System.out.println(color.WHITE + "Email " + email + " already exists in the database!");
