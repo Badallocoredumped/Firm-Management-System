@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import utilities.AsciiArt;
 
 import users.Employee;
 import users.Manager;
@@ -28,6 +29,7 @@ public class DataBaseHandler
     private final String username = "root"; // Replace with your DB username
     private final String password = "Admin_123"; // Replace with your DB password
     private Connection connection;
+    AsciiArt color = new AsciiArt();
     
     public DataBaseHandler()
     {
@@ -39,7 +41,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.err.println("Database connection failed: " + e.getMessage());
+            System.err.println(color.WHITE + "Database connection failed: " + e.getMessage());
         }
     }
 
@@ -53,7 +55,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
             return;
         }
 
@@ -119,13 +121,13 @@ public class DataBaseHandler
                 }
                 */
                 //Maybe make this a seperate function
-                System.out.println("\nTotal number of employees: \n" + totalEmployees);
+                System.out.println(color.WHITE + "\nTotal number of employees: \n" + totalEmployees);
                 
                 
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.out.println(color.WHITE + "Error occured!");
         }
 
     }
@@ -158,7 +160,7 @@ public class DataBaseHandler
     {
         if (connection == null) 
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
             return;
         }
     
@@ -197,7 +199,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.err.println("Error occurred: " + e.getMessage());
+            System.err.println(color.WHITE + "Error occurred: " + e.getMessage());
         }
     }
     
@@ -206,7 +208,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
         }
 
         try 
@@ -249,7 +251,7 @@ public class DataBaseHandler
 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.out.println(color.WHITE + "Error occured!");
         }
     }
 
@@ -257,7 +259,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
         }
 
         try 
@@ -287,7 +289,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.out.println(color.WHITE + "Error occured!");
         }
     }
 
@@ -318,13 +320,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println("Update failed. Username not found.");
+                        System.out.println(color.WHITE + "Update failed. Username not found.");
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println("Error occurred while updating username: ");
+                    System.out.println(color.WHITE + "Error occurred while updating username: ");
                     e.printStackTrace();
                 }
                 tempEmployee.setUsername(newUsername);
@@ -357,13 +359,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println("Update failed. Username not found.");
+                        System.out.println(color.WHITE + "Update failed. Username not found.");
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println("Error occurred while updating username: ");
+                    System.out.println(color.WHITE + "Error occurred while updating username: ");
                     e.printStackTrace();
                 }
                 tempEmployee.setRole(newRole);
@@ -387,13 +389,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println("Update failed. Username not found.");
+                        System.out.println(color.WHITE + "Update failed. Username not found.");
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println("Error occurred while updating username: ");
+                    System.out.println(color.WHITE + "Error occurred while updating username: ");
                     e.printStackTrace();
                 }
                 tempEmployee.setName(newName);
@@ -417,13 +419,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println("Update failed. Username not found.");
+                        System.out.println(color.WHITE + "Update failed. Username not found.");
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println("Error occurred while updating username: ");
+                    System.out.println(color.WHITE + "Error occurred while updating username: ");
                     e.printStackTrace();
                 }
                 tempEmployee.setSurname(newSurname);
@@ -447,13 +449,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println("Update failed. Username not found.");
+                        System.out.println(color.WHITE + "Update failed. Username not found.");
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println("Error occurred while updating username: ");
+                    System.out.println(color.WHITE + "Error occurred while updating username: ");
                     e.printStackTrace();
                 }
                 tempEmployee.setBirthday(newDOB);
@@ -477,13 +479,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println("Update failed. Username not found.");
+                        System.out.println(color.WHITE + "Update failed. Username not found.");
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println("Error occurred while updating username: ");
+                    System.out.println(color.WHITE + "Error occurred while updating username: ");
                     e.printStackTrace();
                 }
                 tempEmployee.setEmploymentDay(newDOS);
@@ -507,13 +509,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println("Update failed. Username not found.");
+                        System.out.println(color.WHITE + "Update failed. Username not found.");
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println("Error occurred while updating username: ");
+                    System.out.println(color.WHITE + "Error occurred while updating username: ");
                     e.printStackTrace();
                 }
                 tempEmployee.setEmail(newEmail);
@@ -534,7 +536,7 @@ public class DataBaseHandler
         //Add employee to the database
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
         }
 
         try 
@@ -554,14 +556,14 @@ public class DataBaseHandler
             }
             else
             {
-                System.out.println("Error adding employee to the database");
+                System.out.println(color.WHITE + "Error adding employee to the database");
             }
             
             
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occurred during employee insertion: " + e.getMessage());
+            System.out.println(color.WHITE + "Error occurred during employee insertion: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -588,7 +590,7 @@ public class DataBaseHandler
             else
             {
                 Ccleaner();
-                System.out.println("Error removing employee from the database");
+                System.out.println(color.WHITE + "Error removing employee from the database");
             }
 
 
@@ -596,7 +598,7 @@ public class DataBaseHandler
         catch (SQLException e) 
         {
             Ccleaner();
-            System.out.println("Error removing employee from the database");
+            System.out.println(color.WHITE + "Error removing employee from the database");
             e.printStackTrace(); 
         }
     }
@@ -605,7 +607,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
         }
 
         try 
@@ -675,7 +677,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.out.println(color.WHITE + "Error occured!");
         }
         return null;
 
@@ -684,7 +686,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
         }
 
         try 
@@ -754,7 +756,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.out.println(color.WHITE + "Error occured!");
         }
         return null;
 
@@ -767,7 +769,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
         }
 
         try 
@@ -789,7 +791,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.out.println(color.WHITE + "Error occured!");
         }
         return false;
     }
@@ -798,7 +800,7 @@ public class DataBaseHandler
     {
         if (connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
             return false; // Return false for safety
         }
 
@@ -818,7 +820,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.err.println("Error occurred while checking duplicate for " + field);
+            System.err.println(color.WHITE + "Error occurred while checking duplicate for " + field);
         }
         return false; // No duplicate found
     }
@@ -827,7 +829,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println("Database connection failed");
+            System.err.println(color.WHITE + "Database connection failed");
         }
 
         try 
@@ -863,7 +865,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error occured!");
+            System.out.println(color.WHITE + "Error occured!");
         }
     }
 
@@ -879,17 +881,17 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println("Phone number updated succesfully");
+                System.out.println(color.WHITE + "Phone number updated succesfully");
             }
             else
             {
                 Ccleaner();
-                System.out.println("Error updating phone");
+                System.out.println(color.WHITE + "Error updating phone");
             }
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error updating phone");
+            System.out.println(color.WHITE + "Error updating phone");
             e.printStackTrace(); 
         }
     }
@@ -905,17 +907,17 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println("Password updated succesfully");
+                System.out.println(color.WHITE + "Password updated succesfully");
             }
             else
             {
                 Ccleaner();
-                System.out.println("Error updating password");
+                System.out.println(color.WHITE + "Error updating password");
             }
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error updating password");
+            System.out.println(color.WHITE + "Error updating password");
             e.printStackTrace(); 
         }
     }
@@ -931,17 +933,17 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println("Email updated succesfully");
+                System.out.println(color.WHITE + "Email updated succesfully");
             }
             else
             {
                 Ccleaner();
-                System.out.println("Error updating email");
+                System.out.println(color.WHITE + "Error updating email");
             }
         } 
         catch (SQLException e) 
         {
-            System.out.println("Error updating email");
+            System.out.println(color.WHITE + "Error updating email");
             e.printStackTrace(); 
         }
     }
