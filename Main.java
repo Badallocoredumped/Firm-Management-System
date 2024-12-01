@@ -5,13 +5,15 @@ import users.Employee;
 import users.Manager;
 import users.RegularEmployee;
 import utilities.Authenticator;
+import utilities.AsciiArt;
 
 
 public class Main 
 {
     public static void main(String[] args)
     {
-        
+        AsciiArt asciiArt = new AsciiArt();
+
         //Add register??
         //check if the name is the same or someshit in manager update thing
         //Make the phone number exactly 10 digits max maybe change the database 
@@ -26,6 +28,7 @@ public class Main
         Authenticator authenticator = new Authenticator();
         Employee currUser = null;
         boolean systemPower = true;
+        
 
         String RMString;
         char RMInput = '0';
@@ -35,18 +38,18 @@ public class Main
         while (systemPower) 
         {
             // Main menu: Login or Exit System
-            System.out.println("Welcome to the Firm Management System!");
-            System.out.println("1. Login");
-            System.out.println("2. Exit System");
+            asciiArt.printWelcome();
+            System.out.println(asciiArt.GREEN + "1. Login" + asciiArt.RESET);
+            System.out.println(asciiArt.RED + "2. Exit System" + asciiArt.RESET);
             System.out.println();
-            System.out.print("Select an Operation (1-2): ");
+            System.out.print(asciiArt.WHITE + "Select an Operation (1-2): " + asciiArt.RESET);
             RMString = scanner.nextLine();
         
             // Validate single character input
             if (RMString.isEmpty() || RMString.length() > 1) 
             {
                 Ccleaner();
-                System.out.println("Invalid input. Please enter 1 to Login or 2 to Exit.");
+                System.out.println(asciiArt.WHITE + "Invalid input. Please enter 1 to Login or 2 to Exit."  + asciiArt.RESET);
                 System.out.println();
                 continue;
             }
@@ -59,17 +62,17 @@ public class Main
                 Ccleaner();
                 while (currUser == null) 
                 {
-                    System.out.println("Please login with your username and password!");
-                    System.out.print("Username: ");
+                    System.out.println(asciiArt.WHITE + "Please login with your username and password!"  + asciiArt.RESET);
+                    System.out.print(asciiArt.BLUE + "Username: " + asciiArt.RESET);
                     String userName = scanner.nextLine();
         
-                    System.out.print("Password: ");
+                    System.out.print(asciiArt.BLUE + "Password: " + asciiArt.RESET);
                     String password = scanner.nextLine();
                     currUser = authenticator.login(userName, password);
                     if (currUser == null) 
                     {
                         Ccleaner();
-                        System.out.println("Login failed. Please try again.\n");
+                        System.out.println(asciiArt.WHITE +"Login failed. Please try again." + asciiArt.RESET);
                     }
                 }
         
@@ -79,7 +82,7 @@ public class Main
                 {
                     Ccleaner();
                     currUser.Menu();
-                    System.out.println("Enter anything to return");
+                    System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
                     scanner.nextLine();
                     Ccleaner();
                 } 
@@ -87,7 +90,7 @@ public class Main
                 {
                     Ccleaner();
                     currUser.Menu();
-                    System.out.println("Enter anything to return");
+                    System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
                     scanner.nextLine();
                     Ccleaner();
                 }
@@ -100,7 +103,7 @@ public class Main
             {
                 // Exit system
                 Ccleaner();
-                System.out.println("Exiting the Firm Management System. Goodbye!");
+                System.out.println(asciiArt.WHITE + "Exiting the Firm Management System. Goodbye!" + asciiArt.RESET);
                 systemPower = false;
                 scanner.close();
         
@@ -109,7 +112,7 @@ public class Main
             {
                 // Invalid input
                 Ccleaner();
-                System.out.println("Invalid input. Please enter 1 to Login or 2 to Exit.\n");
+                System.out.println(asciiArt.WHITE + "Invalid input. Please enter 1 to Login or 2 to Exit." + asciiArt.RESET);
             }
         }
 

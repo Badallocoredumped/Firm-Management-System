@@ -1,8 +1,8 @@
 package users;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.jar.Attributes.Name;
 
+import utilities.AsciiArt;
 import utilities.DataBaseHandler;
 import utilities.InputHandler;
 import utilities.SortingAlgorithms;
@@ -13,6 +13,7 @@ public class Manager extends Employee
     DataBaseHandler dbHandler = new DataBaseHandler();
     InputHandler inHandle = new InputHandler();
     SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
+    AsciiArt color = new AsciiArt();
 
     /* protected int ID;
     protected String username;
@@ -40,12 +41,12 @@ public class Manager extends Employee
         while(RMInput != '9')
         {
             //add display profile
-            System.out.println("=================================");
-            System.out.println("      *** Manager Menu ***       ");
-            System.out.println("=================================");
-            System.out.println("Good day, " + getName() + "!");
-            System.out.println("---------------------------------");
-            System.out.println(" 0. Display Profile");
+            System.out.println(color.MAGENTA + "=================================" + color.RESET);
+            System.out.println(color.MAGENTA + "      *** Manager Menu ***       " + color.RESET);
+            System.out.println(color.MAGENTA + "=================================" + color.RESET);
+            System.out.println(color.BRIGHT_BLUE + "Good day, " + getName() + "!" + color.RESET);
+            System.out.println(color.MAGENTA + "---------------------------------" + color.RESET);
+            System.out.println(color.WHITE + " 0. Display Profile");
             System.out.println(" 1. Update Profile");
             System.out.println(" 2. Display All Employees");
             System.out.println(" 3. Display Employees by Role");
@@ -54,9 +55,9 @@ public class Manager extends Employee
             System.out.println(" 6. Hire Employee");
             System.out.println(" 7. Fire Employee");
             System.out.println(" 8. Algorithms");
-            System.out.println(" 9. Logout");
-            System.out.println("---------------------------------");
-            System.out.print("Select an option (0-9): ");
+            System.out.println(" 9. Logout" + color.RESET);
+            System.out.println(color.MAGENTA +"---------------------------------"+ color.RESET);
+            System.out.print(color.WHITE + "Select an option (0-9): " + color.RESET);
 
 
             RMString = scanner.nextLine();

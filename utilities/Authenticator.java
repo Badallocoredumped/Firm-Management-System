@@ -5,6 +5,7 @@ import users.Employee;
 public class Authenticator 
 {
     DataBaseHandler dbHandler = new DataBaseHandler();
+    AsciiArt color = new AsciiArt();
 
     public Employee login(String username, String password)
     {
@@ -36,14 +37,14 @@ public class Authenticator
             }
             else
             {
-                System.out.println("No employee found with the username: " + username);
+                System.out.println(color.WHITE + "No employee found with the username: " + username + color.RESET);
                 return null; 
 
             }
         } 
         catch (Exception e) 
         {
-            System.err.println("Something bad happened");
+            System.err.println(color.WHITE + "Something bad happened" + color.RESET);
 
         }
         return null;
@@ -53,12 +54,12 @@ public class Authenticator
     {
         if(currUser != null)
         {
-            System.out.println("Logout successful for: " + currUser.getName());
+            System.out.println(color.WHITE + "Logout successful for: " + currUser.getName() + color.RESET);
             currUser = null;
         }
         else
         {
-            System.err.println("Error logout");
+            System.err.println(color.WHITE + "Error logout" + color.RESET);
         }
     }
 
