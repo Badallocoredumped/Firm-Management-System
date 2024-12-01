@@ -5,22 +5,14 @@ import users.Employee;
 import users.Manager;
 import users.RegularEmployee;
 import utilities.Authenticator;
-import utilities.DataBaseHandler;
+import utilities.AsciiArt;
 
 
 public class Main 
 {
     public static void main(String[] args)
     {
-        /*dbHandler.DispAllEmployee();
-        System.out.println("Displayed All Employees");
-        dbHandler.DispEmployeeWithRole("manager");
-        System.out.println("Displayed All Employees with the role");
-        dbHandler.DispEmployeeWithUsername("emir5757");
-        dbHandler.DispEmployeeWithNameSurname("Emir","Özen");
-        dbHandler.HireEmployee("dummyvolkan", "Volkan", "Erdoğan", "intern", "0523432", "2022.11.01", "2022.12.2", "bozoman");
-        dbHandler.FireEmployee(22,"dummyvolkan"); */
-
+        AsciiArt asciiArt = new AsciiArt();
 
         //Add register??
         //check if the name is the same or someshit in manager update thing
@@ -32,11 +24,11 @@ public class Main
         //Alara has to do the ascii
         //ask teh registration
 
-        DataBaseHandler dbHandler = new DataBaseHandler();
         Scanner scanner = new Scanner(System.in);
         Authenticator authenticator = new Authenticator();
         Employee currUser = null;
         boolean systemPower = true;
+        
 
         String RMString;
         char RMInput = '0';
@@ -46,18 +38,18 @@ public class Main
         while (systemPower) 
         {
             // Main menu: Login or Exit System
-            System.out.println("Welcome to the Firm Management System!");
-            System.out.println("1. Login");
-            System.out.println("2. Exit System");
+            asciiArt.printWelcome();
+            System.out.println(asciiArt.GREEN + "1. Login" + asciiArt.RESET);
+            System.out.println(asciiArt.RED + "2. Exit System" + asciiArt.RESET);
             System.out.println();
-            System.out.print("Select an Operation: ");
+            System.out.print(asciiArt.WHITE + "Select an Operation (1-2): " + asciiArt.RESET);
             RMString = scanner.nextLine();
         
             // Validate single character input
             if (RMString.isEmpty() || RMString.length() > 1) 
             {
                 Ccleaner();
-                System.out.println("Invalid input. Please enter 1 to Login or 2 to Exit.");
+                System.out.println(asciiArt.WHITE + "Invalid input. Please enter 1 to Login or 2 to Exit."  + asciiArt.RESET);
                 System.out.println();
                 continue;
             }
@@ -70,19 +62,17 @@ public class Main
                 Ccleaner();
                 while (currUser == null) 
                 {
-                    System.out.println("Please login with your username and password!");
-                    System.out.print("Username: ");
+                    System.out.println(asciiArt.WHITE + "Please login with your username and password!"  + asciiArt.RESET);
+                    System.out.print(asciiArt.BLUE + "Username: " + asciiArt.RESET);
                     String userName = scanner.nextLine();
         
-                    System.out.print("Password: ");
+                    System.out.print(asciiArt.BLUE + "Password: " + asciiArt.RESET);
                     String password = scanner.nextLine();
-        
                     currUser = authenticator.login(userName, password);
-        
                     if (currUser == null) 
                     {
                         Ccleaner();
-                        System.out.println("Login failed. Please try again.\n");
+                        System.out.println(asciiArt.WHITE +"Login failed. Please try again." + asciiArt.RESET);
                     }
                 }
         
@@ -91,19 +81,21 @@ public class Main
                 if (currUser instanceof Manager) 
                 {
                     Ccleaner();
-                    System.out.println("Logged in as a Manager");
                     currUser.Menu();
-                    System.out.println("Exited Manager Menu");
+                    System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
+                    scanner.nextLine();
+                    Ccleaner();
                 } 
                 else if (currUser instanceof RegularEmployee) 
                 {
                     Ccleaner();
-                    System.out.println("Logged in as a Regular Employee");
                     currUser.Menu();
-                    System.out.println("Exited Regular Employee Menu");
+                    System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
+                    scanner.nextLine();
+                    Ccleaner();
                 }
         
-                authenticator.logout();
+                authenticator.logout(currUser);
                 currUser = null;
         
             } 
@@ -111,7 +103,7 @@ public class Main
             {
                 // Exit system
                 Ccleaner();
-                System.out.println("Exiting the Firm Management System. Goodbye!");
+                System.out.println(asciiArt.WHITE + "Exiting the Firm Management System. Goodbye!" + asciiArt.RESET);
                 systemPower = false;
                 scanner.close();
         
@@ -120,7 +112,7 @@ public class Main
             {
                 // Invalid input
                 Ccleaner();
-                System.out.println("Invalid input. Please enter 1 to Login or 2 to Exit.\n");
+                System.out.println(asciiArt.WHITE + "Invalid input. Please enter 1 to Login or 2 to Exit." + asciiArt.RESET);
             }
         }
 

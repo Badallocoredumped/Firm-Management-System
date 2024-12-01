@@ -307,6 +307,11 @@ public class DataBaseHandler
                     Statement statement = connection.createStatement();
                     int rowsAffected = statement.executeUpdate(updateUsernameQuery);
 
+                    if(newUsername.equals(tempEmployee.getUsername()))
+                    {
+
+                    }
+
                     if (rowsAffected > 0)
                     {
                         System.out.println("Username " + tempEmployee.getUsername() + " updated to " + newUsername + " successfully!");
@@ -331,7 +336,14 @@ public class DataBaseHandler
             case '2':
             {
                 Ccleaner();
-                String newRole = inputHandler.RoleInput();
+                //Maybe enable this if you don't want other managers depromoted
+
+                /* if(tempEmployee.getRole().toLowerCase().equals("manager"))
+                {
+                    System.out.println("You can not change the role of a manager!!");
+                    break;
+                } */
+                String newRole = inputHandler.RoleInput(tempEmployee.getRole());
                 Ccleaner();
                 String updateRoleQuery = "UPDATE employees SET role = '" + newRole + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -361,7 +373,7 @@ public class DataBaseHandler
             case '3':
             {
                 Ccleaner();
-                String newName = inputHandler.NameInput();
+                String newName = inputHandler.NameInput(tempEmployee.getName());
                 Ccleaner();
                 String updateNameQuery = "UPDATE employees SET name = '" + newName + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -391,7 +403,7 @@ public class DataBaseHandler
             case '4':
             {
                 Ccleaner();
-                String newSurname = inputHandler.SurnameInput();
+                String newSurname = inputHandler.SurnameInput(tempEmployee.getSurname());
                 Ccleaner();
                 String updateSurnameQuery = "UPDATE employees SET surname = '" + newSurname + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -421,7 +433,7 @@ public class DataBaseHandler
             case '5':
             {
                 Ccleaner();
-                LocalDate newDOB = inputHandler.DobInput();
+                LocalDate newDOB = inputHandler.DobInput(tempEmployee.getBirthday());
                 Ccleaner();
                 String updateDOBQuery = "UPDATE employees SET date_of_birth = '" + newDOB + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -451,7 +463,7 @@ public class DataBaseHandler
             case '6':
             {
                 Ccleaner();
-                LocalDate newDOS = inputHandler.DosInput();
+                LocalDate newDOS = inputHandler.DosInput(tempEmployee.getEmploymentday());
                 Ccleaner();
                 String updateDOSQuery = "UPDATE employees SET date_of_start = '" + newDOS + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -481,7 +493,7 @@ public class DataBaseHandler
             case '7':
             {
                 Ccleaner();
-                String newEmail = inputHandler.EmailInput();
+                String newEmail = inputHandler.EmailInput(tempEmployee.getEmail());
                 Ccleaner();
                 String updateEmailQuery = "UPDATE employees SET email = '" + newEmail + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -632,7 +644,7 @@ public class DataBaseHandler
                     break;
                 }
 
-                if(dbDefault)
+                /* if(dbDefault)
                 {
                     if(dbRole.equals("Manager"))
                     {
@@ -646,7 +658,86 @@ public class DataBaseHandler
                         RegularEmployee regularEmployee = new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
                         regularEmployee.ChangePassword();
                     }
+                } */
+
+                if(dbRole.equals("Manager"))
+                {
+                    //System.out.println("Login successfull!");
+                    return new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword,dbDefault);
                 }
+                else
+                {
+                    return new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword,dbDefault);
+                }
+                
+            }
+            
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Error occured!");
+        }
+        return null;
+
+    }
+    public Employee GetEmployeeWithUsernameAndPassword(String username,String password)
+    {
+        if(connection == null)
+        {
+            System.err.println("Database connection failed");
+        }
+
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query2do = "SELECT * FROM employees WHERE username = '" + username + "' AND password = '" + password + "'";
+            ResultSet infoSet = statement.executeQuery(query2do);
+
+            if (!infoSet.isBeforeFirst()) // This checks if there are any rows in the ResultSet 
+            { 
+                //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
+                /* Ccleaner();
+                System.out.println("User named " + username + " does not exist in the database."); */
+                return null;
+            }
+            
+            while(infoSet.next())
+            {
+                int dbID = infoSet.getInt("employee_id");
+                String dbUsername = infoSet.getString("username");
+                String dbRole = infoSet.getString("role");
+                String dbName = infoSet.getString("name");
+                String dbSurname = infoSet.getString("surname");
+                String dbPhone = infoSet.getString("phone_no");
+                Date dbDOB = infoSet.getDate("date_of_birth");
+                Date dbDOS = infoSet.getDate("date_of_start");
+                String dbEmail = infoSet.getString("email");
+                String dbPassword = infoSet.getString("password");
+                Boolean dbDefault = infoSet.getBoolean("DEFAULT_PASSWORD");
+
+                LocalDate localDOB = dbDOB.toLocalDate();
+                LocalDate localDOS = dbDOS.toLocalDate();
+
+                if(dbUsername == "")
+                {
+                    break;
+                }
+
+                /* if(dbDefault)
+                {
+                    if(dbRole.equals("Manager"))
+                    {
+                        //System.out.println("Login successfull!");
+                        Manager manager = new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
+                        manager.ChangePassword();
+
+                    }
+                    else
+                    {
+                        RegularEmployee regularEmployee = new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
+                        regularEmployee.ChangePassword();
+                    }
+                } */
 
                 if(dbRole.equals("Manager"))
                 {
@@ -701,7 +792,35 @@ public class DataBaseHandler
             System.out.println("Error occured!");
         }
         return false;
+    }
 
+    public <T> boolean CheckDuplicate(String field, T value)
+    {
+        if (connection == null)
+        {
+            System.err.println("Database connection failed");
+            return false; // Return false for safety
+        }
+
+        try 
+        {
+            Statement statement = connection.createStatement();
+            String query = "SELECT COUNT(*) AS count FROM employees WHERE " + field + " = '" + value + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next())
+            {
+                int count = resultSet.getInt("count");
+                if (count > 0)
+                {
+                    return true; // Duplicate found
+                }
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.println("Error occurred while checking duplicate for " + field);
+        }
+        return false; // No duplicate found
     }
 
     public void PrintProfile(String username)
@@ -759,10 +878,12 @@ public class DataBaseHandler
             int rowsAffected = statement.executeUpdate();
             if(rowsAffected > 0)
             {
+                Ccleaner();
                 System.out.println("Phone number updated succesfully");
             }
             else
             {
+                Ccleaner();
                 System.out.println("Error updating phone");
             }
         } 
@@ -788,6 +909,7 @@ public class DataBaseHandler
             }
             else
             {
+                Ccleaner();
                 System.out.println("Error updating password");
             }
         } 
@@ -808,10 +930,12 @@ public class DataBaseHandler
             int rowsAffected = statement.executeUpdate();
             if(rowsAffected > 0)
             {
+                Ccleaner();
                 System.out.println("Email updated succesfully");
             }
             else
             {
+                Ccleaner();
                 System.out.println("Error updating email");
             }
         } 
@@ -835,3 +959,4 @@ public class DataBaseHandler
         }
     }
 }
+

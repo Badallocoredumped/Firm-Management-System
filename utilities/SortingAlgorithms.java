@@ -21,9 +21,11 @@ public class SortingAlgorithms
                 if (sequence >= 1000 && sequence <= 10000) {
                     validInput = true;
                 } else {
+                    Ccleaner();
                     System.out.println("Please enter a number between 1000 and 10000!");
                 }
             } else {
+                Ccleaner();
                 System.out.println("Error: Please enter a valid number!");
                 sizeOfArray.next(); // Clears invalid input
             }
@@ -99,6 +101,7 @@ public class SortingAlgorithms
             }
         }
         
+
         Ccleaner();
         System.out.println("=================================");
         System.out.println("         Ranking Results         ");
@@ -108,6 +111,7 @@ public class SortingAlgorithms
         System.out.printf("  %-20s: %.3f ms%n", "Heap Sort", timeOfHeap / 1000000.0);
         System.out.printf("  %-20s: %.3f ms%n", "Insertion Sort", timeOfInsert / 1000000.0);
         System.out.println("=================================");
+
         
         if(harmony) {
             System.out.println("\nAll algorithms sorted correctly!");
@@ -253,7 +257,7 @@ public class SortingAlgorithms
             input[fourth] = output[fourth];
         }
     }
-    static  void Ccleaner()
+    static public void Ccleaner()
     {
         try 
         {

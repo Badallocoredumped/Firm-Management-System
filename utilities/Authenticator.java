@@ -1,129 +1,77 @@
 package utilities;
 
-import java.sql.Connection;
-
 import users.Employee;
 
 public class Authenticator 
 {
-    private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; 
-    private final String username = "root"; 
-    private final String password = "Admin_123"; 
-    private Connection connection;
     DataBaseHandler dbHandler = new DataBaseHandler();
-    private Employee currUser;
+    AsciiArt color = new AsciiArt();
 
     public Employee login(String username, String password)
     {
-
         try 
         {
-            Employee newEmployee = dbHandler.GetEmployeeWithUsername(username);
-            System.out.println(newEmployee.getPassword());
-            if(newEmployee != null && newEmployee.getPassword().equals(password))
-            {
-                this.currUser = newEmployee;
-                System.out.println("Successfully logged in");
-                return newEmployee;
+            Employee newEmployee = dbHandler.GetEmployeeWithUsernameAndPassword(username,password);
 
+            if(newEmployee != null)
+            {
+                Ccleaner();
+                /* if(newEmployee.getPassword().equals(password))
+                {
+                    Ccleaner();
+                    return newEmployee;
+                }
+                else
+                {
+                    System.out.println("Invalid password. Please try again.");
+                    return null; 
+
+                } */
+
+                if (newEmployee.getDEFAULT_PASSWORD()) 
+                {   
+                    newEmployee.ChangePassword();
+                }
+
+                return newEmployee;
             }
             else
             {
-                System.err.println("Error signig in from authenticator");
+                System.out.println(color.WHITE + "No employee found with the username: " + username + color.RESET);
+                return null; 
+
             }
-            
         } 
         catch (Exception e) 
         {
-            // TODO: handle exception
+            System.err.println(color.WHITE + "Something bad happened" + color.RESET);
+
         }
         return null;
     }
-    public void logout()
+
+    public void logout(Employee currUser)
     {
-        if(this.currUser != null)
+        if(currUser != null)
         {
-            System.out.println("");
-            this.currUser = null;
+            System.out.println(color.WHITE + "Logout successful for: " + currUser.getName() + color.RESET);
+            currUser = null;
         }
         else
         {
-            System.err.println("Error logout");
-            
+            System.err.println(color.WHITE + "Error logout" + color.RESET);
         }
     }
 
-    
-}
-
-
-/* import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Scanner;
-
-public class Authenticator {
-    private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; 
-    private final String username = "root"; 
-    private final String password = "Admin_123"; 
-    private Connection connection;
-        public static Scanner input = new Scanner(System.in);
-
-    private DataBaseHandler dbHandler = new DataBaseHandler();
-    private Employee currUser;
-
-    public Employee login(String username, String password) {
-        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-            System.err.println("Invalid username or password. Please try again.");
-            return null;
-        }
-
-        try {
-            Employee newEmployee = dbHandler.GetEmployeeWithUsername(username);
-
-            if (newEmployee != null) {
-                if (newEmployee.getPassword().equals(password)) { // Assuming Employee class has `getPassword`
-                    this.currUser = newEmployee;
-                    System.out.println("Login successful. Welcome, " + newEmployee.getName() + "!");
-                    return newEmployee;
-                } else {
-                    System.err.println("Incorrect password. Please try again.");
-                }
-            } else {
-                System.err.println("No employee found with the given username.");
-            }
-        } catch (Exception e) {
-            System.err.println("An error occurred during login: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public void LoginMenu()
+    static  void Ccleaner()
     {
-        String LUsername, LPassword;
-
-        //loop till user enters valid credntials
-        System.out.println("Welcome to the Firm Managemnt System!");
-        System.out.println("Enter login credentials: ");
-
-        System.out.print("Username: ");
-        LUsername = input.nextLine();
-        System.out.print("Password: ");
-        LPassword = input.nextLine();
-        login(LUsername, LPassword);
-        
-    }
-
-    public void logout() {
-        if (this.currUser != null) {
-            System.out.println("User " + currUser.getName() + " has been logged out.");
-            this.currUser = null;
-        } else {
-            System.err.println("No user is currently logged in.");
+        try 
+        {
+            new ProcessBuilder("cmd","/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception e) 
+        {
+            System.err.println("Error Code #Clear");
         }
     }
 }
-*/
 

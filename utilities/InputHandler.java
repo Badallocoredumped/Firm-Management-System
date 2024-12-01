@@ -19,7 +19,7 @@ public class InputHandler
         {
             System.out.print("Enter a Username (Minimum 4 characters): ");
             username = scanner.nextLine().trim();
-            if(dbHandler.CheckUsernameDup(username))
+            if(dbHandler.CheckDuplicate("username",username))
             {
                 Ccleaner();
                 System.out.println("Username " + username + " is already taken!");
@@ -72,14 +72,20 @@ public class InputHandler
     
     //NOTE: The matches() method in Java checks if a string matches a given regular expression (regex)
 
-    public String NameInput()
+    public String NameInput(String tempName)
     {
         String name;
         while (true) 
         {
             System.out.print("Enter Name: ");
             name = scanner.nextLine();
-            if (name.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+(\\s[A-Za-zÇçŞşİıĞğÖöÜü]+)*$")) 
+            if (tempName != null && name.equals(tempName)) 
+            {
+                Ccleaner();
+                System.out.println("You can not use the same name!!");
+                continue;
+            }
+            else if(name.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+(\\s[A-Za-zÇçŞşİıĞğÖöÜü]+)*$"))
             {
                 return name;
             } 
@@ -90,14 +96,22 @@ public class InputHandler
             }
         }
     }
-    public String SurnameInput()
+    public String SurnameInput(String tempSurname)
     {
         String surname = "";
         while (true) 
         {
             System.out.print("Enter Surname: ");
             surname = scanner.nextLine().trim();
-            if (surname.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+$")) 
+
+
+            if (tempSurname != null && surname.equals(tempSurname)) 
+            {
+                Ccleaner();
+                System.out.println("You can not use the same surname!!");
+                continue;
+            }
+            else if(surname.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+$"))
             {
                 return surname;
             } 
@@ -109,7 +123,7 @@ public class InputHandler
         }
     }
     
-    public String RoleInput()
+    public String RoleInput(String tempRole)
     {
         Set<String> validRoles = Set.of("manager", "engineer", "technician", "intern"); //Simple hashset
         String role;
@@ -117,10 +131,25 @@ public class InputHandler
         {
             System.out.print("Enter Role (manager, engineer, technician, intern): ");
             role = scanner.nextLine().trim().toLowerCase();
-            if (validRoles.contains(role)) 
+
+            //Enable this to enable depromotion of other managers
+            /* if (tempRole.toLowerCase().equals("manager")) 
             {
-                return role; 
+                Ccleaner();
+                System.out.println("You can not change the role of a manager!!");
+            } */
+            if(tempRole != null && role.equals(tempRole.toLowerCase()))
+            {
+                Ccleaner();
+                System.out.println("You can not use the same role!!");
+                continue;
+
             } 
+            else if(validRoles.contains(role))
+            {
+                Ccleaner();
+                return role; 
+            }
             else 
             {
                 Ccleaner();
@@ -129,37 +158,56 @@ public class InputHandler
         }
     }
 
-    public String PhoneInput()
+    public String PhoneInput(String tempPhone)
     {
         String phone = "";
         while (true) 
         {
+            
             System.out.print("Enter Phone Number: ");
             phone = scanner.nextLine().trim();
+            
+            if(tempPhone != null && dbHandler.CheckDuplicate("phone_no",phone))
+            {
+                Ccleaner();
+                System.out.println("Phone number " + phone + " already exists in the database!");
+                continue;
+            }
+            if(phone.equals(tempPhone))
+            {
+                Ccleaner();
+                System.out.println("You can not use the same phone number!!");
+                continue;
+            }
             if (phone.length() != 10 || phone.isBlank() ||  !phone.matches("\\d+")) //This checks if its maching the digits from 0 to 9, and atleast 1 time at most 15 times
             {
                 Ccleaner();
                 System.out.println("Phone number must have 10 digits");
+                continue;
             }
+            Ccleaner();
             return phone;
             
         }
     }
 
-    public LocalDate DobInput()
+    public LocalDate DobInput(LocalDate tempDOB)
     {
-        //Make sure date of start can not be smaller than date of birth
         while(true)
         {
             
             System.out.println("Enter Date of Birth (YYYY-MM-DD):");
             String dobInput = scanner.nextLine();
+            if(tempDOB != null && dobInput.equals(tempDOB.toString()))
+            {
+                Ccleaner();
+                System.out.println("You can not use the same birthday!!");
+                continue;
+            }
     
             try 
             {
                 LocalDate dob = LocalDate.parse(dobInput, DateTimeFormatter.ISO_LOCAL_DATE);
-                //System.out.println("Valid Date of Birth: " + dob);
-
                 if (dob.isAfter(LocalDate.now()))
                 {
                     Ccleaner();
@@ -168,6 +216,7 @@ public class InputHandler
                 }
                 else
                 {
+                    Ccleaner();
                     return dob;
                 }
 
@@ -182,21 +231,36 @@ public class InputHandler
 
     }
 
-    public LocalDate DosInput()
+    public LocalDate DosInput(LocalDate tempDOS)
     {
         while(true)
         {
             
             System.out.println("Enter Date of Start (YYYY-MM-DD):");
             String dosInput = scanner.nextLine();
+            if(tempDOS != null && dosInput.equals(tempDOS.toString()))
+            {
+                Ccleaner();
+                System.out.println("You can not use the same date of start!!");
+                continue;
+            }
             
     
             try 
             {
                 LocalDate dos = LocalDate.parse(dosInput, DateTimeFormatter.ISO_LOCAL_DATE);
-                System.out.println("Valid Date of Start: " + dos);
-                return dos;
-            } 
+                if (dos.isAfter(LocalDate.now()))
+                {
+                    Ccleaner();
+                    System.out.println("Date of Birth cannot be in the future.");
+                    
+                }
+                else
+                {
+                    Ccleaner();
+                    return dos;
+                }
+            }
             catch (Exception e) 
             {
                 Ccleaner();
@@ -209,19 +273,34 @@ public class InputHandler
     {
         if(DOS.isAfter(DOB))
         {
+            Ccleaner();
             return true;
         }
+        Ccleaner();
         return false;
     }
 
-    public String EmailInput()
+    public String EmailInput(String tempEmail)
     {
         String email = "";
         while (true) 
         {
             System.out.print("Enter Email: ");
             email = scanner.nextLine().trim();
-            if (email.matches("^[A-Za-z0-9+_.-çÇğĞıİöÖşŞüÜ]+@[A-Za-z0-9.-çÇğĞıİöÖşŞüÜ]+\\.[A-Za-z]{2,}$"))  
+
+            if(tempEmail != null && dbHandler.CheckDuplicate("email",email))
+            {
+                Ccleaner();
+                System.out.println("Email " + email + " already exists in the database!");
+                continue;
+            }
+            if(email.equals(tempEmail))
+            {
+                Ccleaner();
+                System.out.println("You can not use the same Email!!");
+                continue;
+            }
+            if (email.matches("^[A-Za-z0-9+_.\\-çÇğĞıİöÖşŞüÜ]+@[A-Za-z0-9.-çÇğĞıİöÖşŞüÜ]+\\.[A-Za-z]{2,}$"))  
             // ^ start of string,[A-Za-z0-9+_.-] local part of email allows only upper or lowercase characters numbers or special chars +@ .- permits dots and hyphens $ is end of the string
             {
                 return email;

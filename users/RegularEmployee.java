@@ -4,14 +4,11 @@ import java.util.Scanner;
 
 public class RegularEmployee extends Employee
 {
-    //deleted delay
     public static Scanner input = new Scanner(System.in);
     public RegularEmployee(int ID, String Username, String Role, String Name, String Surname, String Phone, LocalDate DOB, LocalDate DOS, String Email, String Password, Boolean DEFAULT_PASSWORD)
     {
         super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password, DEFAULT_PASSWORD);
     }
-
-
 
     // Regular Employee Menu
     @Override
@@ -19,15 +16,20 @@ public class RegularEmployee extends Employee
     {
         String RMString;
         char RMInput = '0';
-            
         while(RMInput != '3')
         {
-            System.out.println("Employee menu");
-            System.out.println("1. Profile Information");
-            System.out.println("2. Update Information");
-            System.out.println("3. Logout");
-            System.out.println();
-            System.out.print("Select an Operation: ");
+            System.out.println("=================================");
+            System.out.println("      *** Employee Menu ***      ");
+            System.out.println("=================================");
+            System.out.println("Good day, " + getName() + "!");
+            System.out.println("---------------------------------");
+
+            System.out.println(" 1. Profile Information");
+            System.out.println(" 2. Update Information");
+            System.out.println(" 3. Logout");
+            System.out.println("---------------------------------");
+            System.out.print("Select an Operation (1-3): ");
+
             RMString = input.nextLine();
 
             // Checks single character inputs
@@ -68,9 +70,7 @@ public class RegularEmployee extends Employee
                 // Professor reply: We should go to the login page after log out and put a exit(terminate) on the login page
                 {
                     Ccleaner();
-                    System.out.print("Logginng out");
-                    //Deleted delay
-                    Ccleaner();
+                    System.out.print("Logginng out...");
                     return;
                 }
 

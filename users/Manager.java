@@ -2,6 +2,7 @@ package users;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import utilities.AsciiArt;
 import utilities.DataBaseHandler;
 import utilities.InputHandler;
 import utilities.SortingAlgorithms;
@@ -12,6 +13,7 @@ public class Manager extends Employee
     DataBaseHandler dbHandler = new DataBaseHandler();
     InputHandler inHandle = new InputHandler();
     SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
+    AsciiArt color = new AsciiArt();
 
     /* protected int ID;
     protected String username;
@@ -39,18 +41,24 @@ public class Manager extends Employee
         while(RMInput != '9')
         {
             //add display profile
-            System.out.println("\n--- Manager Menu ---");
-            System.out.println("0. Display Profile");
-            System.out.println("1. Update Profile");
-            System.out.println("2. Display All Employees"); //done
-            System.out.println("3. Display Employees by Role");//done
-            System.out.println("4. Display Employee by Username");//done
-            System.out.println("5. Update Employee (Non-Profile Fields)");//done
-            System.out.println("6. Hire Employee");//done
-            System.out.println("7. Fire Employee");//done
-            System.out.println("8. Algorithms");//done
-            System.out.println("9. Logout"); //done
-            System.out.print("Select an option: ");
+            System.out.println(color.MAGENTA + "=================================" + color.RESET);
+            System.out.println(color.MAGENTA + "      *** Manager Menu ***       " + color.RESET);
+            System.out.println(color.MAGENTA + "=================================" + color.RESET);
+            System.out.println(color.BRIGHT_BLUE + "Good day, " + getName() + "!" + color.RESET);
+            System.out.println(color.MAGENTA + "---------------------------------" + color.RESET);
+            System.out.println(color.WHITE + " 0. Display Profile");
+            System.out.println(" 1. Update Profile");
+            System.out.println(" 2. Display All Employees");
+            System.out.println(" 3. Display Employees by Role");
+            System.out.println(" 4. Display Employee by Username");
+            System.out.println(" 5. Update Employee (Non-Profile Fields)");
+            System.out.println(" 6. Hire Employee");
+            System.out.println(" 7. Fire Employee");
+            System.out.println(" 8. Algorithms");
+            System.out.println(" 9. Logout" + color.RESET);
+            System.out.println(color.MAGENTA +"---------------------------------"+ color.RESET);
+            System.out.print(color.WHITE + "Select an option (0-9): " + color.RESET);
+
 
             RMString = scanner.nextLine();
 
@@ -101,7 +109,7 @@ public class Manager extends Employee
                 case '3' -> 
                 {
                     Ccleaner();
-                    String role = inHandle.RoleInput();
+                    String role = inHandle.RoleInput("");
                     Ccleaner();
                     dbHandler.DispEmployeeWithRole(role);
                     System.out.println("Enter anything to return");
@@ -157,7 +165,6 @@ public class Manager extends Employee
                     System.out.println("Logging out...");
                     return;
                 }
-                //default -> System.out.println("Invalid option. Please try again.");
             }
         }
                 
@@ -169,16 +176,16 @@ public class Manager extends Employee
     protected void HireEmployeeManager()
     {
         String newUsername = inHandle.UsernameInput();
-        String newName = inHandle.NameInput();
-        String newSurname = inHandle.SurnameInput();
-        String newRole = inHandle.RoleInput();
-        String newPhone = inHandle.PhoneInput();
+        String newName = inHandle.NameInput("");
+        String newSurname = inHandle.SurnameInput("");
+        String newRole = inHandle.RoleInput("");
+        String newPhone = inHandle.PhoneInput("");
         LocalDate newDOB;
         LocalDate newDOS;
         while(true)
         {
-            newDOB = inHandle.DobInput();
-            newDOS = inHandle.DosInput();
+            newDOB = inHandle.DobInput(null);
+            newDOS = inHandle.DosInput(null);
             if(inHandle.DoesDatesMakeSense(newDOB, newDOS))
             {
                 Ccleaner();
@@ -187,7 +194,7 @@ public class Manager extends Employee
             Ccleaner();
             System.out.println("So you were born after you got the job. Amazing employe.");
         }
-        String newEmail = inHandle.EmailInput();
+        String newEmail = inHandle.EmailInput("");
         
         dbHandler.HireEmployee(newUsername, newName, newSurname, newRole, newPhone, newDOB, newDOS, newEmail);
     }
