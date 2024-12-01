@@ -32,6 +32,7 @@ public class SortingAlgorithms
         mainArr.runAlgorithmComparison(sequence);
     }
     
+    // Measures the running time of each algorithm in nanoseconds
     public void runAlgorithmComparison(int sizeOfArray) { // sizeOfArray = array size
         // Random number generator
         Random randNumCretor = new Random();
@@ -112,6 +113,7 @@ public class SortingAlgorithms
         }
     }
     
+    // Shell sort, which is an improved version of insertion sort, sorts the array by dividing it at certain intervals.
     private void shellSort(int[] sequence) {
         int dimension = sequence.length;
         for(int harper = dimension/2; harper > 0; harper /= 2) {
@@ -126,6 +128,7 @@ public class SortingAlgorithms
         }
     }
     
+    // It works with the logic of a tree branch.
     private void heapSort(int[] heap) {
         int arraySize = heap.length;
         
@@ -141,6 +144,7 @@ public class SortingAlgorithms
             heapify(heap, sorter, 0);
         }
     }
+    
     
     private void heapify(int[] tree, int capacity, int root) {
         int third = root;
@@ -164,6 +168,7 @@ public class SortingAlgorithms
         }
     }
     
+    // insertion sort sorts the array by scanning it from left to right
     private void insertionSort(int[] array) {
         int length = array.length;
         
@@ -193,6 +198,7 @@ public class SortingAlgorithms
         }
     }
     
+    // radix sort sorts numbers according to their digits, uses the counting sort auxiliary algorithm
     private void radixSort(int[] data) {
         // Converts negative numbers to positive
         int max = Integer.MIN_VALUE;
