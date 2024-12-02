@@ -26,7 +26,7 @@ public class DataBaseHandler
 {
     private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; // Replace with your DB URL
     private final String username = "root"; // Replace with your DB username
-    private final String password = "Tecakanadji1"; // Replace with your DB password
+    private final String password = "Admin_123"; // Replace with your DB password
     private Connection connection;
     AsciiArt color = new AsciiArt();
     
@@ -531,7 +531,7 @@ public class DataBaseHandler
         
     } 
 
-    public void HireEmployee(String username, String name, String surname, String role, String phone, LocalDate dob, LocalDate dos, String email)
+    public void HireEmployee(String username, String name, String surname, String role, LocalDate dob, LocalDate dos)
     {
         //Add employee to the database
         if(connection == null)
@@ -543,8 +543,8 @@ public class DataBaseHandler
         {
             Statement statement = connection.createStatement();
             String randompassword = "Khas"+username;
-            String query2do = "INSERT INTO employees (username, name, surname, role, phone_no, date_of_birth, date_of_start, email,password) " +
-            "VALUES ('" + username + "', '" + name + "', '" + surname + "', '" + role + "', '" + phone + "', '" + dob + "', '" + dos + "', '" + email + "', '" + randompassword + "')";
+            String query2do = "INSERT INTO employees (username, name, surname, role, date_of_birth, date_of_start, password) " +
+            "VALUES ('" + username + "', '" + name + "', '" + surname + "', '" + role + "', '" + dob + "', '" + dos + "', '" + randompassword + "')";
             
 
             int rowsAffected = statement.executeUpdate(query2do);
