@@ -41,11 +41,11 @@ public class Manager extends Employee
         while(RMInput != '9')
         {
             //add display profile
-            System.out.println(color.MAGENTA + "=================================" + color.RESET);
-            System.out.println(color.MAGENTA + "      *** Manager Menu ***       " + color.RESET);
-            System.out.println(color.MAGENTA + "=================================" + color.RESET);
+            System.out.println(color.MAGENTA + "=========================================" + color.RESET);
+            System.out.println(color.MAGENTA + "          *** Manager Menu ***           " + color.RESET);
+            System.out.println(color.MAGENTA + "=========================================" + color.RESET);
             System.out.println(color.BRIGHT_BLUE + "Good day, " + getName() + "!" + color.RESET);
-            System.out.println(color.MAGENTA + "---------------------------------" + color.RESET);
+            System.out.println(color.MAGENTA + "-----------------------------------------" + color.RESET);
             System.out.println(color.WHITE + " 0. Display Profile");
             System.out.println(" 1. Update Profile");
             System.out.println(" 2. Display All Employees");
