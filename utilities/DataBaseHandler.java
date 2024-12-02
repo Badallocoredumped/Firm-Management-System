@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import utilities.AsciiArt;
 
 import users.Employee;
 import users.Manager;
@@ -493,7 +492,7 @@ public class DataBaseHandler
                 break;
                 //DOS
             }
-            case '7':
+            /* case '7':
             {
                 Ccleaner();
                 String newEmail = inputHandler.EmailInput(tempEmployee.getEmail());
@@ -522,7 +521,7 @@ public class DataBaseHandler
                 tempEmployee.setEmail(newEmail);
                 break;
                 //email
-            }
+            } */
             /* default:
             {
                 System.out.println("Invalid option. Please try again.");

@@ -1,6 +1,4 @@
 package utilities;
-import utilities.AsciiArt;
-
 import java.util.*;
 
 public class SortingAlgorithms 

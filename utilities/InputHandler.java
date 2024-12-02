@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Set;
-import utilities.AsciiArt;
 
 import users.Employee;
 
@@ -216,6 +215,18 @@ public class InputHandler
                     System.out.println(color.WHITE + "Date of Birth cannot be in the future.");
                     
                 }
+
+                else if (dob.isBefore(LocalDate.of(1920, 1, 1))) 
+                {
+                    Ccleaner();
+                    System.out.println(color.WHITE + "Year cannot be before 1920.");
+                }
+
+                else if (dob.isAfter(LocalDate.now().minusYears(18))) 
+                {
+                    Ccleaner();
+                    System.out.println(color.WHITE + "You must be at least 18 years old.");
+                }
                 else
                 {
                     Ccleaner();
@@ -369,7 +380,7 @@ public class InputHandler
 
         String RMString;
         char RMInput = '0';
-        while(RMInput != '8' )
+        while(RMInput != '7' )
         {
 
             System.out.println(color.WHITE + "Which field would you like to update?\n" +
@@ -379,8 +390,7 @@ public class InputHandler
             "4: Surname\n" +
             "5: Date of Birth\n" +
             "6: Date of Start\n" +
-            "7: Email\n" +
-            "8: Exit");
+            "7: Exit");
 
             RMString = scanner.nextLine();
             
@@ -394,7 +404,7 @@ public class InputHandler
             RMInput = RMString.charAt(0);
             System.out.println();
 
-            if (RMInput < '1' || RMInput > '8') 
+            if (RMInput < '1' || RMInput > '7') 
             {
                     Ccleaner();
                     System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 9.");
@@ -403,7 +413,7 @@ public class InputHandler
             }
             InputHandler inputHandler = new InputHandler();
             dbHandler.UpdateEmployeeNPF(RMInput,tempEmployee,inputHandler);
-            if(RMInput != '8')
+            if(RMInput != '7')
             {
                 System.out.println(color.WHITE + "Enter anything to return");
                 scanner.nextLine();

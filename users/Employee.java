@@ -20,6 +20,7 @@ public abstract class Employee
 
     public static Scanner input = new Scanner(System.in);
     static DataBaseHandler dbHandler = new DataBaseHandler();
+    AsciiArt color = new AsciiArt();
     public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password, Boolean DEFAULT_PASSWORD)
     {
         this.ID = ID;
