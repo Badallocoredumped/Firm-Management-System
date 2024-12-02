@@ -31,7 +31,7 @@ SELECT * FROM employees;
 
 INSERT INTO employees (username, password, role, name, surname, phone_no, date_of_birth, date_of_start, email, DEFAULT_PASSWORD)
 VALUES 
-('emir5757', 'manager123', 'Manager', 'Emir', 'Özen', '5551234567', '1980-01-01', '2010-05-15', 'ahmet.yilmaz@example.com', TRUE),
+('emir5757', 'manager123', 'Manager', 'Emir', 'Özen', '5551234567', '1980-01-01', '2010-05-15', 'ahmet.yilmaz@example.com', FALSE),
 ('manager2', 'manager234', 'Manager', 'Mehmet', 'Demir', '5556781234', '1978-04-10', '2008-03-20', 'mehmet.demir@example.com', TRUE),
 ('engineer1', 'engineer123', 'Engineer', 'Ayşe', 'Kaya', '5552345678', '1990-02-12', '2015-08-22', 'ayse.kaya@example.com', TRUE),
 ('engineer2', 'engineer234', 'Engineer', 'Fatma', 'Yıldız', '5557892345', '1985-06-15', '2012-07-01', 'fatma.yildiz@example.com', TRUE),

@@ -26,7 +26,7 @@ public class DataBaseHandler
 {
     private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; // Replace with your DB URL
     private final String username = "root"; // Replace with your DB username
-    private final String password = "Admin_123"; // Replace with your DB password
+    private final String password = "Tecakanadji1"; // Replace with your DB password
     private Connection connection;
     AsciiArt color = new AsciiArt();
     
@@ -40,7 +40,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.err.println(color.WHITE + "Database connection failed: " + e.getMessage());
+            System.err.println(color.BRIGHT_RED + "Database connection failed: " + e.getMessage() + color.RESET);
         }
     }
 
@@ -70,12 +70,12 @@ public class DataBaseHandler
             String query2do = "SELECT * FROM employees";
             ResultSet infoSet = statement.executeQuery(query2do);
             
-            System.out.println(color.WHITE + "===================================================================================" + 
-                "=========================================================================");
-            System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
-            "Emp ID", "Username", "Role", "Name", "Phone", "DOB", "Start Date", "Email");
-            System.out.println(color.WHITE + "===================================================================================" + 
-                "=========================================================================");
+            System.out.println(color.MAGENTA + "===================================================================================" + 
+                "=========================================================================" + color.RESET);
+            System.out.printf(color.BRIGHT_BLUE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
+            "Emp ID", "Username", "Role", "Name", "Phone", "DOB", "Start Date", "Email" + color.RESET);
+            System.out.println(color.MAGENTA + "===================================================================================" + 
+                "=========================================================================" + color.RESET);
             
             while(infoSet.next())
             {
@@ -96,10 +96,10 @@ public class DataBaseHandler
                 ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail); */
                 System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
                 dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone,
-                dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail);
+                dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail + color.RESET);
                 
-                System.out.println(color.WHITE + "===================================================================================" + 
-                "=========================================================================");
+                System.out.println(color.MAGENTA + "===================================================================================" + 
+                "=========================================================================" + color.RESET);
                 
             }
             
@@ -138,13 +138,13 @@ public class DataBaseHandler
             String query = "SELECT role, COUNT(*) AS role_count FROM employees GROUP BY role";
             ResultSet resultSet = roleStatement.executeQuery(query);
         
-            System.out.println(color.WHITE + "\nRole Summary:");
-            System.out.println(color.WHITE + "-------------------------");
+            System.out.println(color.MAGENTA + "\nRole Summary:");
+            System.out.println(color.MAGENTA + "-------------------------");
             while (resultSet.next()) 
             {
                 String role = resultSet.getString("role");
                 int count = resultSet.getInt("role_count");
-                System.out.printf(color.WHITE + "Role: %-10s | Number of Employees: %d%n", role, count);
+                System.out.printf(color.WHITE + "Role: %-10s | Number of Employees: %d%n", role, count + color.RESET);
             }
         } 
         catch (SQLException e)
@@ -159,7 +159,7 @@ public class DataBaseHandler
     {
         if (connection == null) 
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed");
             return;
         }
     
@@ -169,12 +169,12 @@ public class DataBaseHandler
             String query2do = "SELECT * FROM employees WHERE role = '" + role + "'";
             ResultSet infoSet = statement.executeQuery(query2do);
     
-            System.out.println(color.WHITE + "==============================================================================" + 
-                "==============================================================================");
-            System.out.printf(color.WHITE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
-                    "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email");
-            System.out.println(color.WHITE + "==============================================================================" + 
-                "==============================================================================");
+            System.out.println(color.MAGENTA + "==============================================================================" + 
+                "==============================================================================" + color.RESET);
+            System.out.printf(color.BRIGHT_BLUE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
+                    "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email" + color.RESET);
+            System.out.println(color.MAGENTA + "==============================================================================" + 
+                "==============================================================================" + color.RESET);
     
             while (infoSet.next()) 
             {
@@ -189,16 +189,16 @@ public class DataBaseHandler
                 String dbEmail = infoSet.getString("email");
     
                 System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
-                        dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail);
+                        dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail + color.RESET);
             }
     
-            System.out.println(color.WHITE + "==============================================================================" + 
-                "==============================================================================");
+            System.out.println(color.MAGENTA + "==============================================================================" + 
+                "==============================================================================" + color.RESET);
     
         } 
         catch (SQLException e) 
         {
-            System.err.println(color.WHITE + "Error occurred: " + e.getMessage());
+            System.err.println(color.BRIGHT_RED + "Error occurred: " + e.getMessage() + color.RESET);
         }
     }
     
@@ -207,7 +207,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed" + color.RESET);
         }
 
         try 
@@ -222,12 +222,12 @@ public class DataBaseHandler
                 return;
             }
 
-            System.out.println(color.WHITE + "==============================================================================" + 
-                "==============================================================================");
-            System.out.printf(color.WHITE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s |%n",
-                    "Emp ID", "Username", "Role", "Name", "Phone No", "Date of Birth", "Start Date", "Email");
-            System.out.println(color.WHITE + "==============================================================================" + 
-                "==============================================================================");
+            System.out.println(color.MAGENTA + "==============================================================================" + 
+                "==============================================================================" + color.RESET);
+            System.out.printf(color.BRIGHT_BLUE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s |%n",
+                    "Emp ID", "Username", "Role", "Name", "Phone No", "Date of Birth", "Start Date", "Email" + color.RESET);
+            System.out.println(color.MAGENTA + "==============================================================================" + 
+                "==============================================================================" + color.RESET);
             
             while(infoSet.next())
             {
@@ -242,16 +242,16 @@ public class DataBaseHandler
                 String dbEmail = infoSet.getString("email");
 
                 System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
-                    dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail);
+                    dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail  + color.RESET);
                 
             }
-            System.out.println(color.WHITE + "==============================================================================" + 
-                    "==============================================================================");
+            System.out.println(color.MAGENTA + "==============================================================================" + 
+                    "==============================================================================" + color.RESET);
         }
 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occured!");
+            System.out.println(color.BRIGHT_RED + "Error occured!" + color.RESET);
         }
     }
 
@@ -259,7 +259,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed" + color.RESET);
         }
 
         try 
@@ -289,7 +289,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occured!");
+            System.out.println(color.BRIGHT_RED + "Error occured!"  + color.RESET);
         }
     }
 
@@ -320,13 +320,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println(color.WHITE + "Update failed. Username not found.");
+                        System.out.println(color.BRIGHT_RED + "Update failed. Username not found." + color.RESET);
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println(color.WHITE + "Error occurred while updating username: ");
+                    System.out.println(color.BRIGHT_RED + "Error occurred while updating username: " + color.RESET);
                     e.printStackTrace();
                 }
                 tempEmployee.setUsername(newUsername);
@@ -359,13 +359,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println(color.WHITE + "Update failed. Username not found.");
+                        System.out.println(color.BRIGHT_RED + "Update failed. Username not found." + color.RESET);
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println(color.WHITE + "Error occurred while updating username: ");
+                    System.out.println(color.BRIGHT_RED + "Error occurred while updating username: " + color.RESET);
                     e.printStackTrace();
                 }
                 tempEmployee.setRole(newRole);
@@ -389,13 +389,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println(color.WHITE + "Update failed. Username not found.");
+                        System.out.println(color.BRIGHT_RED + "Update failed. Username not found." + color.RESET);
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println(color.WHITE + "Error occurred while updating username: ");
+                    System.out.println(color.BRIGHT_RED + "Error occurred while updating username: "  + color.RESET);
                     e.printStackTrace();
                 }
                 tempEmployee.setName(newName);
@@ -419,13 +419,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println(color.WHITE + "Update failed. Username not found.");
+                        System.out.println(color.BRIGHT_RED + "Update failed. Username not found." + color.RESET);
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println(color.WHITE + "Error occurred while updating username: ");
+                    System.out.println(color.BRIGHT_RED + "Error occurred while updating username: " + color.RESET);
                     e.printStackTrace();
                 }
                 tempEmployee.setSurname(newSurname);
@@ -449,13 +449,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println(color.WHITE + "Update failed. Username not found.");
+                        System.out.println(color.BRIGHT_RED + "Update failed. Username not found." + color.RESET);
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println(color.WHITE + "Error occurred while updating username: ");
+                    System.out.println(color.BRIGHT_RED + "Error occurred while updating username: " + color.RESET);
                     e.printStackTrace();
                 }
                 tempEmployee.setBirthday(newDOB);
@@ -479,13 +479,13 @@ public class DataBaseHandler
                     } 
                     else 
                     {
-                        System.out.println(color.WHITE + "Update failed. Username not found.");
+                        System.out.println(color.BRIGHT_RED + "Update failed. Username not found." + color.RESET);
                     }
                     
                 } 
                 catch (SQLException e) 
                 {
-                    System.out.println(color.WHITE + "Error occurred while updating username: ");
+                    System.out.println(color.BRIGHT_RED + "Error occurred while updating username: " + color.RESET);
                     e.printStackTrace();
                 }
                 tempEmployee.setEmploymentDay(newDOS);
@@ -536,7 +536,7 @@ public class DataBaseHandler
         //Add employee to the database
         if(connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed"  + color.RESET);
         }
 
         try 
@@ -556,14 +556,14 @@ public class DataBaseHandler
             }
             else
             {
-                System.out.println(color.WHITE + "Error adding employee to the database");
+                System.out.println(color.BRIGHT_RED + "Error adding employee to the database" + color.RESET);
             }
             
             
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occurred during employee insertion: " + e.getMessage());
+            System.out.println(color.BRIGHT_RED + "Error occurred during employee insertion: " + e.getMessage()  + color.RESET);
             e.printStackTrace();
         }
     }
@@ -590,7 +590,7 @@ public class DataBaseHandler
             else
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Error removing employee from the database");
+                System.out.println(color.BRIGHT_RED + "Error removing employee from the database" + color.RESET);
             }
 
 
@@ -598,7 +598,7 @@ public class DataBaseHandler
         catch (SQLException e) 
         {
             Ccleaner();
-            System.out.println(color.WHITE + "Error removing employee from the database");
+            System.out.println(color.BRIGHT_RED + "Error removing employee from the database" + color.RESET);
             e.printStackTrace(); 
         }
     }
@@ -607,7 +607,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed");
         }
 
         try 
@@ -620,7 +620,7 @@ public class DataBaseHandler
             { 
                 //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
                 Ccleaner();
-                System.out.println(color.WHITE + "User named " + username + " does not exist in the database.");
+                System.out.println(color.BRIGHT_RED + "User named " + username + " does not exist in the database." + color.RESET);
                 return null;
             }
             
@@ -677,7 +677,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occured!");
+            System.out.println(color.BRIGHT_RED + "Error occured!" + color.RESET);
         }
         return null;
 
@@ -686,7 +686,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed");
         }
 
         try 
@@ -756,7 +756,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occured!");
+            System.out.println(color.BRIGHT_RED + "Error occured!" + color.RESET);
         }
         return null;
 
@@ -769,7 +769,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed" + color.RESET);
         }
 
         try 
@@ -791,7 +791,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occured!");
+            System.out.println(color.BRIGHT_RED + "Error occured!"  + color.RESET);
         }
         return false;
     }
@@ -820,7 +820,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.err.println(color.WHITE + "Error occurred while checking duplicate for " + field);
+            System.err.println(color.BRIGHT_RED + "Error occurred while checking duplicate for " + field  + color.RESET);
         }
         return false; // No duplicate found
     }
@@ -850,22 +850,22 @@ public class DataBaseHandler
                 String dbDOS = infoSet.getString("date_of_start");
                 String dbEmail = infoSet.getString("email");
 
-                System.out.println(color.WHITE + "Full profile information");
-                System.out.println(color.WHITE + "Employee ID: " + dbID);
-                System.out.println(color.WHITE + ", Username: " + dbUsername);
-                System.out.println(color.WHITE + ", Role: " + dbRole);
-                System.out.println(color.WHITE + ", Name: " + dbName);
-                System.out.println(color.WHITE + ", Surname: " + dbSurname);
-                System.out.println(color.WHITE + ", Phone Number: " + dbPhone);
-                System.out.println(color.WHITE + ", Date of Birth: " + dbDOB); 
-                System.out.println(color.WHITE + ", Date of Start: " + dbDOS);
-                System.out.println(color.WHITE + ", Email: " + dbEmail);
+                System.out.println(color.MAGENTA + "Full profile information" + color.RESET);
+                System.out.println(color.WHITE + "Employee ID: " + dbID + color.RESET);
+                System.out.println(color.WHITE + ", Username: " + dbUsername + color.RESET);
+                System.out.println(color.WHITE + ", Role: " + dbRole + color.RESET);
+                System.out.println(color.WHITE + ", Name: " + dbName + color.RESET);
+                System.out.println(color.WHITE + ", Surname: " + dbSurname + color.RESET);
+                System.out.println(color.WHITE + ", Phone Number: " + dbPhone + color.RESET);
+                System.out.println(color.WHITE + ", Date of Birth: " + dbDOB + color.RESET); 
+                System.out.println(color.WHITE + ", Date of Start: " + dbDOS + color.RESET);
+                System.out.println(color.WHITE + ", Email: " + dbEmail + color.RESET);
             }
             
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occured!");
+            System.out.println(color.BRIGHT_RED + "Error occured!");
         }
     }
 
@@ -881,17 +881,17 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Phone number updated succesfully");
+                System.out.println(color.BRIGHT_GREEN + "Phone number updated succesfully");
             }
             else
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Error updating phone");
+                System.out.println(color.BRIGHT_RED + "Error updating phone");
             }
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error updating phone");
+            System.out.println(color.BRIGHT_RED + "Error updating phone" + color.RESET);
             e.printStackTrace(); 
         }
     }
@@ -907,17 +907,17 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Password updated succesfully");
+                System.out.println(color.BRIGHT_GREEN + "Password updated succesfully" + color.RESET);
             }
             else
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Error updating password");
+                System.out.println(color.BRIGHT_RED + "Error updating password" + color.RESET);
             }
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error updating password");
+            System.out.println(color.BRIGHT_RED + "Error updating password" + color.RESET);
             e.printStackTrace(); 
         }
     }
@@ -933,17 +933,17 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Email updated succesfully");
+                System.out.println(color.BRIGHT_GREEN + "Email updated succesfully" + color.RESET);
             }
             else
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Error updating email");
+                System.out.println(color.BRIGHT_RED + "Error updating email" + color.RESET);
             }
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error updating email");
+            System.out.println(color.BRIGHT_RED + "Error updating email" + color.RESET);
             e.printStackTrace(); 
         }
     }
