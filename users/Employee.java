@@ -181,13 +181,15 @@ public abstract class Employee
             
         while(UPInput != '5')
         {
-            System.out.println(color.MAGENTA + "Update profile" + color.RESET);
+            System.out.println(color.MAGENTA + "===============================================" + color.RESET);
+            System.out.println(color.MAGENTA + "            *** Update profile ***             " + color.RESET);
+            System.out.println(color.MAGENTA + "===============================================" + color.RESET);
             System.out.println(color.WHITE + "1. Change email" + color.RESET);
             System.out.println(color.WHITE + "2. Change phone number" + color.RESET);
             System.out.println(color.WHITE + "3. Change password" + color.RESET);
             System.out.println(color.WHITE + "4. Update all profile information" + color.RESET);
             System.out.println(color.WHITE + "5. Return to main menu" + color.RESET);
-            System.out.println();
+            System.out.println(color.MAGENTA + "-----------------------------------------------" + color.RESET);
             System.out.print(color.BRIGHT_BLUE + "Select an Operation: " + color.RESET);
             UPString = input.nextLine();
 
@@ -240,7 +242,7 @@ public abstract class Employee
                     Ccleaner();
                 }
 
-                case '4'-> //Update Password
+                case '4'-> //Update All
                 {
                     Ccleaner();
                     UpdateAll();
@@ -264,6 +266,7 @@ public abstract class Employee
     {
             Ccleaner();
             System.out.println(color.MAGENTA + "Full profile information"  + color.RESET);
+            System.out.println(color.MAGENTA + "----------------------------------------" + color.RESET);
             System.out.println("Name: " + name);
             System.out.println("Surname: " + surname);
             System.out.println("Email: " + Email);
@@ -274,6 +277,8 @@ public abstract class Employee
             System.out.println("Employment day: " + DOS);
             System.out.println("Username: " + Username);
             System.out.println("Password: " + Password + "\n");
+            System.out.println(color.MAGENTA + "----------------------------------------" + color.RESET);
+
     
     }
 

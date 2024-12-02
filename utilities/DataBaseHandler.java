@@ -26,7 +26,7 @@ public class DataBaseHandler
 {
     private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; // Replace with your DB URL
     private final String username = "root"; // Replace with your DB username
-    private final String password = "Tecakanadji1"; // Replace with your DB password
+    private final String password = "Admin_123"; // Replace with your DB password
     private Connection connection;
     AsciiArt color = new AsciiArt();
     
@@ -96,7 +96,7 @@ public class DataBaseHandler
                 ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail); */
                 System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
                 dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone,
-                dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail + color.RESET);
+                dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail);
                 
                 System.out.println(color.MAGENTA + "===================================================================================" + 
                 "=========================================================================" + color.RESET);
@@ -126,7 +126,7 @@ public class DataBaseHandler
         } 
         catch (SQLException e) 
         {
-            System.out.println(color.WHITE + "Error occured!");
+            System.out.println(color.BRIGHT_RED + "Error occured!" + color.RESET);
         }
 
     }
@@ -138,13 +138,13 @@ public class DataBaseHandler
             String query = "SELECT role, COUNT(*) AS role_count FROM employees GROUP BY role";
             ResultSet resultSet = roleStatement.executeQuery(query);
         
-            System.out.println(color.MAGENTA + "\nRole Summary:");
-            System.out.println(color.MAGENTA + "-------------------------");
+            System.out.println(color.BRIGHT_BLUE + "\nRole Summary:");
+            System.out.println(color.MAGENTA + "-------------------------" + color.RESET);
             while (resultSet.next()) 
             {
                 String role = resultSet.getString("role");
                 int count = resultSet.getInt("role_count");
-                System.out.printf(color.WHITE + "Role: %-10s | Number of Employees: %d%n", role, count + color.RESET);
+                System.out.printf("Role: %-10s | Number of Employees: %d%n", role, count);
             }
         } 
         catch (SQLException e)
@@ -800,7 +800,7 @@ public class DataBaseHandler
     {
         if (connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed" + color.RESET);
             return false; // Return false for safety
         }
 
@@ -829,7 +829,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.WHITE + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed");
         }
 
         try 
@@ -860,6 +860,8 @@ public class DataBaseHandler
                 System.out.println(color.WHITE + ", Date of Birth: " + dbDOB + color.RESET); 
                 System.out.println(color.WHITE + ", Date of Start: " + dbDOS + color.RESET);
                 System.out.println(color.WHITE + ", Email: " + dbEmail + color.RESET);
+                System.out.println(color.MAGENTA + "-----------------------------------------------" + color.RESET);
+
             }
             
         } 
@@ -881,7 +883,7 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_GREEN + "Phone number updated succesfully");
+                System.out.println(color.BRIGHT_GREEN + "Phone number updated succesfully\n");
             }
             else
             {
@@ -907,7 +909,7 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_GREEN + "Password updated succesfully" + color.RESET);
+                System.out.println(color.BRIGHT_GREEN + "Password updated succesfully\n" + color.RESET);
             }
             else
             {
@@ -933,7 +935,7 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_GREEN + "Email updated succesfully" + color.RESET);
+                System.out.println(color.BRIGHT_GREEN + "Email updated succesfully\n" + color.RESET);
             }
             else
             {

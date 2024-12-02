@@ -37,14 +37,14 @@ public class Authenticator
             }
             else
             {
-                System.out.println(color.WHITE + "No employee found with the username: " + username + color.RESET);
+                System.out.println(color.BRIGHT_RED + "No employee found with the username: " + username + color.RESET);
                 return null; 
 
             }
         } 
         catch (Exception e) 
         {
-            System.err.println(color.WHITE + "Something bad happened" + color.RESET);
+            System.err.println(color.BRIGHT_RED + "Something bad happened" + color.RESET);
 
         }
         return null;
@@ -54,12 +54,12 @@ public class Authenticator
     {
         if(currUser != null)
         {
-            System.out.println(color.WHITE + "Logout successful for: " + currUser.getName() + color.RESET);
+            System.out.println(color.RED + "Logout successful for: " + currUser.getName() + color.RESET);
             currUser = null;
         }
         else
         {
-            System.err.println(color.WHITE + "Error logout" + color.RESET);
+            System.err.println(color.BRIGHT_RED + "Error logout" + color.RESET);
         }
     }
 

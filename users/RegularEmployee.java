@@ -27,10 +27,9 @@ public class RegularEmployee extends Employee
             System.out.println(color.MAGENTA + "=====================================================" + color.RESET);
             System.out.println(color.BRIGHT_BLUE + "Good day, " + getRole() + " " + getName() + " " + getSurname() + "!" + color.RESET);
             System.out.println(color.MAGENTA + "-----------------------------------------------------" + color.RESET);
-
-            System.out.println(color.WHITE + " 1. Profile Information");
-            System.out.println(color.WHITE + " 2. Update Information");
-            System.out.println(color.WHITE + " 3. Logout");
+            System.out.println(color.WHITE + " 1. Profile Information" + color.RESET);
+            System.out.println(color.WHITE + " 2. Update Information" + color.RESET);
+            System.out.println(color.WHITE + " 3. Logout" + color.RESET);
             System.out.println(color.MAGENTA + "-----------------------------------------------------" + color.RESET);
             System.out.print(color.BRIGHT_BLUE + "Select an Operation (1-3): ");
 
@@ -62,7 +61,7 @@ public class RegularEmployee extends Employee
                 {
                     Ccleaner();
                     PrintProfile();
-                    System.out.println("Enter anything to return");
+                    System.out.println(color.BRIGHT_BLUE +"Enter anything to return" + color.RESET);
                     input.nextLine();
                     Ccleaner();
                 }

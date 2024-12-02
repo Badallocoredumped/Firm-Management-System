@@ -18,27 +18,27 @@ public class InputHandler
         String username;
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters): ");
+            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters): " + color.RESET);
             username = scanner.nextLine().trim();
             if(dbHandler.CheckDuplicate("username",username))
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Username " + username + " is already taken!");
+                System.out.println(color.BRIGHT_RED + "Username " + username + " is already taken!" + color.RESET);
             }
             else if(username.length()<4)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Username " + username + " is smaller than 4 characters!");
+                System.out.println(color.BRIGHT_RED + "Username " + username + " is smaller than 4 characters!" + color.RESET);
             }
             else if(username.isBlank())
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Username can not be blank!");
+                System.out.println(color.BRIGHT_RED + "Username can not be blank!" + color.RESET);
             }
             else if(username.contains(" "))
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Username can not have spaces!");
+                System.out.println(color.BRIGHT_RED + "Username can not have spaces!" + color.RESET);
             }
             else
             {
@@ -57,12 +57,12 @@ public class InputHandler
             if(username.length()<4)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Username " + username + " is smaller than 4 characters!");
+                System.out.println(color.BRIGHT_RED + "Username " + username + " is smaller than 4 characters!"  + color.RESET);
             }
             else if(username.isBlank())
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Username can not be blank!");
+                System.out.println(color.BRIGHT_RED + "Username can not be blank!"  + color.RESET);
             }
             else
             {
@@ -78,12 +78,12 @@ public class InputHandler
         String name;
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter Name: ");
+            System.out.print(color.WHITE + "Enter Name: "  + color.RESET);
             name = scanner.nextLine();
             if (!"".equals(tempName) && name.equals(tempName)) 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You can not use the same name!!");
+                System.out.println(color.BRIGHT_RED + "You can not use the same name!!"  + color.RESET);
                 continue;
             }
             else if(name.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+(\\s[A-Za-zÇçŞşİıĞğÖöÜü]+)*$"))
@@ -93,7 +93,7 @@ public class InputHandler
             else 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Invalid name! Name should only contain letters and cannot be blank.");
+                System.out.println(color.BRIGHT_RED + "Invalid name! Name should only contain letters and cannot be blank."  + color.RESET);
             }
         }
     }
@@ -102,14 +102,14 @@ public class InputHandler
         String surname = "";
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter Surname: ");
+            System.out.print(color.WHITE + "Enter Surname: "  + color.RESET);
             surname = scanner.nextLine().trim();
 
 
             if (!"".equals(tempSurname) && surname.equals(tempSurname)) 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You can not use the same surname!!");
+                System.out.println(color.BRIGHT_RED + "You can not use the same surname!!"  + color.RESET);
                 continue;
             }
             else if(surname.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+$"))
@@ -119,7 +119,7 @@ public class InputHandler
             else 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Invalid surname! Surname should only contain letters and cannot be blank.");
+                System.out.println(color.BRIGHT_RED + "Invalid surname! Surname should only contain letters and cannot be blank."  + color.RESET);
             }
         }
     }
@@ -142,7 +142,7 @@ public class InputHandler
             if(!"".equals(tempRole) && role.equals(tempRole.toLowerCase()))
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You can not use the same role!!");
+                System.out.println(color.BRIGHT_RED + "You can not use the same role!!" + color.RESET);
                 continue;
 
             } 
@@ -154,7 +154,7 @@ public class InputHandler
             else 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Invalid role. Please enter one of the following: manager, engineer, technician, intern.");
+                System.out.println(color.BRIGHT_RED + "Invalid role. Please enter one of the following: manager, engineer, technician, intern."  + color.RESET);
             }
         }
     }
@@ -171,19 +171,19 @@ public class InputHandler
             if(!"".equals(tempPhone) && dbHandler.CheckDuplicate("phone_no",phone))
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Phone number " + phone + " already exists in the database!");
+                System.out.println(color.BRIGHT_RED + "Phone number " + phone + " already exists in the database!"  + color.RESET);
                 continue;
             }
             if(phone.equals(tempPhone))
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You can not use the same phone number!!");
+                System.out.println(color.BRIGHT_RED + "You can not use the same phone number!!"  + color.RESET);
                 continue;
             }
             if (phone.length() != 10 || phone.isBlank() ||  !phone.matches("\\d+")) //This checks if its maching the digits from 0 to 9, and atleast 1 time at most 15 times
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Phone number must have 10 digits");
+                System.out.println(color.BRIGHT_RED + "Phone number must have 10 digits"  + color.RESET);
                 continue;
             }
             Ccleaner();
@@ -202,7 +202,7 @@ public class InputHandler
             if(tempDOB != null && dobInput.equals(tempDOB.toString()))
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You can not use the same birthday!!");
+                System.out.println(color.BRIGHT_RED + "You can not use the same birthday!!" + color.RESET);
                 continue;
             }
     
@@ -212,20 +212,20 @@ public class InputHandler
                 if (dob.isAfter(LocalDate.now()))
                 {
                     Ccleaner();
-                    System.out.println(color.WHITE + "Date of Birth cannot be in the future.");
+                    System.out.println(color.BRIGHT_RED + "Date of Birth cannot be in the future."  + color.RESET);
                     
                 }
 
                 else if (dob.isBefore(LocalDate.of(1920, 1, 1))) 
                 {
                     Ccleaner();
-                    System.out.println(color.WHITE + "Year cannot be before 1920.");
+                    System.out.println(color.BRIGHT_RED + "Year cannot be before 1920.");
                 }
 
                 else if (dob.isAfter(LocalDate.now().minusYears(18))) 
                 {
                     Ccleaner();
-                    System.out.println(color.WHITE + "You must be at least 18 years old.");
+                    System.out.println(color.BRIGHT_RED + "You must be at least 18 years old.");
                 }
                 else
                 {
@@ -237,7 +237,7 @@ public class InputHandler
             catch (Exception e) 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Invalid date format! Please use YYYY-MM-DD.");
+                System.out.println(color.BRIGHT_RED + "Invalid date format! Please use YYYY-MM-DD.");
             }
 
         }
@@ -265,7 +265,7 @@ public class InputHandler
                 if (dos.isAfter(LocalDate.now()))
                 {
                     Ccleaner();
-                    System.out.println(color.WHITE + "Date of Birth cannot be in the future.");
+                    System.out.println(color.BRIGHT_RED + "Date of Birth cannot be in the future.");
                     
                 }
                 else
@@ -277,7 +277,7 @@ public class InputHandler
             catch (Exception e) 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Invalid date format! Please use YYYY-MM-DD.");
+                System.out.println(color.BRIGHT_RED + "Invalid date format! Please use YYYY-MM-DD.");
             }
         }
     }
@@ -310,7 +310,7 @@ public class InputHandler
             if(email.equals(tempEmail))
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You can not use the same Email!!");
+                System.out.println(color.BRIGHT_RED + "You can not use the same Email!!");
                 continue;
             }
             if (email.matches("^[A-Za-z0-9+_.\\-çÇğĞıİöÖşŞüÜ]+@[A-Za-z0-9.-çÇğĞıİöÖşŞüÜ]+\\.[A-Za-z]{2,}$"))  
@@ -321,7 +321,7 @@ public class InputHandler
             else 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Invalid email format! Please enter a valid email address.");
+                System.out.println(color.BRIGHT_RED + "Invalid email format! Please enter a valid email address.");
             }
         }
     }
@@ -340,7 +340,7 @@ public class InputHandler
             if(PAString.isEmpty() || PAString.length() > 1)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 or 2.");
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 or 2.");
                 System.out.println();
                 continue;
             }
@@ -348,7 +348,7 @@ public class InputHandler
             if (PA < '1' || PA > '2') 
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number 1 or 2.");
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number 1 or 2.");
                 System.out.println();
         }
             if (PA == '1') 
@@ -383,7 +383,7 @@ public class InputHandler
         while(RMInput != '7' )
         {
 
-            System.out.println(color.WHITE + "Which field would you like to update?\n" +
+            System.out.println(color.MAGENTA + "Which field would you like to update?\n" +
             "1: Username\n" +
             "2: Role\n" +
             "3: Name\n" +
@@ -397,7 +397,7 @@ public class InputHandler
             if(RMString.isEmpty() || RMString.length() > 1)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 9.");
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 9.");
                 System.out.println();
                 continue;
             }
@@ -407,7 +407,7 @@ public class InputHandler
             if (RMInput < '1' || RMInput > '7') 
             {
                     Ccleaner();
-                    System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 9.");
+                    System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 9.");
                     System.out.println();
                     continue;
             }

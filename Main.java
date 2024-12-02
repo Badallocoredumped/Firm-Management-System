@@ -43,7 +43,7 @@ public class Main
             if (RMString.isEmpty() || RMString.length() > 1) 
             {
                 Ccleaner();
-                System.out.println(asciiArt.WHITE + "Invalid input. Please enter 1 to Login or 2 to Exit."  + asciiArt.RESET);
+                System.out.println(asciiArt.BRIGHT_RED + "Invalid input. Please enter 1 to Login or 2 to Exit."  + asciiArt.RESET);
                 System.out.println();
                 continue;
             }
@@ -66,7 +66,7 @@ public class Main
                     if (currUser == null) 
                     {
                         Ccleaner();
-                        System.out.println(asciiArt.WHITE +"Login failed. Please try again." + asciiArt.RESET);
+                        System.out.println(asciiArt.BRIGHT_RED +"Login failed. Please try again." + asciiArt.RESET);
                     }
                 }
         
@@ -76,16 +76,16 @@ public class Main
                 {
                     Ccleaner();
                     currUser.Menu();
-                    System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
-                    scanner.nextLine();
+                    /*System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
+                    scanner.nextLine();*/
                     Ccleaner();
                 } 
                 else if (currUser instanceof RegularEmployee) 
                 {
                     Ccleaner();
                     currUser.Menu();
-                    System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
-                    scanner.nextLine();
+                    /*System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
+                    scanner.nextLine();*/
                     Ccleaner();
                 }
         
@@ -97,7 +97,7 @@ public class Main
             {
                 // Exit system
                 Ccleaner();
-                System.out.println(asciiArt.WHITE + "Exiting the Firm Management System. Goodbye!" + asciiArt.RESET);
+                System.out.println(asciiArt.RED + "Exiting the Firm Management System. Goodbye!" + asciiArt.RESET);
                 systemPower = false;
                 scanner.close();
         
@@ -106,7 +106,7 @@ public class Main
             {
                 // Invalid input
                 Ccleaner();
-                System.out.println(asciiArt.WHITE + "Invalid input. Please enter 1 to Login or 2 to Exit." + asciiArt.RESET);
+                System.out.println(asciiArt.BRIGHT_RED + "Invalid input. Please enter 1 to Login or 2 to Exit." + asciiArt.RESET);
             }
         }
 

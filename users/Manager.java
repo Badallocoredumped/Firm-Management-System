@@ -66,7 +66,7 @@ public class Manager extends Employee
             if(RMString.isEmpty() || RMString.length() > 1)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "You entered an invalid input. Please enter a number between 1 and 9.");
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 9.");
                 System.out.println();
                 continue;
             }
@@ -76,7 +76,7 @@ public class Manager extends Employee
             if (RMInput < '1' || RMInput > '9') 
             {
                     Ccleaner();
-                    System.out.println("You entered an invalid input. Please enter a number between 1 and 9.");
+                    System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 9.");
                     System.out.println();
             }
         

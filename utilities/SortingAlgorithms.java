@@ -26,7 +26,7 @@ public class SortingAlgorithms
                 }
             } else {
                 Ccleaner();
-                System.out.println(color.WHITE + "Error: Please enter a valid number!");
+                System.out.println(color.BRIGHT_RED + "Error: Please enter a valid number!");
                 sizeOfArray.next(); // Clears invalid input
             }
         }
@@ -118,7 +118,7 @@ public class SortingAlgorithms
         if(harmony) {
             System.out.println(color.WHITE + "\nAll algorithms sorted correctly!");
         } else {
-            System.out.println(color.WHITE + "\nERROR: Sorts do not match!");
+            System.out.println(color.BRIGHT_RED + "\nERROR: Sorts do not match!");
         }
     }
     
