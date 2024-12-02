@@ -5,16 +5,48 @@ import java.util.Scanner;
 import utilities.AsciiArt;
 import utilities.InputUtil;
 
+/**
+ * Represents a regular employee in the system. Extends the Employee class and 
+ * provides specific functionality for the regular employee menu and profile management.
+ */
 public class RegularEmployee extends Employee
 {
     AsciiArt color = new AsciiArt();
     public static Scanner input = InputUtil.scanner;
+
+
+    /**
+     * Constructor for the RegularEmployee class.
+     * Initializes the regular employee with the provided attributes.
+     *
+     * @param ID The employee's unique ID.
+     * @param Username The username of the employee.
+     * @param Role The role of the employee.
+     * @param Name The first name of the employee.
+     * @param Surname The surname of the employee.
+     * @param Phone The phone number of the employee.
+     * @param DOB The date of birth of the employee.
+     * @param DOS The date of start of the employee.
+     * @param Email The email address of the employee.
+     * @param Password The password of the employee.
+     * @param DEFAULT_PASSWORD A flag indicating whether the employee has a default password.
+     */
     public RegularEmployee(int ID, String Username, String Role, String Name, String Surname, String Phone, LocalDate DOB, LocalDate DOS, String Email, String Password, Boolean DEFAULT_PASSWORD)
     {
         super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password, DEFAULT_PASSWORD);
     }
 
     // Regular Employee Menu
+    /**
+     * Displays the employee menu and handles user input to allow the regular employee to:
+     * 1. View their profile information.
+     * 2. Update their profile information.
+     * 3. Log out of the system.
+     * <p>
+     * This method runs a loop that continuously displays the menu until the employee selects 
+     * the option to log out (option '3').
+     * </p>
+     */
     @Override
     public void Menu()
     {

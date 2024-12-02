@@ -8,6 +8,17 @@ import utilities.InputHandler;
 import utilities.InputUtil;
 import utilities.SortingAlgorithms;
 
+
+
+
+/**
+ * The Manager class represents a Manager user in the Firm Management System.
+ * 
+ * This class extends the Employee superclass and provides additional functionality
+ * specific to the Manager role. Managers can perform various operations such as 
+ * viewing and managing employees, hiring and firing, and accessing algorithms 
+*/
+
 public class Manager extends Employee
 {
     DataBaseHandler dbHandler = new DataBaseHandler();
@@ -15,23 +26,34 @@ public class Manager extends Employee
     SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
     AsciiArt color = new AsciiArt();
 
-    /* protected int ID;
-    protected String username;
-    protected String role;
-    protected String name;
-    protected String surname;
-    protected String phone;
-    protected LocalDate DOB;
-    protected LocalDate DOS;
-    protected String email;
-    protected String password; */
- 
+
+    /**
+     * Constructs a Manager object with the specified attributes.
+     *
+     * @param ID              Unique identifier for the manager.
+     * @param Username        The manager's username.
+     * @param Role            The role of the user (Manager).
+     * @param Name            The manager's first name.
+     * @param Surname         The manager's last name.
+     * @param Phone           The manager's phone number.
+     * @param DOB             Date of birth of the manager.
+     * @param DOS             Date of starting in the organization.
+     * @param Email           The manager's email address.
+     * @param Password        The manager's password.
+     * @param DEFAULT_PASSWORD Whether the password is default or customized.
+     */
     public Manager(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password,Boolean DEFAULT_PASSWORD)
     {
         super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password,DEFAULT_PASSWORD);
     }
 
-
+    /**
+     * Displays the Manager's menu and processes user input.
+     * 
+     * The menu allows the manager to perform actions such as viewing and updating profiles,
+     * managing employees, and executing algorithms. The menu runs in a loop until the manager
+     * chooses to log out.
+     */
     @Override
     public void Menu() 
     {
@@ -172,7 +194,13 @@ public class Manager extends Employee
     }
 
 
-    
+    /**
+     * Allows the manager to hire a new employee.
+     * 
+     * The method collects necessary details about the new employee such as
+     * username, name, surname, role, date of birth, and date of starting. The
+     * details are validated before being added to the database.
+     */
     protected void HireEmployeeManager()
     {
         String newUsername = inHandle.UsernameInput();
@@ -199,6 +227,13 @@ public class Manager extends Employee
         dbHandler.HireEmployee(newUsername, newName, newSurname, newRole, newDOB, newDOS);
     }
 
+    /**
+     * Allows the manager to fire an existing employee.
+     * 
+     * The method verifies if the employee exists and prevents the manager from
+     * firing themselves. If validation succeeds, the employee is removed from
+     * the database.
+     */
     protected void FireEmployeeManager()
     {
         
@@ -219,12 +254,12 @@ public class Manager extends Employee
         employee = null;
     }
 
-    
-    protected void UpdateSelf()
-    {
-        //this will be overidden from the employee superclass
-    }
-    
+    /**
+     * Updates information for an existing employee.
+     * 
+     * The method prompts the manager to modify specific fields of the employee
+     * profile except for personal details.
+     */
     protected void UpdateEmployee()
     {
          

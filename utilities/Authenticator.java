@@ -2,11 +2,30 @@ package utilities;
 
 import users.Employee;
 
+
+
+/**
+ * The Authenticator class handles authentication tasks in the Firm Management System.
+ * 
+ * This includes user login and logout functionality, as well as password update prompts
+ * for first-time logins. It interacts with the database to validate user credentials.
+ */
 public class Authenticator 
 {
     DataBaseHandler dbHandler = new DataBaseHandler();
     AsciiArt color = new AsciiArt();
 
+    /**
+     * Authenticates a user by their username and password.
+     * 
+     * This method checks the provided credentials against the database. If a match is found,
+     * the corresponding Employee object is returned. If the user is logging in for the first time
+     * (using a default password), they are prompted to change their password.
+     * 
+     * @param username The username provided by the user.
+     * @param password The password provided by the user.
+     * @return An Employee object if authentication is successful, or null if authentication fails.
+     */
     public Employee login(String username, String password)
     {
         try 
@@ -16,18 +35,6 @@ public class Authenticator
             if(newEmployee != null)
             {
                 Ccleaner();
-                /* if(newEmployee.getPassword().equals(password))
-                {
-                    Ccleaner();
-                    return newEmployee;
-                }
-                else
-                {
-                    System.out.println("Invalid password. Please try again.");
-                    return null; 
-
-                } */
-
                 if (newEmployee.getDEFAULT_PASSWORD()) 
                 {   
                     newEmployee.ChangePassword();
@@ -50,6 +57,14 @@ public class Authenticator
         return null;
     }
 
+    /**
+     * Logs out the current user from the system.
+     * 
+     * This method nullifies the current user object and prints a logout confirmation message.
+     * If no user is logged in, an error message is displayed.
+     * 
+     * @param currUser The Employee object representing the currently logged-in user.
+     */
     public void logout(Employee currUser)
     {
         if(currUser != null)
@@ -63,6 +78,14 @@ public class Authenticator
         }
     }
 
+    /**
+     * Clears the console screen.
+     * 
+     * This method attempts to clear the console by running a system command. 
+     * If an error occurs during the process, an error message is printed.
+     * 
+     *
+     */
     static  void Ccleaner()
     {
         try 

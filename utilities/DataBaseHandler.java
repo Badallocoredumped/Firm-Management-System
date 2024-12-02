@@ -18,25 +18,30 @@ import users.RegularEmployee;
 
 
 
-    //Username should not be a duplicate
-    //need to change the datatype for all DOS DOB
-    //database is case insensitive
-
+ 
+/**
+ * The {@code DataBaseHandler} class manages the connection to the database and provides methods
+ * to interact with the employee records. It allows for querying employee details, displaying
+ * employee summaries, and reporting the number of employees in each role.
+ */
 public class DataBaseHandler 
 {
-    private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; // Replace with your DB URL
-    private final String username = "root"; // Replace with your DB username
-    private final String password = "Admin_123"; // Replace with your DB password
+    private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; 
+    private final String username = "root"; 
+    private final String password = "Admin_123"; 
     private Connection connection;
     AsciiArt color = new AsciiArt();
     
+    /**
+     * Constructs a new {@code DataBaseHandler} instance and establishes a connection to the database.
+     * If the connection fails, an error message is displayed.
+     */
     public DataBaseHandler()
     {
         try 
         {
             connection = DriverManager.getConnection(url, username, password);
-            //System.out.println("Database connected successfully!");   
-            //This works twice when changing managers         
+        
         } 
         catch (SQLException e) 
         {
@@ -44,12 +49,11 @@ public class DataBaseHandler
         }
     }
 
-    public void CountAllEmployee()
-    {
-        //maybe add subfunctions that prints how many people you have for each role
-
-    }
-
+    /**
+     * Displays all employee records from the database, including employee details like ID, username,
+     * role, name, phone number, date of birth, start date, and email. It also shows a summary of employees
+     * by role and the total number of employees.
+     */
     public void DispAllEmployee()
     {
         if(connection == null)
@@ -91,9 +95,7 @@ public class DataBaseHandler
                 
         
                 
-                /* System.out.println("Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
-                ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
-                ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail); */
+                
                 System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
                 dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone,
                 dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail);
@@ -103,7 +105,7 @@ public class DataBaseHandler
                 
             }
             
-            //Maybe make this a seperate function
+            
             displayRoleSummary();
             
             int totalEmployees = 0;
@@ -111,16 +113,8 @@ public class DataBaseHandler
             {
                 totalEmployees = countResult.getInt("total");
             }
-            /* System.out.println();
-            while (resultSet.next()) 
-            {
-                String role = resultSet.getString("role");
-                int count = resultSet.getInt("role_count");
-                System.out.println("Role: " + role + " | Number of Employees: " + count);
-                }
-                */
-                //Maybe make this a seperate function
-                System.out.println(color.WHITE + "\nTotal number of employees: \n" + totalEmployees);
+            
+            System.out.println(color.WHITE + "\nTotal number of employees: \n" + totalEmployees);
                 
                 
         } 
@@ -130,6 +124,11 @@ public class DataBaseHandler
         }
 
     }
+
+    /**
+     * Displays a summary of employees by their role. The summary includes the role name and the 
+     * number of employees in each role.
+     */
     private void displayRoleSummary()
     {
         try 
@@ -154,7 +153,13 @@ public class DataBaseHandler
     }
     
 
-
+    /**
+     * Displays the details of all employees with a specified role.
+     * The details include employee ID, username, role, name, phone number,
+     * date of birth, start date, and email. The results are displayed in a formatted table.
+     *
+     * @param role the role of the employees to retrieve (e.g., "Manager", "RegularEmployee")
+     */
     public void DispEmployeeWithRole(String role) 
     {
         if (connection == null) 
@@ -202,7 +207,13 @@ public class DataBaseHandler
         }
     }
     
-
+    /**
+     * Displays the details of an employee with a specified username.
+     * The details include employee ID, username, role, name, phone number,
+     * date of birth, start date, and email. If no such user exists, a message is displayed.
+     *
+     * @param username the username of the employee to retrieve
+     */
     public void DispEmployeeWithUsername(String username)
     {
         if(connection == null)
@@ -255,44 +266,17 @@ public class DataBaseHandler
         }
     }
 
-    public void DispEmployeeWithNameSurname(String Name,String Surname)
-    {
-        if(connection == null)
-        {
-            System.err.println(color.BRIGHT_RED + "Database connection failed!!" + color.RESET);
-        }
-
-        try 
-        {
-            Statement statement = connection.createStatement();
-            String query2do = "SELECT * FROM employees WHERE name = '" + Name + "' AND surname = '" + Surname + "'";
-
-            ResultSet infoSet = statement.executeQuery(query2do);
-
-            while(infoSet.next())
-            {
-                int dbID = infoSet.getInt("employee_id");
-                String dbUsername = infoSet.getString("username");
-                String dbRole = infoSet.getString("role");
-                String dbName = infoSet.getString("name");
-                String dbSurname = infoSet.getString("surname");
-                String dbPhone = infoSet.getString("phone_no");
-                String dbDOB = infoSet.getString("date_of_birth");
-                String dbDOS = infoSet.getString("date_of_start");
-                String dbEmail = infoSet.getString("email");
-
-                System.out.println(color.WHITE + "Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
-                   ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
-                   ", Date of Birth: " + dbDOB + ", Date of Start: " + dbDOS + ", Email: " + dbEmail);
-            }
-            
-        } 
-        catch (SQLException e) 
-        {
-            System.out.println(color.BRIGHT_RED + "Error occured!!"  + color.RESET);
-        }
-    }
-
+    /**
+     * Updates the details of an employee based on the provided choice.
+     * It allows updating various employee attributes such as username, role, name, surname, 
+     * date of birth, and date of start.
+     *
+     * @param choice The character representing the field to be updated.
+     *               '1' for username, '2' for role, '3' for name, '4' for surname, '5' for date of birth, 
+     *               '6' for date of start.
+     * @param tempEmployee The Employee object whose details are being updated.
+     * @param inputHandler The InputHandler object that provides methods to receive user input.
+     */
     public void UpdateEmployeeNPF(char choice,Employee tempEmployee,InputHandler inputHandler)
     {
         switch (choice) 
@@ -338,13 +322,7 @@ public class DataBaseHandler
             case '2':
             {
                 Ccleaner();
-                //Maybe enable this if you don't want other managers depromoted
-
-                /* if(tempEmployee.getRole().toLowerCase().equals("manager"))
-                {
-                    System.out.println("You can not change the role of a manager!!");
-                    break;
-                } */
+                
                 String newRole = inputHandler.RoleInput(tempEmployee.getRole());
                 Ccleaner();
                 String updateRoleQuery = "UPDATE employees SET role = '" + newRole + "' WHERE username = '" + tempEmployee.getUsername() + "'";
@@ -492,45 +470,22 @@ public class DataBaseHandler
                 break;
                 //DOS
             }
-            /* case '7':
-            {
-                Ccleaner();
-                String newEmail = inputHandler.EmailInput(tempEmployee.getEmail());
-                Ccleaner();
-                String updateEmailQuery = "UPDATE employees SET email = '" + newEmail + "' WHERE username = '" + tempEmployee.getUsername() + "'";
-                try 
-                {
-                    Statement statement = connection.createStatement();
-                    int rowsAffected = statement.executeUpdate(updateEmailQuery);
-
-                    if (rowsAffected > 0)
-                    {
-                        System.out.println(color.WHITE + "Username " + tempEmployee.getUsername() + "'s email updated to " + newEmail + " from " + tempEmployee.getEmail() + " successfully!");
-                    } 
-                    else 
-                    {
-                        System.out.println(color.WHITE + "Update failed. Username not found.");
-                    }
-                    
-                } 
-                catch (SQLException e) 
-                {
-                    System.out.println(color.WHITE + "Error occurred while updating username: ");
-                    e.printStackTrace();
-                }
-                tempEmployee.setEmail(newEmail);
-                break;
-                //email
-            } */
-            /* default:
-            {
-                System.out.println("Invalid option. Please try again.");
-            } */
-        
         }
         
     } 
 
+    /**
+     * Adds a new employee to the database.
+     * The employee's details such as username, name, surname, role, date of birth, and date of start 
+     * are inserted into the employees table. The password is automatically generated as "Khas" + username.
+     *
+     * @param username The username of the new employee.
+     * @param name The name of the new employee.
+     * @param surname The surname of the new employee.
+     * @param role The role of the new employee (e.g., "Manager" or "Regular").
+     * @param dob The date of birth of the new employee.
+     * @param dos The date of start of the new employee.
+     */
     public void HireEmployee(String username, String name, String surname, String role, LocalDate dob, LocalDate dos)
     {
         //Add employee to the database
@@ -568,11 +523,15 @@ public class DataBaseHandler
         }
     }
     
-    
+    /**
+     * Removes an employee from the database based on the provided username.
+     * The employee's record will be deleted from the employees table.
+     *
+     * @param username The username of the employee to be removed.
+     */
     public void FireEmployee(String username)
     {
-        //Remove employee from the database
-        //Ask if you are sure you want to delete
+
         try 
         {
             Statement statement = connection.createStatement();
@@ -603,6 +562,13 @@ public class DataBaseHandler
         }
     }
     
+    /**
+     * Retrieves an employee's details from the database based on the provided username.
+     * The method constructs an Employee object based on the data from the database.
+     *
+     * @param username The username of the employee to retrieve.
+     * @return The Employee object containing the employee's details, or null if the employee is not found.
+     */
     public Employee GetEmployeeWithUsername(String username)
     {
         if(connection == null)
@@ -646,21 +612,7 @@ public class DataBaseHandler
                     break;
                 }
 
-                /* if(dbDefault)
-                {
-                    if(dbRole.equals("Manager"))
-                    {
-                        //System.out.println("Login successfull!");
-                        Manager manager = new Manager(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
-                        manager.ChangePassword();
-
-                    }
-                    else
-                    {
-                        RegularEmployee regularEmployee = new RegularEmployee(dbID,dbUsername,dbRole,dbName,dbSurname,dbPhone,localDOB,localDOS,dbEmail,dbPassword, dbDefault);
-                        regularEmployee.ChangePassword();
-                    }
-                } */
+                
 
                 if(dbRole.equals("Manager"))
                 {
@@ -682,6 +634,15 @@ public class DataBaseHandler
         return null;
 
     }
+    
+    /**
+     * Retrieves an employee's details from the database based on the provided username and password.
+     * The method constructs an Employee object based on the data from the database.
+     *
+     * @param username The username of the employee to retrieve.
+     * @param password The password of the employee for authentication.
+     * @return The Employee object containing the employee's details, or null if the employee is not found or the password is incorrect.
+     */
     public Employee GetEmployeeWithUsernameAndPassword(String username,String password)
     {
         if(connection == null)
@@ -765,7 +726,7 @@ public class DataBaseHandler
  
     
     
-    public boolean CheckUsernameDup(String username)
+    /* public boolean CheckUsernameDup(String username)
     {
         if(connection == null)
         {
@@ -794,8 +755,16 @@ public class DataBaseHandler
             System.out.println(color.BRIGHT_RED + "Error occured!!"  + color.RESET);
         }
         return false;
-    }
+    } */
 
+    /**
+     * Checks if a given field contains a duplicate value in the database.
+     * 
+     * @param field The field in the database to check for duplicates (e.g., "email", "phone_no").
+     * @param value The value to check for duplication in the specified field.
+     * @param <T> The type of the value (can be String, Integer, etc.).
+     * @return true if the value exists in the specified field in the database; false otherwise.
+     */
     public <T> boolean CheckDuplicate(String field, T value)
     {
         if (connection == null)
@@ -825,6 +794,13 @@ public class DataBaseHandler
         return false; // No duplicate found
     }
 
+    /**
+     * Prints the profile of an employee based on their username.
+     * This includes employee details like ID, username, role, name, surname, phone number, 
+     * date of birth, date of start, and email.
+     *
+     * @param username The username of the employee whose profile will be printed.
+     */
     public void PrintProfile(String username)
     {
         if(connection == null)
@@ -871,7 +847,13 @@ public class DataBaseHandler
         }
     }
 
-
+    /**
+     * Updates the phone number of an employee in the database based on their employee ID.
+     * If the update is successful, a success message is printed.
+     *
+     * @param employee_id The ID of the employee whose phone number needs to be updated.
+     * @param phone The new phone number to be set for the employee.
+     */
     public void UpdatePhone(int employee_id, String phone)
     {
         String query2do = "UPDATE employees SET phone_no = ? WHERE employee_id = " + employee_id;
@@ -898,6 +880,13 @@ public class DataBaseHandler
         }
     }
 
+    /**
+     * Updates the password of an employee in the database based on their employee ID.
+     * If the update is successful, a success message is printed.
+     *
+     * @param employee_id The ID of the employee whose password needs to be updated.
+     * @param password The new password to be set for the employee.
+     */
     public void UpdatePassword(int employee_id, String password)
     {
         String query2do = "UPDATE employees SET password = ?, DEFAULT_PASSWORD = FALSE WHERE employee_id = " + employee_id;
@@ -924,6 +913,13 @@ public class DataBaseHandler
         }
     }
 
+    /**
+     * Updates the email address of an employee in the database based on their employee ID.
+     * If the update is successful, a success message is printed.
+     *
+     * @param employee_id The ID of the employee whose email needs to be updated.
+     * @param email The new email address to be set for the employee.
+     */
     public void UpdateEmail(int employee_id, String email)
     {
         String query2do = "UPDATE employees SET email = ? WHERE employee_id = " + employee_id;
@@ -951,7 +947,14 @@ public class DataBaseHandler
     }
 
 
-
+    /**
+     * Clears the console screen.
+     * 
+     * This method attempts to clear the console by running a system command. 
+     * If an error occurs during the process, an error message is printed.
+     * 
+     *
+     */
     static  void Ccleaner()
     {
         try 

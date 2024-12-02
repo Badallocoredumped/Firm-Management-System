@@ -8,16 +8,21 @@ import utilities.Authenticator;
 import utilities.InputUtil;
 
 
-
+/**
+ * Main class for the Firm Management System.
+ * 
+ * This class serves as the entry point for the application. It handles the 
+ * main menu, user login/logout flow, and role-based menu navigation. The system 
+ * supports roles like Manager and RegularEmployee, and interacts with utility 
+ * classes such as AsciiArt, Authenticator, and InputUtil.
+ * 
+ * The system continues running until the user opts to exit.
+ */
 public class Main 
 {
     public static void main(String[] args)
     {
         AsciiArt asciiArt = new AsciiArt();
-
-        //Make sure you log in and credential are correct before updating the password
-
-
         Scanner scanner = InputUtil.scanner;
         Authenticator authenticator = new Authenticator();
         Employee currUser = null;
@@ -76,16 +81,12 @@ public class Main
                 {
                     Ccleaner();
                     currUser.Menu();
-                    /*System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
-                    scanner.nextLine();*/
                     Ccleaner();
                 } 
                 else if (currUser instanceof RegularEmployee) 
                 {
                     Ccleaner();
                     currUser.Menu();
-                    /*System.out.println(asciiArt.WHITE + "Enter anything to return" + asciiArt.RESET);
-                    scanner.nextLine();*/
                     Ccleaner();
                 }
         
@@ -111,7 +112,14 @@ public class Main
         }
 
     }
-    
+    /**
+     * Clears the console screen.
+     * 
+     * This method attempts to clear the console by running a system command. 
+     * If an error occurs during the process, an error message is printed.
+     * 
+     *
+     */
     static  void Ccleaner()
     {
         try 

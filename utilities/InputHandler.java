@@ -7,12 +7,19 @@ import java.util.Set;
 
 import users.Employee;
 
+/**
+ * Handles user inputs and provides validation for various fields such as username, name, dates, etc.
+ */
 public class InputHandler 
 {
     Scanner scanner = InputUtil.scanner;
     DataBaseHandler dbHandler = new DataBaseHandler();
     AsciiArt color = new AsciiArt();
-
+    
+    /**
+     * Prompts the user to enter a username, validates it, and checks for duplicates.
+     * @return A valid and unique username.
+     */
     public String UsernameInput()
     {
         String username;
@@ -46,6 +53,11 @@ public class InputHandler
             }
         }
     }
+
+    /**
+     * Prompts the user to enter a username without checking for duplicates.
+     * @return A valid username.
+     */
     public String UsernameInputToOperate()
     {
         String username;
@@ -73,6 +85,11 @@ public class InputHandler
     
     //NOTE: The matches() method in Java checks if a string matches a given regular expression (regex)
 
+    /**
+     * Prompts the user to enter a valid name and validates it using a regular expression.
+     * @param tempName A temporary name to ensure the new name is not the same.
+     * @return A valid name.
+     */
     public String NameInput(String tempName)
     {
         String name;
@@ -97,6 +114,12 @@ public class InputHandler
             }
         }
     }
+
+    /**
+     * Prompts the user to enter a valid surname and validates it using a regular expression.
+     * @param tempSurname A temporary surname to ensure the new surname is not the same.
+     * @return A valid surname.
+     */
     public String SurnameInput(String tempSurname)
     {
         String surname = "";
@@ -124,6 +147,11 @@ public class InputHandler
         }
     }
     
+    /**
+     * Prompts the user to enter a role and validates it against a predefined set of roles.
+     * @param tempRole A temporary role to ensure the new role is not the same.
+     * @return A valid role.
+     */
     public String RoleInput(String tempRole)
     {
         Set<String> validRoles = Set.of("manager", "engineer", "technician", "intern"); //Simple hashset
@@ -159,6 +187,11 @@ public class InputHandler
         }
     }
 
+    /**
+     * Prompts the user to enter a phone number and validates its format and uniqueness.
+     * @param tempPhone A temporary phone number to ensure the new phone is not the same.
+     * @return A valid phone number.
+     */
     public String PhoneInput(String tempPhone)
     {
         String phone = "";
@@ -192,6 +225,11 @@ public class InputHandler
         }
     }
 
+    /**
+     * Prompts the user to enter a date of birth and validates it.
+     * @param tempDOB A temporary date of birth to ensure the new DOB is not the same.
+     * @return A valid date of birth.
+     */
     public LocalDate DobInput(LocalDate tempDOB)
     {
         while(true)
@@ -244,6 +282,11 @@ public class InputHandler
 
     }
 
+    /**
+     * Prompts the user to enter a start date and validates it to ensure it is not in the future.
+     * @param tempDOS A temporary date of start to ensure the new date is not the same.
+     * @return A valid start date.
+     */
     public LocalDate DosInput(LocalDate tempDOS)
     {
         while(true)
@@ -265,7 +308,7 @@ public class InputHandler
                 if (dos.isAfter(LocalDate.now()))
                 {
                     Ccleaner();
-                    System.out.println(color.BRIGHT_RED + "Date of Birth cannot be in the future!!");
+                    System.out.println(color.BRIGHT_RED + "Start Date cannot be in the future!!");
                     
                 }
                 else
@@ -282,6 +325,12 @@ public class InputHandler
         }
     }
 
+    /**
+     * Validates that the start date is after the date of birth.
+     * @param DOB The date of birth.
+     * @param DOS The date of start.
+     * @return True if the start date is after the date of birth, false otherwise.
+     */
     public boolean DoesDatesMakeSense(LocalDate DOB, LocalDate DOS)
     {
         if(DOS.isAfter(DOB))
@@ -293,6 +342,11 @@ public class InputHandler
         return false;
     }
 
+    /**
+     * Prompts the user to enter an email address and validates it for proper format and uniqueness.
+     * @param tempEmail A temporary email to ensure the new email is not the same.
+     * @return A valid email address.
+     */
     public String EmailInput(String tempEmail)
     {
         String email = "";
@@ -326,6 +380,12 @@ public class InputHandler
         }
     }
 
+    /**
+     * Asks the user if they want to return to the main menu.
+     * @param input The Scanner object for user input.
+     * @param flag A boolean flag (unused in the current method logic).
+     * @return True if the user chooses to return to the main menu, false otherwise.
+     */
     public boolean WannaReturn(Scanner input,boolean flag)
     {
         char PA = '0';
@@ -365,6 +425,10 @@ public class InputHandler
         return false;
     }
 
+    /**
+     * Handles updating employee information based on the user's input.
+     * Displays a menu of fields to update and processes the user's selection.
+     */
     public void UpdateInput()
     {
         System.out.println(color.WHITE + "Enter the username of the employee you would like to update");
@@ -427,7 +491,14 @@ public class InputHandler
 
         
     
-    
+    /**
+     * Clears the console screen.
+     * 
+     * This method attempts to clear the console by running a system command. 
+     * If an error occurs during the process, an error message is printed.
+     * 
+     *
+     */
     static public void Ccleaner()
     {
         try 

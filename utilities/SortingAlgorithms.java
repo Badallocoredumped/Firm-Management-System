@@ -1,8 +1,21 @@
 package utilities;
 import java.util.*;
 
+
+/**
+ * The {@code SortingAlgorithms} class provides functionality to generate random arrays,
+ * apply multiple sorting algorithms, measure their execution times, and verify their correctness.
+ * Algorithms implemented include Radix Sort, Shell Sort, Heap Sort, and Insertion Sort.
+ * The class also provides functionality to compare results against Java's Collections.sort.
+ */
 public class SortingAlgorithms 
 {
+    /**
+     * Prompts the user to input the size of the array (between 1000 and 10000) and ensures valid input.
+     * Once validated, runs the sorting algorithms on a randomly generated array of the specified size.
+     *
+     * @param sizeOfArray a {@link Scanner} instance for user input.
+     */
     public void getInputAndRunAlgorithms(Scanner sizeOfArray) 
     {
         SortingAlgorithms mainArr = new SortingAlgorithms();
@@ -34,7 +47,13 @@ public class SortingAlgorithms
         mainArr.runAlgorithmComparison(sequence);
     }
     
-    // Measures the running time of each algorithm in nanoseconds
+    /**
+     * Runs multiple sorting algorithms on a randomly generated array of the specified size.
+     * Measures and prints the execution time of each sorting algorithm in milliseconds.
+     * Verifies the correctness of sorting by comparing results with Java's Collections.sort.
+     *
+     * @param sizeOfArray the size of the array to be sorted, must be between 1000 and 10000.
+     */
     public void runAlgorithmComparison(int sizeOfArray) 
     { // sizeOfArray = array size
         // Random number generator
@@ -123,6 +142,12 @@ public class SortingAlgorithms
     }
     
     // Shell sort, which is an improved version of insertion sort, sorts the array by dividing it at certain intervals.
+    /**
+     * Implements Shell Sort on the given array. Shell Sort is an optimized version of Insertion Sort,
+     * which sorts elements at specific gaps that reduce over iterations.
+     *
+     * @param sequence the array to be sorted.
+     */
     private void shellSort(int[] sequence) {
         int dimension = sequence.length;
         for(int harper = dimension/2; harper > 0; harper /= 2) {
@@ -138,6 +163,12 @@ public class SortingAlgorithms
     }
     
     // It works with the logic of a tree branch.
+    /**
+     * Implements Heap Sort on the given array. Heap Sort constructs a binary heap and repeatedly
+     * extracts the maximum element to build a sorted array.
+     *
+     * @param heap the array to be sorted.
+     */
     private void heapSort(int[] heap) {
         int arraySize = heap.length;
         
@@ -154,7 +185,13 @@ public class SortingAlgorithms
         }
     }
     
-    
+    /**
+     * Helper method for Heap Sort. Organizes a subtree into a max heap.
+     *
+     * @param tree the array representing the heap.
+     * @param capacity the size of the heap.
+     * @param root the root index of the subtree.
+     */
     private void heapify(int[] tree, int capacity, int root) {
         int third = root;
         int leftChild = 2 * root + 1;
@@ -178,6 +215,12 @@ public class SortingAlgorithms
     }
     
     // insertion sort sorts the array by scanning it from left to right
+    /**
+     * Implements Insertion Sort on the given array. Insertion Sort works by dividing the array into a sorted
+     * and an unsorted part and repeatedly inserting the first element of the unsorted part into the sorted part.
+     *
+     * @param array the array to be sorted.
+     */
     private void insertionSort(int[] array) {
         int length = array.length;
         
@@ -208,6 +251,12 @@ public class SortingAlgorithms
     }
     
     // radix sort sorts numbers according to their digits, uses the counting sort auxiliary algorithm
+    /**
+     * Implements Radix Sort on the given array. Radix Sort processes the digits of numbers in multiple passes,
+     * sorting numbers by each digit starting from the least significant to the most significant digit.
+     *
+     * @param data the array to be sorted.
+     */
     private void radixSort(int[] data) {
         // Converts negative numbers to positive
         int max = Integer.MIN_VALUE;
@@ -238,6 +287,12 @@ public class SortingAlgorithms
         }
     }
     
+    /**
+     * A helper method for Radix Sort. Performs counting sort on the array based on the specified digit place.
+     *
+     * @param input the array to be sorted.
+     * @param exp the current digit's place value (e.g., 1 for units, 10 for tens).
+     */
     private void countingSortForRadix(int[] input, int exp) {
         int[] count = new int[10];
         int[] output = new int[input.length];
@@ -259,6 +314,15 @@ public class SortingAlgorithms
             input[fourth] = output[fourth];
         }
     }
+
+    /**
+     * Clears the console screen.
+     * 
+     * This method attempts to clear the console by running a system command. 
+     * If an error occurs during the process, an error message is printed.
+     * 
+     *
+     */
     static public void Ccleaner()
     {
         try 

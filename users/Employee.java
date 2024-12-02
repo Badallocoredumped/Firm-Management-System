@@ -6,6 +6,13 @@ import utilities.AsciiArt;
 import utilities.DataBaseHandler;
 import utilities.InputUtil;
 
+
+/**
+ * The Employee class serves as an abstract base for all employee types in the Firm Management System.
+ * 
+ * This class defines common properties, behaviors, and operations that all employees share.
+ * Specific employee roles, such as Manager, will extend this class and implement its abstract methods.
+ */
 public abstract class Employee 
 {
     protected int ID;
@@ -23,6 +30,23 @@ public abstract class Employee
     public static Scanner input = InputUtil.scanner;
     static DataBaseHandler dbHandler = new DataBaseHandler();
     AsciiArt color = new AsciiArt();
+
+
+    /**
+     * Constructs a new Employee object.
+     * 
+     * @param ID Unique identifier for the employee.
+     * @param Username Username for employee login.
+     * @param Role Role of the employee in the organization.
+     * @param Name First name of the employee.
+     * @param Surname Last name of the employee.
+     * @param Phone Phone number of the employee.
+     * @param DOB Date of birth of the employee.
+     * @param DOS Employment start date.
+     * @param Email Email address of the employee.
+     * @param Password Password for employee login.
+     * @param DEFAULT_PASSWORD Indicates if the password is the default value.
+     */
     public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password, Boolean DEFAULT_PASSWORD)
     {
         this.ID = ID;
@@ -60,8 +84,16 @@ public abstract class Employee
     public void setEmploymentDay(LocalDate employmentdatetochange){this.DOS = employmentdatetochange;}
     public Boolean getDEFAULT_PASSWORD() {return DEFAULT_PASSWORD;}
     
+    /**
+     * Abstract method to display the menu for specific employee roles.
+     * Subclasses must implement this method to define role-specific menu operations.
+     */
     public abstract void Menu();
 
+    /**
+     * Prompts the employee to change their password.
+     * Enforces rules such as no spaces and a length between 8 and 16 characters.
+     */
     public void ChangePassword()
     {
         System.out.println(color.MAGENTA + "Updating password" + color.RESET);
@@ -92,6 +124,10 @@ public abstract class Employee
         }
     }
 
+    /**
+     * Prompts the employee to update their email address.
+     * Ensures valid formatting and checks for duplicates in the database.
+     */
     public void ChangeEmail()
     {
         System.out.println(color.MAGENTA + "Updating email" + color.RESET);
@@ -129,6 +165,10 @@ public abstract class Employee
         }
     }
 
+    /**
+     * Prompts the employee to update their phone number.
+     * Ensures the phone number is unique, has 10 digits, and is numeric.
+     */
     public void ChangePhone()
     {
         System.out.println(color.MAGENTA + "Updating phone number" + color.RESET);
@@ -165,6 +205,9 @@ public abstract class Employee
         }
     }
 
+    /**
+     * Updates all profile fields: email, phone, and password.
+     */
     public void UpdateAll()
     {
         ChangeEmail();
@@ -174,6 +217,9 @@ public abstract class Employee
         //Maybe add and option to exit directly or enter blanks to not change the a section(add a note to it too)
     }
 
+    /**
+     * Displays a menu for updating specific profile fields or all fields.
+     */
     public void UpdateProfile()
     {
         String UPString;
@@ -262,6 +308,9 @@ public abstract class Employee
         }
     }
 
+    /**
+     * Displays the complete profile of the employee.
+     */
     public void PrintProfile()
     {
             Ccleaner();
@@ -282,6 +331,14 @@ public abstract class Employee
     
     }
 
+    /**
+     * Clears the console screen.
+     * 
+     * This method attempts to clear the console by running a system command. 
+     * If an error occurs during the process, an error message is printed.
+     * 
+     *
+     */
     public void Ccleaner()
     {
         try 
