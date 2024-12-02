@@ -14,15 +14,9 @@ public class Main
     public static void main(String[] args)
     {
         AsciiArt asciiArt = new AsciiArt();
-        //Add register??
-        //check if the name is the same or someshit in manager update thing
-        //Make the phone number exactly 10 digits max maybe change the database 
+
         //Make sure you log in and credential are correct before updating the password
 
-        //Algorithms needs to be english
-        //password should accept turkish
-        //Alara has to do the ascii
-        //ask teh registration
 
         Scanner scanner = InputUtil.scanner;
         Authenticator authenticator = new Authenticator();

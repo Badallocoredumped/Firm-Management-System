@@ -109,6 +109,12 @@ public abstract class Employee
                 System.out.println(color.WHITE + "You can not use the same Email!!");
                 continue;
             }
+            else if(dbHandler.CheckDuplicate("email",nEmail))
+            {
+                Ccleaner();
+                System.out.println(color.WHITE + "Email" + nEmail + "already exists in the database!!");
+                continue;
+            }
 
             if (!nEmail.matches(EmailRegex)) 
             {
@@ -137,6 +143,12 @@ public abstract class Employee
             {
                 Ccleaner();
                 System.out.println(color.WHITE + "You can not use the same phone number!!");
+                continue;
+            }
+            else if(dbHandler.CheckDuplicate("phone_no",nPhone))
+            {
+                Ccleaner();
+                System.out.println(color.WHITE + "Phone number" + nPhone + "already exists in the database!!");
                 continue;
             }
 
