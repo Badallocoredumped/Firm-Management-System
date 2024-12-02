@@ -44,7 +44,7 @@ public class Manager extends Employee
             System.out.println(color.MAGENTA + "=========================================" + color.RESET);
             System.out.println(color.MAGENTA + "          *** Manager Menu ***           " + color.RESET);
             System.out.println(color.MAGENTA + "=========================================" + color.RESET);
-            System.out.println(color.BRIGHT_BLUE + "Good day, " + getName() + "!" + color.RESET);
+            System.out.println(color.BRIGHT_BLUE + "Good day, " + getRole() + " " + getName() + " " + getSurname() + "!" + color.RESET);
             System.out.println(color.MAGENTA + "-----------------------------------------" + color.RESET);
             System.out.println(color.WHITE + " 0. Display Profile");
             System.out.println(" 1. Update Profile");
@@ -56,7 +56,7 @@ public class Manager extends Employee
             System.out.println(" 7. Fire Employee");
             System.out.println(" 8. Algorithms");
             System.out.println(" 9. Logout" + color.RESET);
-            System.out.println(color.MAGENTA +"---------------------------------"+ color.RESET);
+            System.out.println(color.MAGENTA +"-----------------------------------------"+ color.RESET);
             System.out.print(color.WHITE + "Select an option (0-9): " + color.RESET);
 
 

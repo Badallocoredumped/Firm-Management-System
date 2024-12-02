@@ -25,7 +25,7 @@ public class RegularEmployee extends Employee
             System.out.println(color.MAGENTA + "=================================");
             System.out.println(color.MAGENTA + "      *** Employee Menu ***      ");
             System.out.println(color.MAGENTA + "=================================");
-            System.out.println("Good day, " + getName() + "!");
+            System.out.println(color.BRIGHT_BLUE + "Good day, " + getRole() + " " + getName() + " " + getSurname() + "!" + color.RESET);
             System.out.println(color.BRIGHT_BLUE + "---------------------------------");
 
             System.out.println(color.WHITE + " 1. Profile Information");

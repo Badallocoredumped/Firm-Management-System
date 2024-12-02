@@ -218,14 +218,14 @@ public class DataBaseHandler
             if (!infoSet.isBeforeFirst()) // This checks if there are any rows in the ResultSet 
             { 
                 //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
-                System.out.println(color.WHITE + "User named " + username + " does not exist in the database inside displayemployee.");
+                System.out.println(color.WHITE + "User named " + username + " does not exist in the database.");
                 return;
             }
 
             System.out.println(color.WHITE + "==============================================================================" + 
                 "==============================================================================");
             System.out.printf(color.WHITE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s |%n",
-                    "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email");
+                    "Emp ID", "Username", "Role", "Name", "Phone No", "Date of Birth", "Start Date", "Email");
             System.out.println(color.WHITE + "==============================================================================" + 
                 "==============================================================================");
             
