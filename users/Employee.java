@@ -1,8 +1,10 @@
 package users;
 import java.time.LocalDate;
 import java.util.Scanner;
-import utilities.DataBaseHandler;
+
 import utilities.AsciiArt;
+import utilities.DataBaseHandler;
+import utilities.InputUtil;
 
 public abstract class Employee 
 {
@@ -18,7 +20,7 @@ public abstract class Employee
     protected String Password;
     protected Boolean DEFAULT_PASSWORD;
 
-    public static Scanner input = new Scanner(System.in);
+    public static Scanner input = InputUtil.scanner;
     static DataBaseHandler dbHandler = new DataBaseHandler();
     AsciiArt color = new AsciiArt();
     public Employee(int ID, String Username,String Role,String Name,String Surname,String Phone,LocalDate DOB,LocalDate DOS,String Email,String Password, Boolean DEFAULT_PASSWORD)

@@ -5,8 +5,8 @@ import java.util.Scanner;
 import utilities.AsciiArt;
 import utilities.DataBaseHandler;
 import utilities.InputHandler;
+import utilities.InputUtil;
 import utilities.SortingAlgorithms;
-
 
 public class Manager extends Employee
 {
@@ -35,7 +35,7 @@ public class Manager extends Employee
     @Override
     public void Menu() 
     {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = InputUtil.scanner;
         String RMString;
         char RMInput = '0';
         while(RMInput != '9')

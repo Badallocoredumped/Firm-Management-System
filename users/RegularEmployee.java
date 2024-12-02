@@ -1,12 +1,14 @@
 package users;
 import java.time.LocalDate;
 import java.util.Scanner;
+
 import utilities.AsciiArt;
+import utilities.InputUtil;
 
 public class RegularEmployee extends Employee
 {
     AsciiArt color = new AsciiArt();
-    public static Scanner input = new Scanner(System.in);
+    public static Scanner input = InputUtil.scanner;
     public RegularEmployee(int ID, String Username, String Role, String Name, String Surname, String Phone, LocalDate DOB, LocalDate DOS, String Email, String Password, Boolean DEFAULT_PASSWORD)
     {
         super(ID, Username,Role,Name,Surname,Phone,DOB,DOS,Email,Password, DEFAULT_PASSWORD);

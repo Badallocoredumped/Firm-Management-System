@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 import users.Employee;
@@ -6,6 +5,8 @@ import users.Manager;
 import users.RegularEmployee;
 import utilities.AsciiArt;
 import utilities.Authenticator;
+import utilities.InputUtil;
+
 
 
 public class Main 
@@ -13,7 +14,6 @@ public class Main
     public static void main(String[] args)
     {
         AsciiArt asciiArt = new AsciiArt();
-
         //Add register??
         //check if the name is the same or someshit in manager update thing
         //Make the phone number exactly 10 digits max maybe change the database 
