@@ -62,12 +62,18 @@ public class RegularEmployee extends Employee
                 {
                     Ccleaner();
                     PrintProfile();
+                    System.out.println("Enter anything to return");
+                    input.nextLine();
+                    Ccleaner();
                 }
 
                 case '2'-> //Update info
                 {
                     Ccleaner();
                     UpdateProfile();
+                    System.out.println("Enter anything to return");
+                    input.nextLine();
+                    Ccleaner();
                 }
                 
                 case '3'-> //Logout

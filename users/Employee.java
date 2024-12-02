@@ -125,7 +125,7 @@ public abstract class Employee
 
     public void ChangePhone()
     {
-        System.out.println(color.WHITE + "Updating phone number");
+        System.out.println(color.MAGENTA + "Updating phone number");
         boolean Changed = false;
         String cPhone = getPhone();
         String nPhone;
@@ -158,7 +158,7 @@ public abstract class Employee
         ChangeEmail();
         ChangePhone();
         ChangePassword();
-        System.out.println(color.WHITE + "The profile has been updated succesfully");
+        System.out.println(color.BRIGHT_BLUE + "The profile has been updated succesfully");
     }
 
     public void UpdateProfile()
@@ -168,14 +168,14 @@ public abstract class Employee
             
         while(UPInput != '5')
         {
-            System.out.println(color.WHITE + "Update profile");
+            System.out.println(color.MAGENTA + "Update profile");
             System.out.println(color.WHITE + "1. Change email");
             System.out.println(color.WHITE + "2. Change phone number");
             System.out.println(color.WHITE + "3. Change password");
             System.out.println(color.WHITE + "4. Update all profile information");
             System.out.println(color.WHITE + "5. Return to main menu");
             System.out.println();
-            System.out.print(color.WHITE + "Select an Operation: ");
+            System.out.print(color.BRIGHT_BLUE + "Select an Operation: ");
             UPString = input.nextLine();
 
             // Checks single character inputs

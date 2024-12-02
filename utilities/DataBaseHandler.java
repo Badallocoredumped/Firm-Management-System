@@ -26,7 +26,7 @@ public class DataBaseHandler
 {
     private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; // Replace with your DB URL
     private final String username = "root"; // Replace with your DB username
-    private final String password = "Admin_123"; // Replace with your DB password
+    private final String password = "Tecakanadji1"; // Replace with your DB password
     private Connection connection;
     AsciiArt color = new AsciiArt();
     
@@ -70,12 +70,12 @@ public class DataBaseHandler
             String query2do = "SELECT * FROM employees";
             ResultSet infoSet = statement.executeQuery(query2do);
             
-            System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
-            System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+            System.out.println(color.WHITE + "===================================================================================" + 
+                "=========================================================================");
+            System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
             "Emp ID", "Username", "Role", "Name", "Phone", "DOB", "Start Date", "Email");
-            System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
+            System.out.println(color.WHITE + "===================================================================================" + 
+                "=========================================================================");
             
             while(infoSet.next())
             {
@@ -94,12 +94,12 @@ public class DataBaseHandler
                 /* System.out.println("Employee ID: " + dbID + ", Username: " + dbUsername + ", Role: " + dbRole +
                 ", Name: " + dbName + " " + dbSurname + ", Phone Number: " + dbPhone + 
                 ", Date of Birth: " + dob + ", Date of Start: " + dos + ", Email: " + dbEmail); */
-                System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
                 dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone,
                 dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail);
                 
-                System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
+                System.out.println(color.WHITE + "===================================================================================" + 
+                "=========================================================================");
                 
             }
             
@@ -170,11 +170,11 @@ public class DataBaseHandler
             ResultSet infoSet = statement.executeQuery(query2do);
     
             System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
-            System.out.printf(color.WHITE + "| %-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                "==============================================================================");
+            System.out.printf(color.WHITE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
                     "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email");
             System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
+                "==============================================================================");
     
             while (infoSet.next()) 
             {
@@ -188,12 +188,12 @@ public class DataBaseHandler
                 String dbDOS = infoSet.getString("date_of_start");
                 String dbEmail = infoSet.getString("email");
     
-                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
                         dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail);
             }
     
             System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
+                "==============================================================================");
     
         } 
         catch (SQLException e) 
@@ -223,11 +223,11 @@ public class DataBaseHandler
             }
 
             System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
-            System.out.printf(color.WHITE + "| %-10s | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s |%n",
+                "==============================================================================");
+            System.out.printf(color.WHITE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s |%n",
                     "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email");
             System.out.println(color.WHITE + "==============================================================================" + 
-                "====================================================================");
+                "==============================================================================");
             
             while(infoSet.next())
             {
@@ -241,12 +241,12 @@ public class DataBaseHandler
                 String dbDOS = infoSet.getString("date_of_start");
                 String dbEmail = infoSet.getString("email");
 
-                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-20s | %-15s | %-12s | %-12s | %-30s%n",
+                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
                     dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail);
                 
             }
             System.out.println(color.WHITE + "==============================================================================" + 
-                    "====================================================================");
+                    "==============================================================================");
         }
 
         catch (SQLException e) 
