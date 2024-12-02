@@ -4,8 +4,8 @@ import java.util.Scanner;
 import users.Employee;
 import users.Manager;
 import users.RegularEmployee;
-import utilities.Authenticator;
 import utilities.AsciiArt;
+import utilities.Authenticator;
 
 
 public class Main 
@@ -24,7 +24,7 @@ public class Main
         //Alara has to do the ascii
         //ask teh registration
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = InputUtil.scanner;
         Authenticator authenticator = new Authenticator();
         Employee currUser = null;
         boolean systemPower = true;
