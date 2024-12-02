@@ -179,7 +179,7 @@ public class Manager extends Employee
         String newName = inHandle.NameInput("");
         String newSurname = inHandle.SurnameInput("");
         String newRole = inHandle.RoleInput("");
-        String newPhone = inHandle.PhoneInput("");
+        //String newPhone = inHandle.PhoneInput("");
         LocalDate newDOB;
         LocalDate newDOS;
         while(true)
@@ -194,9 +194,9 @@ public class Manager extends Employee
             Ccleaner();
             System.out.println("So you were born after you got the job. Amazing employe.");
         }
-        String newEmail = inHandle.EmailInput("");
+        //String newEmail = inHandle.EmailInput("");
         
-        dbHandler.HireEmployee(newUsername, newName, newSurname, newRole, newPhone, newDOB, newDOS, newEmail);
+        dbHandler.HireEmployee(newUsername, newName, newSurname, newRole, newDOB, newDOS);
     }
 
     protected void FireEmployeeManager()
