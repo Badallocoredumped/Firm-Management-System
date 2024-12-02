@@ -44,7 +44,7 @@ public class Authenticator
         } 
         catch (Exception e) 
         {
-            System.err.println(color.BRIGHT_RED + "Something bad happened" + color.RESET);
+            System.err.println(color.BRIGHT_RED + "Something bad happened!!" + color.RESET);
 
         }
         return null;
@@ -59,7 +59,7 @@ public class Authenticator
         }
         else
         {
-            System.err.println(color.BRIGHT_RED + "Error logout" + color.RESET);
+            System.err.println(color.BRIGHT_RED + "Error logout!!" + color.RESET);
         }
     }
 

@@ -22,11 +22,11 @@ public class SortingAlgorithms
                     validInput = true;
                 } else {
                     Ccleaner();
-                    System.out.println(color.WHITE + "Please enter a number between 1000 and 10000!");
+                    System.out.println(color.WHITE + "Please enter a number between 1000 and 10000!!");
                 }
             } else {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Error: Please enter a valid number!");
+                System.out.println(color.BRIGHT_RED + "Error: Please enter a valid number!!");
                 sizeOfArray.next(); // Clears invalid input
             }
         }
@@ -118,7 +118,7 @@ public class SortingAlgorithms
         if(harmony) {
             System.out.println(color.WHITE + "\nAll algorithms sorted correctly!");
         } else {
-            System.out.println(color.BRIGHT_RED + "\nERROR: Sorts do not match!");
+            System.out.println(color.BRIGHT_RED + "\nERROR: Sorts do not match!!");
         }
     }
     

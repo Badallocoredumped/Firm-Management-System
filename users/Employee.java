@@ -119,7 +119,7 @@ public abstract class Employee
             if (!nEmail.matches(EmailRegex)) 
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Invalide email format!! (Spacial characters are not allowed)" + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Invalide email format!! (Special characters are not allowed)" + color.RESET);
                 continue;
             }
 
@@ -155,7 +155,7 @@ public abstract class Employee
             if (nPhone.length() != 10 || nPhone.isBlank() ||  !nPhone.matches("\\d+")) 
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Phone number must have 10 digits"  + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Phone number must have 10 digits!!"  + color.RESET);
                 continue;
             }
 
@@ -170,7 +170,7 @@ public abstract class Employee
         ChangeEmail();
         ChangePhone();
         ChangePassword();
-        System.out.println(color.BRIGHT_GREEN + "The profile has been updated succesfully"  + color.RESET);
+        System.out.println(color.BRIGHT_GREEN + "The profile has been updated succesfully!!"  + color.RESET);
         //Maybe add and option to exit directly or enter blanks to not change the a section(add a note to it too)
     }
 
@@ -197,7 +197,7 @@ public abstract class Employee
             if(UPString.isEmpty() || UPString.length() > 1)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3." + color.RESET);
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3!!" + color.RESET);
                 System.out.println();
                 continue;
             }
@@ -207,7 +207,7 @@ public abstract class Employee
             if (UPInput < '1' || UPInput > '5') 
             {
                     Ccleaner();
-                    System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3." + color.RESET);
+                    System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3!!" + color.RESET);
                     System.out.println();
             }
         

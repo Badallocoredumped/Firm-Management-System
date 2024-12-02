@@ -39,7 +39,7 @@ public class RegularEmployee extends Employee
             if(RMString.isEmpty() || RMString.length() > 1)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3." + color.RESET);
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3!!" + color.RESET);
                 System.out.println();
                 continue;
             }
@@ -49,7 +49,7 @@ public class RegularEmployee extends Employee
             if (RMInput < '1' || RMInput > '3') 
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED+ "You entered an invalid input. Please enter a number between 1 and 3." + color.RESET);
+                System.out.println(color.BRIGHT_RED+ "You entered an invalid input. Please enter a number between 1 and 3!!" + color.RESET);
                 System.out.println();
             }
         
