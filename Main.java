@@ -60,9 +60,9 @@ public class Main
             {
                 // Login flow
                 Ccleaner();
+                System.out.println(asciiArt.WHITE + "Please login with your username and password!!"  + asciiArt.RESET);
                 while (currUser == null) 
                 {
-                    System.out.println(asciiArt.WHITE + "Please login with your username and password!!"  + asciiArt.RESET);
                     System.out.print(asciiArt.BLUE + "Username: " + asciiArt.RESET);
                     String userName = scanner.nextLine();
         
