@@ -264,7 +264,7 @@ public class Manager extends Employee
     protected void UpdateEmployee()
     {
          
-        inHandle.UpdateInput();
+        inHandle.UpdateInput(this.Username);
         
         
     }

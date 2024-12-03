@@ -229,7 +229,7 @@ public class DataBaseHandler
             if (!infoSet.isBeforeFirst()) // This checks if there are any rows in the ResultSet 
             { 
                 //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
-                System.out.println(color.WHITE + "User named " + username + " does not exist in the database.");
+                System.out.println(color.BRIGHT_RED + "User named " + username + " does not exist in the database.");
                 return;
             }
 
@@ -300,7 +300,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.WHITE + "Username " + tempEmployee.getUsername() + " updated to " + newUsername + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + " updated to " + newUsername + " successfully!");
                     } 
                     else 
                     {
@@ -333,7 +333,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.WHITE + "Username " + tempEmployee.getUsername() + "'s role updated to " + newRole + " from " + tempEmployee.getRole() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s role updated to " + newRole + " from " + tempEmployee.getRole() + " successfully!");
                     } 
                     else 
                     {
@@ -363,7 +363,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.WHITE + "Username " + tempEmployee.getUsername() + "'s name updated to " + newName + " from " + tempEmployee.getName() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s name updated to " + newName + " from " + tempEmployee.getName() + " successfully!");
                     } 
                     else 
                     {
@@ -393,7 +393,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.WHITE + "Username " + tempEmployee.getUsername() + "'s surname updated to " + newSurname + " from " + tempEmployee.getSurname() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s surname updated to " + newSurname + " from " + tempEmployee.getSurname() + " successfully!");
                     } 
                     else 
                     {
@@ -423,7 +423,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.WHITE + "Username " + tempEmployee.getUsername() + "'s date of birth updated to " + newDOB + " from " + tempEmployee.getBirthday() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s date of birth updated to " + newDOB + " from " + tempEmployee.getBirthday() + " successfully!");
                     } 
                     else 
                     {
@@ -453,7 +453,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.WHITE + "Username " + tempEmployee.getUsername() + "'s date of start updated to " + newDOS + " from " + tempEmployee.getEmploymentday() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s date of start updated to " + newDOS + " from " + tempEmployee.getEmploymentday() + " successfully!");
                     } 
                     else 
                     {
@@ -507,7 +507,7 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Added Employee " + name + " " + surname + " to the database");
+                System.out.println(color.BRIGHT_GREEN + "Added Employee " + name + " " + surname + " to the database");
             }
             else
             {
@@ -544,7 +544,7 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.WHITE + "Employee " + victim.getName() + " " + victim.getSurname() + " has been deleted from the database");
+                System.out.println(color.BRIGHT_GREEN + "Employee " + victim.getName() + " " + victim.getSurname() + " has been deleted from the database");
             }
             else
             {

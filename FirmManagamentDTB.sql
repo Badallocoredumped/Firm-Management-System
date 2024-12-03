@@ -1,11 +1,8 @@
 CREATE DATABASE FirmManagement
 CHARACTER SET utf8mb4
-COLLATE utf8mb4_unicode_ci;
-
+COLLATE utf8mb4_bin;
 
 USE FirmManagement;
-
-
 
 
 
@@ -31,7 +28,7 @@ SELECT * FROM employees;
 /*We will create the database manually*/
 INSERT INTO employees (username, password, role, name, surname, phone_no, date_of_birth, date_of_start, email, DEFAULT_PASSWORD)
 VALUES 
-('emir5757', 'manager123', 'Manager', 'Emir', 'Özen', '5551234567', '1980-01-01', '2010-05-15', 'ahmet.yilmaz@example.com', FALSE),
+('emir5757', 'manager123', 'Manager', 'Emir', 'Özen', '5551234567', '1980-01-01', '2010-05-15', 'emirozen57@hotmail.com', FALSE),
 ('Teca7', 'WeLoveTeca', 'Engineer', 'Ahmed Marcolino Teca', 'Kanadji', '5441234567', '1980-01-01', '2010-05-15', 'teca.kanadji@example.com', TRUE);
 
 

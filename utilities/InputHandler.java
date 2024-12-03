@@ -2,6 +2,7 @@ package utilities;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -22,11 +23,11 @@ public class InputHandler
      */
     public String UsernameInput()
     {
-        String UsernameRegex = "^[A-Za-z0-9+_.\\\\-çÇğĞıİöÖşŞüÜ][a-zA-Z0-9_@#!$%^&*()+=.,/-]*$";
+        String UsernameRegex = "^[A-Za-z0-9çÇğĞıİöÖşŞüÜ+_.\\\\-][A-Za-z0-9çÇğĞıİöÖşŞüÜ_@#!$%^&*()+=.,/-]*$";
         String username;
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters): " + color.RESET);
+            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters, No spaces): " + color.RESET);
             username = scanner.nextLine().trim();
             if(dbHandler.CheckDuplicate("username",username))
             {
@@ -70,7 +71,7 @@ public class InputHandler
         String username;
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters): ");
+            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters, No spaces): ");
             username = scanner.nextLine().trim();
             
             if(username.length()<4)
@@ -101,7 +102,7 @@ public class InputHandler
         String password = "";
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter a Password (Minimum 8 characters): ");
+            System.out.print(color.WHITE + "Enter a Password (Minimum 8 characters, No spaces): ");
             password = scanner.nextLine().trim();
             
             if(password.length() < 8 || password.length() > 16)
@@ -143,7 +144,7 @@ public class InputHandler
         String name;
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter Name: "  + color.RESET);
+            System.out.print(color.WHITE + "Enter Name (Can be multiple words): "  + color.RESET);
             name = scanner.nextLine();
             if (!"".equals(tempName) && name.equals(tempName)) 
             {
@@ -173,7 +174,7 @@ public class InputHandler
         String surname = "";
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter Surname: "  + color.RESET);
+            System.out.print(color.WHITE + "Enter Surname (Single word): "  + color.RESET);
             surname = scanner.nextLine().trim();
 
 
@@ -202,7 +203,12 @@ public class InputHandler
      */
     public String RoleInput(String tempRole)
     {
-        Set<String> validRoles = Set.of("manager", "engineer", "technician", "intern"); //Simple hashset
+        Map<String, String> validRoles = Map.of(
+        "manager", "Manager",
+        "engineer", "Engineer",
+        "technician", "Technician",
+        "intern", "Intern"
+        );
         String role;
         while (true) 
         {
@@ -222,7 +228,7 @@ public class InputHandler
                 continue;
 
             } 
-            else if(validRoles.contains(role))
+            else if(validRoles.containsKey(role))
             {
                 Ccleaner();
                 return role; 
@@ -246,7 +252,7 @@ public class InputHandler
         while (true) 
         {
             
-            System.out.print(color.WHITE + "Enter Phone Number: ");
+            System.out.print(color.WHITE + "Enter Phone Number (123456789): ");
             phone = scanner.nextLine().trim();
             
             if(!"".equals(tempPhone) && dbHandler.CheckDuplicate("phone_no",phone))
@@ -400,7 +406,7 @@ public class InputHandler
         String email = "";
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter Email: ");
+            System.out.print(color.WHITE + "Enter Email (example@gmail.com, No special characters): ");
             email = scanner.nextLine().trim();
 
             if(!"".equals(tempEmail) && dbHandler.CheckDuplicate("email",email))
@@ -477,14 +483,24 @@ public class InputHandler
      * Handles updating employee information based on the user's input.
      * Displays a menu of fields to update and processes the user's selection.
      */
-    public void UpdateInput()
+    public void UpdateInput(String username)
     {
         System.out.println(color.WHITE + "Enter the username of the employee you would like to update");
         String tempUsername = UsernameInputToOperate();
         Ccleaner();
+        if(tempUsername.equals(username))
+        {
+            System.out.println(color.BRIGHT_RED + "You can not update your own information!!");
+            System.out.println(color.WHITE + "Enter anything to return");
+            scanner.nextLine();
+            Ccleaner();
+            return;
+        }
         Employee tempEmployee = dbHandler.GetEmployeeWithUsername(tempUsername);
         if(tempEmployee == null)
         {
+            System.out.println(color.WHITE + "Enter anything to return");
+            scanner.nextLine();
             Ccleaner();
             return;
         }

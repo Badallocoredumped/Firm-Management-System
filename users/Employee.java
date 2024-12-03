@@ -324,16 +324,16 @@ public abstract class Employee
             Ccleaner();
             System.out.println(color.MAGENTA + "Full profile information"  + color.RESET);
             System.out.println(color.MAGENTA + "----------------------------------------" + color.RESET);
-            System.out.println("Name: " + name);
-            System.out.println("Surname: " + surname);
-            System.out.println("Email: " + Email);
-            System.out.println("Phone: " + phone);
-            System.out.println("ID: " + ID);
-            System.out.println("Role: " + role);
-            System.out.println("Birthday: " + DOB);
-            System.out.println("Employment day: " + DOS);
-            System.out.println("Username: " + Username);
-            System.out.println("Password: " + Password + "\n");
+            System.out.println(color.WHITE + "Name: " + name);
+            System.out.println(color.WHITE +"Surname: " + surname);
+            System.out.println(color.WHITE +"Email: " + Email);
+            System.out.println(color.WHITE +"Phone: " + phone);
+            System.out.println(color.WHITE +"ID: " + ID);
+            System.out.println(color.WHITE +"Role: " + role);
+            System.out.println(color.WHITE +"Birthday: " + DOB);
+            System.out.println(color.WHITE +"Employment day: " + DOS);
+            System.out.println(color.WHITE +"Username: " + Username);
+            System.out.println(color.WHITE +"Password: " + Password + "\n" + color.RESET);
             System.out.println(color.MAGENTA + "----------------------------------------" + color.RESET);
 
     
