@@ -145,7 +145,7 @@ public abstract class Employee
         String EmailRegex = "^[A-Za-z0-9+_.çÇğĞıİöÖşŞüÜ-]+@[A-Za-z0-9.çÇğĞıİöÖşŞüÜ-]+\\.[A-Za-z]{2,}$";
         while (!Changed) 
         {
-            System.out.println(color.WHITE + "Enter new email address: ");
+            System.out.println(color.WHITE + "Enter new email address (example@gmail.com, No special characters): ");
             nEmail = input.nextLine();
             if (nEmail.equals(cEmail))
             {
@@ -156,7 +156,7 @@ public abstract class Employee
             else if(dbHandler.CheckDuplicate("email",nEmail))
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Email" + nEmail + "already exists in the database!!"  + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Email " + nEmail + " already exists in the database!!"  + color.RESET);
                 continue;
             }
 
@@ -185,7 +185,7 @@ public abstract class Employee
         String nPhone;
         while (!Changed) 
         {
-            System.out.println(color.WHITE + "Enter new phone number (10 digits): " + color.RESET);
+            System.out.println(color.WHITE + "Enter new phone number (+1XXXXXXXXXX): " + color.RESET);
             nPhone = input.nextLine();
             if (nPhone.equals(cPhone))
             {
@@ -196,14 +196,14 @@ public abstract class Employee
             else if(dbHandler.CheckDuplicate("phone_no",nPhone))
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Phone number" + nPhone + "already exists in the database!!" + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Phone number " + nPhone + " already exists in the database!!" + color.RESET);
                 continue;
             }
 
-            if (nPhone.length() != 10 || nPhone.isBlank() ||  !nPhone.matches("\\d+")) 
+            if (nPhone.isBlank() ||  !nPhone.matches("^\\+\\d{1,4}\\d{10}$"))
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Phone number must have 10 digits!!"  + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Invalid phone number format!"  + color.RESET);
                 continue;
             }
 

@@ -1,4 +1,7 @@
 package utilities;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -121,6 +124,20 @@ public class SortingAlgorithms
                 break;
             }
         }
+
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("sorted_arrays.txt"))) 
+        {
+            writer.write("Original Array:\n" + arrayToString(mainArr) + "\n\n");
+            writer.write("Radix Sort Result:\n" + arrayToString(copyRadix) + "\n\n");
+            writer.write("Shell Sort Result:\n" + arrayToString(copyShell) + "\n\n");
+            writer.write("Heap Sort Result:\n" + arrayToString(copyHeap) + "\n\n");
+            writer.write("Insertion Sort Result:\n" + arrayToString(copyInsert) + "\n\n");
+        } 
+        catch (IOException e) 
+        {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
         
 
         Ccleaner();
@@ -134,8 +151,10 @@ public class SortingAlgorithms
         System.out.println(color.MAGENTA + "=================================");
 
         
-        if(harmony) {
+        if(harmony) 
+        {
             System.out.println(color.WHITE + "\nAll algorithms sorted correctly!");
+            System.out.println(color.WHITE + "\nPrinted the original array and its sorted versions for each algortihm!");
         } else {
             System.out.println(color.BRIGHT_RED + "\nERROR: Sorts do not match!!");
         }
@@ -315,6 +334,25 @@ public class SortingAlgorithms
         }
     }
 
+    /**
+     * Converts an array to a string with comma-separated values.
+     *
+     * @param array the array to convert.
+     * @return a string representation of the array.
+     */
+    private String arrayToString(int[] array) 
+    {
+        String result = "";
+        for (int i = 0; i < array.length; i++) 
+        {
+            result += array[i];
+            if (i < array.length - 1) 
+            {
+                result += ", "; // Add a comma unless it's the last element
+            }
+        }
+        return result;
+    }
     /**
      * Clears the console screen.
      * 

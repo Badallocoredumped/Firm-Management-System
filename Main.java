@@ -38,6 +38,7 @@ public class Main
         {
             // Main menu: Login or Exit System
             asciiArt.printWelcome();
+            asciiArt.PrintAuthors();
             System.out.println(asciiArt.GREEN + "1. Login" + asciiArt.RESET);
             System.out.println(asciiArt.RED + "2. Exit System" + asciiArt.RESET);
             System.out.println();

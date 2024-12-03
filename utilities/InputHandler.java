@@ -252,7 +252,7 @@ public class InputHandler
         while (true) 
         {
             
-            System.out.print(color.WHITE + "Enter Phone Number (123456789): ");
+            System.out.print(color.WHITE + "Enter Phone Number (+1XXXXXXXXXX): ");
             phone = scanner.nextLine().trim();
             
             if(!"".equals(tempPhone) && dbHandler.CheckDuplicate("phone_no",phone))
@@ -267,7 +267,8 @@ public class InputHandler
                 System.out.println(color.BRIGHT_RED + "You can not use the same phone number!!"  + color.RESET);
                 continue;
             }
-            if (phone.length() != 10 || phone.isBlank() ||  !phone.matches("\\d+")) //This checks if its maching the digits from 0 to 9, and atleast 1 time at most 15 times
+            //Old Regex = "\\d+"
+            if (phone.length() != 10 || phone.isBlank() ||  !phone.matches("^\\+\\d{1,4}\\d{10}$"))
             {
                 Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Phone number must have 10 digits!!"  + color.RESET);
@@ -477,7 +478,51 @@ public class InputHandler
             }
         } while (PA != '1' || PA != '2');
         return false;
+
+        
     }
+
+    public boolean WannaAbort(Scanner input,boolean flag)
+    {
+        char PA = '0';
+        System.out.println(color.BRIGHT_RED + "You are about to fire an employee." + color.RESET);
+        System.out.println(color.BRIGHT_RED + "There will be no more warnings" + color.RESET);
+        do
+        {
+            System.out.println(color.WHITE + "\nDo you want to return to the Main Menu?");
+            System.out.println(color.WHITE + "1. Yes");
+            System.out.println(color.WHITE + "2. No");
+            System.out.print(color.WHITE + "Selection: ");
+            String PAString = input.nextLine();
+            if(PAString.isEmpty() || PAString.length() > 1)
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 or 2!!");
+                System.out.println();
+                continue;
+            }
+            PA = PAString.charAt(0);
+            if (PA < '1' || PA > '2') 
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number 1 or 2!!");
+                System.out.println();
+        }
+            if (PA == '1') 
+            {
+                Ccleaner();
+                return true;
+            }
+            else if (PA == '2')
+            {
+                Ccleaner();
+                return false;
+            }
+        } while (PA != '1' || PA != '2');
+        return false;
+
+    }
+    
 
     /**
      * Handles updating employee information based on the user's input.

@@ -50,6 +50,17 @@ public class AsciiArt
                 System.out.println("╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝      ╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝ ");
                 System.out.println(RESET);
     }
+
+    public void PrintAuthors()
+    {
+        System.out.println(WHITE + "Authors:");
+        System.out.println(YELLOW + "Emir Özen");
+        System.out.println(CYAN + "Ahmed Teka Kanadji");
+        System.out.println(GREEN + "Taha Özkan");
+        System.out.println(BLUE + "Alara Gümüşçü");
+        System.out.println(MAGENTA + "Maryam Khan");
+        System.out.println();
+    }
        
 }
     

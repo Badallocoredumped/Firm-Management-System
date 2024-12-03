@@ -4,7 +4,8 @@ COLLATE utf8mb4_bin;
 
 USE FirmManagement;
 
-
+ALTER TABLE employees
+MODIFY COLUMN phone_no VARCHAR(25);
 
 
 
@@ -15,7 +16,7 @@ CREATE TABLE employees (
     role ENUM('Manager', 'Engineer', 'Technician', 'Intern') NOT NULL,
     name VARCHAR(100) NOT NULL,
     surname VARCHAR(100) NOT NULL,
-    phone_no VARCHAR(15),
+    phone_no VARCHAR(25),
     date_of_birth DATE,
     date_of_start DATE,
     email VARCHAR(100),

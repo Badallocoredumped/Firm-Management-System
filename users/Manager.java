@@ -1,5 +1,6 @@
 package users;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Scanner;
 
 import utilities.AsciiArt;
@@ -215,6 +216,13 @@ public class Manager extends Employee
         {
             newDOB = inHandle.DobInput(null);
             newDOS = inHandle.DosInput(null);
+            Period age = Period.between(newDOB, newDOS);
+
+            if(age.getYears() < 18)
+            {
+                System.out.println("You must be at least 18 years old!!");
+                continue;
+            }
             if(inHandle.DoesDatesMakeSense(newDOB, newDOS))
             {
                 Ccleaner();
@@ -237,6 +245,17 @@ public class Manager extends Employee
      */
     protected void FireEmployeeManager()
     {
+        boolean abort = false;
+        Scanner tempScanner = InputUtil.scanner;
+        
+        
+        /* System.out.println(color.BRIGHT_RED + "You are about to fire an employee." + color.RESET);
+        System.out.println(color.BRIGHT_RED + "There will be no more warnings" + color.RESET); */
+        abort = inHandle.WannaAbort(tempScanner,abort);
+        if(abort)
+        {
+            return;
+        }
         
         String victimName = inHandle.UsernameInputToOperate();
         Employee employee = dbHandler.GetEmployeeWithUsername(victimName);
