@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 import users.Employee;
 
@@ -27,7 +26,7 @@ public class InputHandler
         String username;
         while (true) 
         {
-            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters, No spaces): " + color.RESET);
+            System.out.print(color.WHITE + "Enter a Username (Minimum 4 characters, Maximum 15 characters, No spaces): " + color.RESET);
             username = scanner.nextLine().trim();
             if(dbHandler.CheckDuplicate("username",username))
             {
@@ -38,6 +37,10 @@ public class InputHandler
             {
                 Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Username " + username + " is smaller than 4 characters!!" + color.RESET);
+            }
+            else if(username.length()>15)
+            {
+                System.out.println(color.BRIGHT_RED + "Username " + username + " is bigger than 15 characters!!" + color.RESET);
             }
             else if(username.isBlank())
             {
@@ -231,7 +234,7 @@ public class InputHandler
             else if(validRoles.containsKey(role))
             {
                 Ccleaner();
-                return role; 
+                return validRoles.get(role); 
             }
             else 
             {
@@ -252,7 +255,7 @@ public class InputHandler
         while (true) 
         {
             
-            System.out.print(color.WHITE + "Enter Phone Number (123456789): ");
+            System.out.print(color.WHITE + "Enter Phone Number (123456789 format, Exactly 10 digits): ");
             phone = scanner.nextLine().trim();
             
             if(!"".equals(tempPhone) && dbHandler.CheckDuplicate("phone_no",phone))

@@ -37,7 +37,7 @@ public class Main
         while (systemPower) 
         {
             // Main menu: Login or Exit System
-            asciiArt.printWelcome();
+            //asciiArt.printWelcome();
             System.out.println(asciiArt.GREEN + "1. Login" + asciiArt.RESET);
             System.out.println(asciiArt.RED + "2. Exit System" + asciiArt.RESET);
             System.out.println();
@@ -59,9 +59,9 @@ public class Main
             {
                 // Login flow
                 Ccleaner();
+                System.out.println(asciiArt.WHITE + "Please login with your username and password!!"  + asciiArt.RESET);
                 while (currUser == null) 
                 {
-                    System.out.println(asciiArt.WHITE + "Please login with your username and password!!"  + asciiArt.RESET);
                     System.out.print(asciiArt.BLUE + "Username: " + asciiArt.RESET);
                     String userName = scanner.nextLine();
         
