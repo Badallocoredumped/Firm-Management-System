@@ -97,6 +97,7 @@ public abstract class Employee
     public void ChangePassword()
     {
         System.out.println(color.MAGENTA + "Updating password" + color.RESET);
+        String PasswordRegex = "[a-zA-Z0-9_@#!$%^&*()+=.,/-]*$";
         boolean Changed = false;
         String cPassword = getPassword();
         String nPassword;
@@ -115,6 +116,13 @@ public abstract class Employee
             {
                 Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Password must have between 8 and 16 characters and should have any space!!" + color.RESET);
+                continue;
+            }
+
+            if (!nPassword.matches(PasswordRegex)) 
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Invalide password format!!" + color.RESET);
                 continue;
             }
 

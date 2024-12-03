@@ -208,6 +208,7 @@ public class Manager extends Employee
         String newSurname = inHandle.SurnameInput("");
         String newRole = inHandle.RoleInput("");
         //String newPhone = inHandle.PhoneInput("");
+        //String newPassword = inHandle.PasswordInput("");
         LocalDate newDOB;
         LocalDate newDOS;
         while(true)

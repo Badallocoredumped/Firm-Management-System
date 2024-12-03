@@ -22,6 +22,7 @@ public class InputHandler
      */
     public String UsernameInput()
     {
+        String UsernameRegex = "^[A-Za-z0-9+_.\\\\-çÇğĞıİöÖşŞüÜ][a-zA-Z0-9_@#!$%^&*()+=.,/-]*$";
         String username;
         while (true) 
         {
@@ -47,6 +48,11 @@ public class InputHandler
                 Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Username can not have spaces!!" + color.RESET);
             }
+            else if (!username.matches(UsernameRegex))  
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Invalid username format!");
+            }
             else
             {
                 return username;
@@ -60,6 +66,7 @@ public class InputHandler
      */
     public String UsernameInputToOperate()
     {
+        String UsernameRegex = "^[A-Za-z0-9+_.\\\\-çÇğĞıİöÖşŞüÜ][a-zA-Z0-9_@#!$%^&*()+=.,/-]*$";
         String username;
         while (true) 
         {
@@ -76,9 +83,50 @@ public class InputHandler
                 Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Username can not be blank!!"  + color.RESET);
             }
-            else
+            else if (!username.matches(UsernameRegex))  
             {
-                return username;
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Invalid username format!");
+            } 
+            else 
+            {
+                return username;                
+            }
+        }
+    }
+
+    public String PasswordInput(String tempPassword)
+    {
+        String PasswordRegex = "^[a-zA-Z0-9_@#!$%^&*()+=.,/-]*$";
+        String password = "";
+        while (true) 
+        {
+            System.out.print(color.WHITE + "Enter a Password (Minimum 8 characters): ");
+            password = scanner.nextLine().trim();
+            
+            if(password.length() < 8 || password.length() > 16)
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Password " + password + " is smaller than 8 or bigger than 16 characters!!"  + color.RESET);
+            }
+            else if(password.isBlank())
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Username can not be blank!!"  + color.RESET);
+            }
+            else if(password.contains(" "))
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Username can not be contain blank spacess!!"  + color.RESET);
+            }
+            else if (!password.matches(PasswordRegex))  
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Invalid username format!");
+            } 
+            else 
+            {
+                return password;                
             }
         }
     }
