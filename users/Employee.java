@@ -268,7 +268,7 @@ public abstract class Employee
             if(UPString.isEmpty() || UPString.length() > 1)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3!!" + color.RESET);
+                System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 5!!" + color.RESET);
                 System.out.println();
                 continue;
             }
@@ -278,7 +278,7 @@ public abstract class Employee
             if (UPInput < '1' || UPInput > '5') 
             {
                     Ccleaner();
-                    System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 3!!" + color.RESET);
+                    System.out.println(color.BRIGHT_RED + "You entered an invalid input. Please enter a number between 1 and 5!!" + color.RESET);
                     System.out.println();
             }
         
