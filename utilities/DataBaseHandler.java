@@ -496,10 +496,12 @@ public class DataBaseHandler
 
         try 
         {
+            String nameBox = name.replace("'", "''");
+            String surnameBox = surname.replace("'", "''");
             Statement statement = connection.createStatement();
             String randompassword = "Khas"+username;
             String query2do = "INSERT INTO employees (username, name, surname, role, date_of_birth, date_of_start, password) " +
-            "VALUES ('" + username + "', '" + name + "', '" + surname + "', '" + role + "', '" + dob + "', '" + dos + "', '" + randompassword + "')";
+            "VALUES ('" + username + "', '" + nameBox + "', '" + surnameBox + "', '" + role + "', '" + dob + "', '" + dos + "', '" + randompassword + "')";
             
 
             int rowsAffected = statement.executeUpdate(query2do);

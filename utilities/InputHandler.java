@@ -53,16 +53,39 @@ public class InputHandler
                 Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Username can not have spaces!!" + color.RESET);
             }
+            else if (username.matches("^_+.*"))
+            {
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Username cannot start with consecutive underscores!!" + color.RESET);
+            }
             else if (!username.matches(UsernameRegex))  
             {
                 Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Invalid username format!");
+            }
+            else if (countLetters(username) < 4) 
+            { 
+                Ccleaner();
+                System.out.println(color.BRIGHT_RED + "Username must contain at least 4 letters!!" + color.RESET);
             }
             else
             {
                 return username;
             }
         }
+    }
+
+    private int countLetters(String username) 
+    {
+        int count = 0;
+        for (char c : username.toCharArray()) 
+        {
+            if (Character.isLetter(c)) 
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -156,14 +179,14 @@ public class InputHandler
                 System.out.println(color.BRIGHT_RED + "You can not use the same name!!"  + color.RESET);
                 continue;
             }
-            else if(name.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+(\\s[A-Za-zÇçŞşİıĞğÖöÜü]+)*$"))
+            else if(name.matches("^[A-Za-zÇçŞşİıĞğÖöÜü']+(\\s[A-Za-zÇçŞşİıĞğÖöÜü']+)*$")&& !name.contains("''") && !name.startsWith("'") && !name.endsWith("'"))
             {
                 return name;
             } 
             else 
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Invalid name! Name should only contain letters and cannot be blank!!"  + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Invalid name! Name should only contain letters or single quotes and cannot be blank!!"  + color.RESET);
             }
         }
     }
@@ -188,14 +211,14 @@ public class InputHandler
                 System.out.println(color.BRIGHT_RED + "You can not use the same surname!!"  + color.RESET);
                 continue;
             }
-            else if(surname.matches("^[A-Za-zÇçŞşİıĞğÖöÜü]+$"))
+            else if(surname.matches("^[A-Za-zÇçŞşİıĞğÖöÜü']+$") && !surname.startsWith("'") && !surname.endsWith("'") && !surname.contains("''"))
             {
                 return surname;
             } 
             else 
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Invalid surname! Surname should only contain letters and cannot be blank!!"  + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Invalid surname! Surname should only contain letters or single quotes and cannot be blank!!"  + color.RESET);
             }
         }
     }
