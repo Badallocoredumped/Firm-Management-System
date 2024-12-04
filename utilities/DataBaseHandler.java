@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.Period;
 
 import users.Employee;
 import users.Manager;
@@ -354,8 +355,9 @@ public class DataBaseHandler
             {
                 Ccleaner();
                 String newName = inputHandler.NameInput(tempEmployee.getName());
+                String nameBox = newName.replace("'", "''");
                 Ccleaner();
-                String updateNameQuery = "UPDATE employees SET name = '" + newName + "' WHERE username = '" + tempEmployee.getUsername() + "'";
+                String updateNameQuery = "UPDATE employees SET name = '" + nameBox + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -384,8 +386,10 @@ public class DataBaseHandler
             {
                 Ccleaner();
                 String newSurname = inputHandler.SurnameInput(tempEmployee.getSurname());
+                String surnameBox = newSurname.replace("'", "''");
+
                 Ccleaner();
-                String updateSurnameQuery = "UPDATE employees SET surname = '" + newSurname + "' WHERE username = '" + tempEmployee.getUsername() + "'";
+                String updateSurnameQuery = "UPDATE employees SET surname = '" + surnameBox + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
                 {
                     Statement statement = connection.createStatement();
@@ -413,7 +417,21 @@ public class DataBaseHandler
             case '5':
             {
                 Ccleaner();
-                LocalDate newDOB = inputHandler.DobInput(tempEmployee.getBirthday());
+                LocalDate newDOB;
+                while (true) 
+                { 
+                    newDOB = inputHandler.DobInput(tempEmployee.getBirthday());
+                    Period age = Period.between(newDOB, tempEmployee.getEmploymentday());
+                    if(age.getYears() < 18)
+                    {
+                        System.out.println("You must be at least 18 years old!!");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
+                }
                 Ccleaner();
                 String updateDOBQuery = "UPDATE employees SET date_of_birth = '" + newDOB + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 
@@ -444,6 +462,19 @@ public class DataBaseHandler
             {
                 Ccleaner();
                 LocalDate newDOS = inputHandler.DosInput(tempEmployee.getEmploymentday());
+                while(true)
+                { 
+                    newDOS = inputHandler.DobInput(tempEmployee.getEmploymentday());
+                    Period age = Period.between(tempEmployee.getBirthday(), newDOS);
+                    if(age.getYears() < 18)
+                    {
+                        System.out.println("You must be at least 18 years old!!");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                 Ccleaner();
                 String updateDOSQuery = "UPDATE employees SET date_of_start = '" + newDOS + "' WHERE username = '" + tempEmployee.getUsername() + "'";
                 try 

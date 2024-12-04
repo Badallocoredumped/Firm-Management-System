@@ -187,6 +187,7 @@ public class InputHandler
     public String NameInput(String tempName)
     {
         String name;
+        
         while (true) 
         {
             System.out.print(color.WHITE + "Enter Name (Can be multiple words): "  + color.RESET);
