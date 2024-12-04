@@ -41,7 +41,7 @@ public class SortingAlgorithms
                     validInput = true;
                 } else {
                     Ccleaner();
-                    System.out.println(color.WHITE + "Please enter a number between 1000 and 10000!!");
+                    System.out.println(color.BRIGHT_RED + "Please enter a number between 1000 and 10000!!");
                 }
             } else {
                 Ccleaner();
