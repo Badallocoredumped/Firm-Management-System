@@ -2,11 +2,14 @@ package utilities;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
 
 
 /**
- * The {@code SortingAlgorithms} class provides functionality to generate random arrays,
+ * The class provides functionality to generate random arrays,
  * apply multiple sorting algorithms, measure their execution times, and verify their correctness.
  * Algorithms implemented include Radix Sort, Shell Sort, Heap Sort, and Insertion Sort.
  * The class also provides functionality to compare results against Java's Collections.sort.
@@ -17,7 +20,7 @@ public class SortingAlgorithms
      * Prompts the user to input the size of the array (between 1000 and 10000) and ensures valid input.
      * Once validated, runs the sorting algorithms on a randomly generated array of the specified size.
      *
-     * @param sizeOfArray a {@link Scanner} instance for user input.
+     * @param sizeOfArray a instance for user input.
      */
     public void getInputAndRunAlgorithms(Scanner sizeOfArray) 
     {
@@ -54,6 +57,10 @@ public class SortingAlgorithms
      * Runs multiple sorting algorithms on a randomly generated array of the specified size.
      * Measures and prints the execution time of each sorting algorithm in milliseconds.
      * Verifies the correctness of sorting by comparing results with Java's Collections.sort.
+     * It writes the original array and the sorted results of each algorithm to a file called `sorted_arrays.txt`.
+     * 
+     * It also compares the results of each algorithm with the sorted array obtained from `Collections.sort` to 
+     * verify their correctness. If the results do not match, an error message is displayed.
      *
      * @param sizeOfArray the size of the array to be sorted, must be between 1000 and 10000.
      */
@@ -310,7 +317,7 @@ public class SortingAlgorithms
      * A helper method for Radix Sort. Performs counting sort on the array based on the specified digit place.
      *
      * @param input the array to be sorted.
-     * @param exp the current digit's place value (e.g., 1 for units, 10 for tens).
+     * @param exp the current digit's place value (example: 1 for units, 10 for tens).
      */
     private void countingSortForRadix(int[] input, int exp) {
         int[] count = new int[10];

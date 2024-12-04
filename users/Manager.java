@@ -179,7 +179,7 @@ public class Manager extends Employee
                     while(!want2return)
                     {
                         sortingAlgorithms.getInputAndRunAlgorithms(scanner);
-                        want2return = inHandle.WannaReturn(scanner, want2return);
+                        want2return = inHandle.WannaReturn(scanner);
                     }
                 }
                 case '9' -> 
@@ -255,7 +255,7 @@ public class Manager extends Employee
         
         /* System.out.println(color.BRIGHT_RED + "You are about to fire an employee." + color.RESET);
         System.out.println(color.BRIGHT_RED + "There will be no more warnings" + color.RESET); */
-        abort = inHandle.WannaAbort(tempScanner,abort);
+        abort = inHandle.WannaAbort(tempScanner);
         if(abort)
         {
             return;

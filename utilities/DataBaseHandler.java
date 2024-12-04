@@ -21,7 +21,7 @@ import users.RegularEmployee;
 
  
 /**
- * The {@code DataBaseHandler} class manages the connection to the database and provides methods
+ * The DataBaseHandler class manages the connection to the database and provides methods
  * to interact with the employee records. It allows for querying employee details, displaying
  * employee summaries, and reporting the number of employees in each role.
  */
@@ -34,7 +34,7 @@ public class DataBaseHandler
     AsciiArt color = new AsciiArt();
     
     /**
-     * Constructs a new {@code DataBaseHandler} instance and establishes a connection to the database.
+     * Constructs a new DataBaseHandler instance and establishes a connection to the database.
      * If the connection fails, an error message is displayed.
      */
     public DataBaseHandler()

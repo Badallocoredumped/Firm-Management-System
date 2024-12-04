@@ -179,7 +179,9 @@ public abstract class Employee
 
     /**
      * Prompts the employee to update their phone number.
-     * Ensures the phone number is unique, has 10 digits, and is numeric.
+     * Ensures the new phone number is unique, has the correct format, and is numeric.
+     * The phone number must consist of a country code, followed by a 10-digit number.
+     * If the input does not meet the criteria, the user will be asked to try again
      */
     public void ChangePhone()
     {
@@ -231,6 +233,17 @@ public abstract class Employee
 
     /**
      * Displays a menu for updating specific profile fields or all fields.
+     * 
+     * The following operations are available:
+     * 
+     * 1. Change email
+     * 2. Change phone number
+     * 3. Change password
+     * 4. Update all profile information
+     * 5. Return to the main menu
+     * 
+     * If the user enters an invalid input, the method prompts them to select a valid option between 1 and 5.
+     * When entered a valid input, the user is directed to the related method.
      */
     public void UpdateProfile()
     {

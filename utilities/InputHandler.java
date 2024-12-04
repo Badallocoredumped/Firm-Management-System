@@ -18,6 +18,8 @@ public class InputHandler
     
     /**
      * Prompts the user to enter a username, validates it, and checks for duplicates.
+     * The username must be between 4 and 15 characters, shouldn't have any spaces and match a specific pattern, shouldn't start with special characters
+     * If the username is valid, it is returned. If it is not valid the user is prompted again.
      * @return A valid and unique username.
      */
     public String UsernameInput()
@@ -56,7 +58,7 @@ public class InputHandler
             else if (username.matches("^_+.*"))
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Username cannot start with consecutive underscores!!" + color.RESET);
+                System.out.println(color.BRIGHT_RED + "Username can not start with consecutive special characters!!" + color.RESET);
             }
             else if (!username.matches(UsernameRegex))  
             {
@@ -97,6 +99,7 @@ public class InputHandler
     }
 
     /**
+     * Same function as @see #validateUsername(String)
      * Prompts the user to enter a username without checking for duplicates.
      * @return A valid username.
      */
@@ -133,9 +136,9 @@ public class InputHandler
 
     /**
      * Prompts the user to enter a password, validates it, and ensures it meets certain criteria.
-    * The password must be between 8 and 16 characters long, cannot contain spaces, and 
-    * must match the specified regex pattern. If any of these conditions are not met, the user 
-    * is prompted again until a valid password is enteredPrompts the user to enter a username, validates it, 
+     * The password must be between 8 and 16 characters long, cannot contain spaces, and 
+     * must match the specified regex pattern. If any of these conditions are not met, the user 
+     * is prompted again until a valid password is entered. 
      * 
      * @param tempPassword
      * @return A valid password
@@ -181,6 +184,8 @@ public class InputHandler
 
     /**
      * Prompts the user to enter a valid name and validates it using a regular expression.
+     * Name can consist of multiple words, containing only letters and single quotes
+     * If the name is valid it is returned, if not then user is prompted again.
      * @param tempName A temporary name to ensure the new name is not the same.
      * @return A valid name.
      */
@@ -212,6 +217,9 @@ public class InputHandler
 
     /**
      * Prompts the user to enter a valid surname and validates it using a regular expression.
+     * Surname can consist of a single word with single quote containing only letters.
+     * If the surname is valid it is returned if not user is prompted again.
+     * 
      * @param tempSurname A temporary surname to ensure the new surname is not the same.
      * @return A valid surname.
      */
@@ -244,6 +252,8 @@ public class InputHandler
     
     /**
      * Prompts the user to enter a role and validates it against a predefined set of roles.
+     * The valid roles are "manager", "engineer", "technician", and "intern".
+     * If the role is valid, it is returned; otherwise, the user is prompted again.
      * @param tempRole A temporary role to ensure the new role is not the same.
      * @return A valid role.
      */
@@ -289,6 +299,8 @@ public class InputHandler
 
     /**
      * Prompts the user to enter a phone number and validates its format and uniqueness.
+     * The phone number has to follow a strict pattern of "+1XXXXXXXXXX" where X is a digit.
+     * If the phone number is valid it is returned if not the user is prompted again
      * @param tempPhone A temporary phone number to ensure the new phone is not the same.
      * @return A valid phone number.
      */
@@ -328,6 +340,10 @@ public class InputHandler
 
     /**
      * Prompts the user to enter a date of birth and validates it.
+     * Date of birth checks if the user is above 18 and is not born before 1920.
+     * Also it checks if the new birthday is the same as the previosu birthday.
+     * If the date of birth is valid it is returned if not the user is prompted again
+     * 
      * @param tempDOB A temporary date of birth to ensure the new DOB is not the same.
      * @return A valid date of birth.
      */
@@ -385,6 +401,8 @@ public class InputHandler
 
     /**
      * Prompts the user to enter a start date and validates it to ensure it is not in the future.
+     * New date of start can not be the same as the previous date of start.
+     * If the date of start is valid it is returned if not user is prompted again
      * @param tempDOS A temporary date of start to ensure the new date is not the same.
      * @return A valid start date.
      */
@@ -428,6 +446,7 @@ public class InputHandler
 
     /**
      * Validates that the start date is after the date of birth.
+     * 
      * @param DOB The date of birth.
      * @param DOS The date of start.
      * @return True if the start date is after the date of birth, false otherwise.
@@ -445,6 +464,8 @@ public class InputHandler
 
     /**
      * Prompts the user to enter an email address and validates it for proper format and uniqueness.
+     * 
+     * If the email is valid it is returned if not the user is prompted again.
      * @param tempEmail A temporary email to ensure the new email is not the same.
      * @return A valid email address.
      */
@@ -483,11 +504,12 @@ public class InputHandler
 
     /**
      * Asks the user if they want to return to the main menu.
+     * Validates the users input to make sure they choose either '1' for yes or '2' for no
+     * 
      * @param input The Scanner object for user input.
-     * @param flag A boolean flag (unused in the current method logic).
      * @return True if the user chooses to return to the main menu, false otherwise.
      */
-    public boolean WannaReturn(Scanner input,boolean flag)
+    public boolean WannaReturn(Scanner input)
     {
         char PA = '0';
         input.nextLine();
@@ -528,7 +550,13 @@ public class InputHandler
         
     }
 
-    public boolean WannaAbort(Scanner input,boolean flag)
+    /**
+     * Asks the user if they want to proceed with firing an employee.
+     * Displays a warning message and validates the user's input to ensure they choose either '1' for yes or '2' for no.
+     * @param input The Scanner object for user input.
+     * @return True if the user chooses to return to the main menu, false otherwise.
+     */
+    public boolean WannaAbort(Scanner input)
     {
         char PA = '0';
         System.out.println(color.BRIGHT_RED + "You are about to fire an employee." + color.RESET);
@@ -573,6 +601,7 @@ public class InputHandler
     /**
      * Handles updating employee information based on the user's input.
      * Displays a menu of fields to update and processes the user's selection.
+     * Ensures that the user cannot update their own information and verifies that the employee exists in the database.
      */
     public void UpdateInput(String username)
     {

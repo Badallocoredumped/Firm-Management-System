@@ -16,7 +16,7 @@ import utilities.InputUtil;
  * supports roles like Manager and RegularEmployee, and interacts with utility 
  * classes such as AsciiArt, Authenticator, and InputUtil.
  * 
- * The system continues running until the user opts to exit.
+ * The system continues running until the user decides to exit.
  */
 public class Main 
 {
@@ -61,6 +61,8 @@ public class Main
                 // Login flow
                 Ccleaner();
                 System.out.println(asciiArt.WHITE + "Please login with your username and password!!"  + asciiArt.RESET);
+                System.out.println(asciiArt.WHITE + "(Default passwords are 'Khas' + 'username' !!)"  + asciiArt.RESET);
+
                 while (currUser == null) 
                 {
                     System.out.print(asciiArt.BLUE + "Username: " + asciiArt.RESET);

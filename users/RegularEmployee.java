@@ -42,10 +42,10 @@ public class RegularEmployee extends Employee
      * 1. View their profile information.
      * 2. Update their profile information.
      * 3. Log out of the system.
-     * <p>
+     * 
      * This method runs a loop that continuously displays the menu until the employee selects 
      * the option to log out (option '3').
-     * </p>
+     * 
      */
     @Override
     public void Menu()
