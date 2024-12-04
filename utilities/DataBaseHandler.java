@@ -424,7 +424,7 @@ public class DataBaseHandler
                     Period age = Period.between(newDOB, tempEmployee.getEmploymentday());
                     if(age.getYears() < 18)
                     {
-                        System.out.println("You must be at least 18 years old!!");
+                        System.out.println(color.BRIGHT_RED +"You must be at least 18 years old!!" + color.RESET);
                     }
                     else
                     {
@@ -461,14 +461,14 @@ public class DataBaseHandler
             case '6':
             {
                 Ccleaner();
-                LocalDate newDOS = inputHandler.DosInput(tempEmployee.getEmploymentday());
+                LocalDate newDOS;
                 while(true)
                 { 
-                    newDOS = inputHandler.DobInput(tempEmployee.getEmploymentday());
+                    newDOS = inputHandler.DosInput(tempEmployee.getEmploymentday());
                     Period age = Period.between(tempEmployee.getBirthday(), newDOS);
                     if(age.getYears() < 18)
                     {
-                        System.out.println("You must be at least 18 years old!!");
+                        System.out.println(color.BRIGHT_RED +"You must be at least 18 years old!!" + color.RESET);
                     }
                     else
                     {

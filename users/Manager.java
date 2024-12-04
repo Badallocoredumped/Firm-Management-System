@@ -224,7 +224,7 @@ public class Manager extends Employee
 
             if(age.getYears() < 18)
             {
-                System.out.println("You must be at least 18 years old!!");
+                System.out.println(color.BRIGHT_RED + "You must be at least 18 years old!!" + color.RESET);
                 continue;
             }
             if(inHandle.DoesDatesMakeSense(newDOB, newDOS))

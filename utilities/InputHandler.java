@@ -134,51 +134,6 @@ public class InputHandler
         }
     }
 
-    /**
-     * Prompts the user to enter a password, validates it, and ensures it meets certain criteria.
-     * The password must be between 8 and 16 characters long, cannot contain spaces, and 
-     * must match the specified regex pattern. If any of these conditions are not met, the user 
-     * is prompted again until a valid password is entered. 
-     * 
-     * @param tempPassword
-     * @return A valid password
-     */
-
-    public String PasswordInput(String tempPassword)
-    {
-        String PasswordRegex = "^[a-zA-Z0-9_@#!$%^&*()+=.,/-]*$";
-        String password = "";
-        while (true) 
-        {
-            System.out.print(color.WHITE + "Enter a Password (Minimum 8 characters, No spaces): ");
-            password = scanner.nextLine().trim();
-            
-            if(password.length() < 8 || password.length() > 16)
-            {
-                Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Password " + password + " is smaller than 8 or bigger than 16 characters!!"  + color.RESET);
-            }
-            else if(password.isBlank())
-            {
-                Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Username can not be blank!!"  + color.RESET);
-            }
-            else if(password.contains(" "))
-            {
-                Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Username can not be contain blank spacess!!"  + color.RESET);
-            }
-            else if (!password.matches(PasswordRegex))  
-            {
-                Ccleaner();
-                System.out.println(color.BRIGHT_RED + "Invalid username format!");
-            } 
-            else 
-            {
-                return password;                
-            }
-        }
-    }
     
     //NOTE: The matches() method in Java checks if a string matches a given regular expression (regex)
 
