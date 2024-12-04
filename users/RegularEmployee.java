@@ -107,14 +107,14 @@ public class RegularEmployee extends Employee
                 case '3'-> //Logout
                 {
                     Ccleaner();
-                    System.out.print(color.RED + "Logginng out...");
+                    System.out.print(color.RED + "Logginng out..." + color.RESET);
                     return;
                 }
 
                 default -> 
                 {
                     Ccleaner();
-                    System.out.println(color.WHITE + "Please enter a number between 1 and 3");
+                    System.out.println(color.WHITE + "Please enter a number between 1 and 3" + color.RESET);
                 }
             }
         }

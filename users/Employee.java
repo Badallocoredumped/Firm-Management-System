@@ -97,7 +97,7 @@ public abstract class Employee
     public void ChangePassword()
     {
         System.out.println(color.MAGENTA + "Updating password" + color.RESET);
-        String PasswordRegex = "[a-zA-Z0-9_@#!$%^&*()+=.,/-]*$";
+        String PasswordRegex = "[a-zA-Z0-9_@#!$%^&*()+=.,/-?]*$"; //- is not accepted in password
         boolean Changed = false;
         String cPassword = getPassword();
         String nPassword;

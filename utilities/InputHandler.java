@@ -40,6 +40,7 @@ public class InputHandler
             }
             else if(username.length()>15)
             {
+                Ccleaner();
                 System.out.println(color.BRIGHT_RED + "Username " + username + " is bigger than 15 characters!!" + color.RESET);
             }
             else if(username.isBlank())
@@ -558,15 +559,20 @@ public class InputHandler
         char RMInput = '0';
         while(RMInput != '7' )
         {
-
-            System.out.println(color.MAGENTA + "Which field would you like to update?\n" +
-            "1: Username\n" +
-            "2: Role\n" +
-            "3: Name\n" +
-            "4: Surname\n" +
-            "5: Date of Birth\n" +
-            "6: Date of Start\n" +
-            "7: Exit");
+            System.out.println(color.MAGENTA + "=============================================" + color.RESET);
+            System.out.println(color.MAGENTA + "             *** Update Menu ***             " + color.RESET);
+            System.out.println(color.MAGENTA + "=============================================" + color.RESET);
+            System.out.println(color.BRIGHT_BLUE + "Which field would you like to update?" + color.RESET);
+            System.out.println(color.MAGENTA + "----------------------------------------------" + color.RESET);
+            System.out.println("1. Username\n" +
+            "2. Role\n" +
+            "3. Name\n" +
+            "4. Surname\n" +
+            "5. Date of Birth\n" +
+            "6. Date of Start\n" +
+            "7. Exit");
+            System.out.println(color.MAGENTA + "----------------------------------------------" + color.RESET);
+            System.out.print(color.BRIGHT_BLUE + "Select an Operation (1-7): ");
 
             RMString = scanner.nextLine();
             

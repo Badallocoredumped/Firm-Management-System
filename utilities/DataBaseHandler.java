@@ -76,8 +76,8 @@ public class DataBaseHandler
             
             System.out.println(color.MAGENTA + "===================================================================================" + 
                 "=========================================================================" + color.RESET);
-            System.out.printf(color.BRIGHT_BLUE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
-            "Emp ID", "Username", "Role", "Name", "Phone", "DOB", "Start Date", "Email" + color.RESET);
+            System.out.printf(color.BRIGHT_BLUE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-13s | %-12s | %-30s%n",
+            "Emp ID", "Username", "Role", "Name", "Phone", "Date of Birth", "Start Date", "Email" + color.RESET);
             System.out.println(color.MAGENTA + "===================================================================================" + 
                 "=========================================================================" + color.RESET);
             
@@ -96,7 +96,7 @@ public class DataBaseHandler
         
                 
                 
-                System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
+                System.out.printf(color.WHITE + "%-10s | %-15s | %-15s | %-30s | %-15s | %-13s | %-12s | %-30s%n",
                 dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone,
                 dbDOB.toLocalDate(), dbDOS.toLocalDate(), dbEmail);
                 
@@ -114,7 +114,7 @@ public class DataBaseHandler
                 totalEmployees = countResult.getInt("total");
             }
             
-            System.out.println(color.WHITE + "\nTotal number of employees: \n" + totalEmployees);
+            System.out.println(color.WHITE + "\nTotal number of employees: \n" + totalEmployees + color.RESET);
                 
                 
         } 
@@ -137,7 +137,7 @@ public class DataBaseHandler
             String query = "SELECT role, COUNT(*) AS role_count FROM employees GROUP BY role";
             ResultSet resultSet = roleStatement.executeQuery(query);
         
-            System.out.println(color.BRIGHT_BLUE + "\nRole Summary:");
+            System.out.println(color.BRIGHT_BLUE + "\nRole Summary:" + color.RESET);
             System.out.println(color.MAGENTA + "-------------------------" + color.RESET);
             while (resultSet.next()) 
             {
@@ -164,7 +164,7 @@ public class DataBaseHandler
     {
         if (connection == null) 
         {
-            System.err.println(color.BRIGHT_RED + "Database connection failed!!");
+            System.err.println(color.BRIGHT_RED + "Database connection failed!!" + color.RESET);
             return;
         }
     
@@ -176,8 +176,8 @@ public class DataBaseHandler
     
             System.out.println(color.MAGENTA + "==============================================================================" + 
                 "==============================================================================" + color.RESET);
-            System.out.printf(color.BRIGHT_BLUE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
-                    "Emp ID", "Username", "Role", "Name", "Phone No", "DOB", "Start Date", "Email" + color.RESET);
+            System.out.printf(color.BRIGHT_BLUE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-13s | %-12s | %-30s%n",
+                    "Emp ID", "Username", "Role", "Name", "Phone No", "Date of Birth", "Start Date", "Email" + color.RESET);
             System.out.println(color.MAGENTA + "==============================================================================" + 
                 "==============================================================================" + color.RESET);
     
@@ -193,7 +193,7 @@ public class DataBaseHandler
                 String dbDOS = infoSet.getString("date_of_start");
                 String dbEmail = infoSet.getString("email");
     
-                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
+                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-13s | %-12s | %-30s%n",
                         dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail + color.RESET);
             }
     
@@ -229,13 +229,13 @@ public class DataBaseHandler
             if (!infoSet.isBeforeFirst()) // This checks if there are any rows in the ResultSet 
             { 
                 //isBeforeFirst() Retrieves whether the cursor is before the first row in this ResultSet object.
-                System.out.println(color.BRIGHT_RED + "User named " + username + " does not exist in the database.");
+                System.out.println(color.BRIGHT_RED + "User named " + username + " does not exist in the database." + color.RESET);
                 return;
             }
 
             System.out.println(color.MAGENTA + "==============================================================================" + 
                 "==============================================================================" + color.RESET);
-            System.out.printf(color.BRIGHT_BLUE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s |%n",
+            System.out.printf(color.BRIGHT_BLUE + "| %-10s | %-15s | %-15s | %-30s | %-15s | %-13s | %-12s | %-30s%n",
                     "Emp ID", "Username", "Role", "Name", "Phone No", "Date of Birth", "Start Date", "Email" + color.RESET);
             System.out.println(color.MAGENTA + "==============================================================================" + 
                 "==============================================================================" + color.RESET);
@@ -252,7 +252,7 @@ public class DataBaseHandler
                 String dbDOS = infoSet.getString("date_of_start");
                 String dbEmail = infoSet.getString("email");
 
-                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-12s | %-12s | %-30s%n",
+                System.out.printf(color.WHITE + "| %-10d | %-15s | %-15s | %-30s | %-15s | %-13s | %-12s | %-30s%n",
                     dbID, dbUsername, dbRole, dbName + " " + dbSurname, dbPhone, dbDOB, dbDOS, dbEmail  + color.RESET);
                 
             }
@@ -300,7 +300,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + " updated to " + newUsername + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + " updated to " + newUsername + " successfully!" + color.RESET);
                     } 
                     else 
                     {
@@ -333,7 +333,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s role updated to " + newRole + " from " + tempEmployee.getRole() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s role updated to " + newRole + " from " + tempEmployee.getRole() + " successfully!" + color.RESET);
                     } 
                     else 
                     {
@@ -363,7 +363,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s name updated to " + newName + " from " + tempEmployee.getName() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s name updated to " + newName + " from " + tempEmployee.getName() + " successfully!" + color.RESET);
                     } 
                     else 
                     {
@@ -393,7 +393,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s surname updated to " + newSurname + " from " + tempEmployee.getSurname() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s surname updated to " + newSurname + " from " + tempEmployee.getSurname() + " successfully!" + color.RESET);
                     } 
                     else 
                     {
@@ -423,7 +423,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s date of birth updated to " + newDOB + " from " + tempEmployee.getBirthday() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s date of birth updated to " + newDOB + " from " + tempEmployee.getBirthday() + " successfully!" + color.RESET);
                     } 
                     else 
                     {
@@ -453,7 +453,7 @@ public class DataBaseHandler
 
                     if (rowsAffected > 0)
                     {
-                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s date of start updated to " + newDOS + " from " + tempEmployee.getEmploymentday() + " successfully!");
+                        System.out.println(color.BRIGHT_GREEN + "Username " + tempEmployee.getUsername() + "'s date of start updated to " + newDOS + " from " + tempEmployee.getEmploymentday() + " successfully!" + color.RESET);
                     } 
                     else 
                     {
@@ -507,7 +507,7 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_GREEN + "Added Employee " + name + " " + surname + " to the database");
+                System.out.println(color.BRIGHT_GREEN + "Added Employee " + name + " " + surname + " to the database" + color.RESET);
             }
             else
             {
@@ -544,7 +544,7 @@ public class DataBaseHandler
             if(rowsAffected > 0)
             {
                 Ccleaner();
-                System.out.println(color.BRIGHT_GREEN + "Employee " + victim.getName() + " " + victim.getSurname() + " has been deleted from the database");
+                System.out.println(color.RED + "Employee " + victim.getName() + " " + victim.getSurname() + " has been deleted from the database" + color.RESET);
             }
             else
             {
@@ -573,7 +573,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.BRIGHT_RED + "Database connection failed!!");
+            System.err.println(color.BRIGHT_RED + "Database connection failed!!" + color.RESET);
         }
 
         try 
@@ -647,7 +647,7 @@ public class DataBaseHandler
     {
         if(connection == null)
         {
-            System.err.println(color.BRIGHT_RED + "Database connection failed");
+            System.err.println(color.BRIGHT_RED + "Database connection failed" +color.RESET);
         }
 
         try 
