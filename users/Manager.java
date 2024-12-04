@@ -244,7 +244,7 @@ public class Manager extends Employee
      * Allows the manager to fire an existing employee.
      * 
      * The method verifies if the employee exists and prevents the manager from
-     * firing themselves. If validation succeeds, the employee is removed from
+     * firing themselves also checks if the firing operation is final. If validation succeeds, the employee is removed from
      * the database.
      */
     protected void FireEmployeeManager()

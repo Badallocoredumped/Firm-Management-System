@@ -74,7 +74,15 @@ public class InputHandler
             }
         }
     }
-
+    /**
+     * Counts the number of alphabetic characters (letters) in a given username.
+     * 
+     * This method iterates over the string and counts how many letters are in it.
+     * Non-letter characters are ignored
+     * 
+     * @param username
+     * @return the number of alphabetic characters(letters) in the username
+     */
     private int countLetters(String username) 
     {
         int count = 0;
@@ -122,6 +130,16 @@ public class InputHandler
             }
         }
     }
+
+    /**
+     * Prompts the user to enter a password, validates it, and ensures it meets certain criteria.
+    * The password must be between 8 and 16 characters long, cannot contain spaces, and 
+    * must match the specified regex pattern. If any of these conditions are not met, the user 
+    * is prompted again until a valid password is enteredPrompts the user to enter a username, validates it, 
+     * 
+     * @param tempPassword
+     * @return A valid password
+     */
 
     public String PasswordInput(String tempPassword)
     {
@@ -449,7 +467,7 @@ public class InputHandler
                 System.out.println(color.BRIGHT_RED + "You can not use the same Email!!");
                 continue;
             }
-            if (email.matches("^[A-Za-z0-9+_.\\-çÇğĞıİöÖşŞüÜ]+@[A-Za-z0-9.-çÇğĞıİöÖşŞüÜ]+\\.[A-Za-z]{2,}$"))  
+            if (email.matches("^[A-Za-z0-9+_.\\-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))  
             // ^ start of string,[A-Za-z0-9+_.-] local part of email allows only upper or lowercase characters numbers or special chars +@ .- permits dots and hyphens $ is end of the string
             {
                 return email;

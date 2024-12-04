@@ -11,7 +11,8 @@ import utilities.InputUtil;
  * The Employee class serves as an abstract base for all employee types in the Firm Management System.
  * 
  * This class defines common properties, behaviors, and operations that all employees share.
- * Specific employee roles, such as Manager, will extend this class and implement its abstract methods.
+ * RegularEmployee and Manager classes inherit from the Employee superclass and extends this classes abstract methods
+ * 
  */
 public abstract class Employee 
 {
@@ -62,7 +63,10 @@ public abstract class Employee
         this.DEFAULT_PASSWORD = DEFAULT_PASSWORD;
 
     }
-
+    /**  
+     * Getter and Setter functions for the Employee class
+     * 
+     */
     public String getName() {return name;}
     public String getSurname() {return surname;}
     public String getUsername() {return Username;}
@@ -71,18 +75,18 @@ public abstract class Employee
     public LocalDate getBirthday() {return DOB;}
     public LocalDate getEmploymentday() {return DOS;}
     public String getPhone() {return phone;}
+    public Boolean getDEFAULT_PASSWORD() {return DEFAULT_PASSWORD;}
+    public String getPassword() {return Password;}
+    public String getEmail() {return Email;}
     public void setUsername(String Username) {this.Username = Username;}
     public void setRole(String roletochange) {this.role = roletochange;}
     public void setPhone(String phone) { this.phone = phone;}
-    public String getEmail() {return Email;}
     public void setEmail(String email) { this.Email = email;}
-    public String getPassword() {return Password;}
     public void setPassword(String Password) { this.Password = Password;}
     public void setName(String nametochange) {this.name = nametochange;}
     public void setSurname(String surnametochange) {this.surname = surnametochange;}
     public void setBirthday(LocalDate birthdaytochange){this.DOB = birthdaytochange;}
     public void setEmploymentDay(LocalDate employmentdatetochange){this.DOS = employmentdatetochange;}
-    public Boolean getDEFAULT_PASSWORD() {return DEFAULT_PASSWORD;}
     
     /**
      * Abstract method to display the menu for specific employee roles.
@@ -142,7 +146,7 @@ public abstract class Employee
         boolean Changed = false;
         String cEmail = getEmail();
         String nEmail;
-        String EmailRegex = "^[A-Za-z0-9+_.çÇğĞıİöÖşŞüÜ-]+@[A-Za-z0-9.çÇğĞıİöÖşŞüÜ-]+\\.[A-Za-z]{2,}$";
+        String EmailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         while (!Changed) 
         {
             System.out.println(color.WHITE + "Enter new email address (example@gmail.com, No special characters): ");
