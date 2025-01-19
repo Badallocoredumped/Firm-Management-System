@@ -1,18 +1,43 @@
-Firm Management System - CMPE343 Project
-📜 Overview
-This project is a console-based Java application with role-based access control and database integration for managing employees in a firm. It showcases OOP principles like inheritance, polymorphism, abstraction, and encapsulation, while leveraging MySQL for persistent data storage.
 
-✨ Key Features
-Feature	Description
-Authentication System	Role-based login with support for Turkish characters.
-Manager Features	Hire, fire, update employee details, and execute sorting algorithms.
-Regular Employee Features	View/update personal details, mandatory password change on first login.
-Sorting Algorithm Analysis	Runtime comparison of Radix, Shell, Heap, and Insertion Sort algorithms.
-Database Integration	CRUD operations on employees using MySQL.
-Error Handling	Graceful handling of invalid inputs and DB connectivity issues.
-Javadoc Documentation	Auto-generated HTML documentation using the javadoc tool.
-⚙️ Technologies Used
-Programming Language: Java
-Database: MySQL
-Version Control: GitHub
-Documentation: Javadoc
+---
+
+### Firm Management System 💼  
+
+A **console-based Java application** integrated with a **MySQL database**, designed to manage employees in a firm while showcasing core **OOP principles** like inheritance, polymorphism, abstraction, and encapsulation.
+
+---
+
+### Features  
+- **Role-Based Authentication**:  
+  Login system supporting role-based access for managers and employees, with support for Turkish characters.  
+
+- **Manager Features**:  
+  - Hire and fire employees  
+  - Update employee details  
+  - Execute and compare sorting algorithms  
+
+- **Employee Features**:  
+  - View and update personal details  
+  - Mandatory password change on first login  
+
+- **Sorting Algorithm Analysis**:  
+  Runtime comparisons of **Radix**, **Shell**, **Heap**, and **Insertion Sort** algorithms for data organization.  
+
+- **Database Integration**:  
+  Full CRUD operations on employees using **MySQL** and **JDBC** for seamless data management.  
+
+- **Error Handling**:  
+  Handles invalid inputs and database connectivity issues gracefully.  
+
+- **Documentation**:  
+  Auto-generated **HTML documentation** using the `javadoc` tool.  
+
+---
+
+### Technologies Used 🛠️  
+- **Java** (Console-based application, JDBC for database interaction)  
+- **MySQL**  
+- **GitHub** (Version control and collaboration)  
+- **Javadoc** (For HTML documentation generation)  
+
+---
