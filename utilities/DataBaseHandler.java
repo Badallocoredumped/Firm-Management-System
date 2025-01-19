@@ -27,9 +27,9 @@ import users.RegularEmployee;
  */
 public class DataBaseHandler 
 {
-    private final String url = "jdbc:mysql://localhost:3306/FirmManagement"; 
+    private final String url = "jdbc:mysql://localhost:3306/cinemacenter"; 
     private final String username = "root"; 
-    private final String password = "Tecakanadji1"; 
+    private final String password = "Admin_123"; 
     private Connection connection;
     AsciiArt color = new AsciiArt();
     
